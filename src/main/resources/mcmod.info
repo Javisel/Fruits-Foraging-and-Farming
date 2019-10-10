@@ -1,0 +1,16 @@
+[
+{
+  "modid": "fruits_foraging_and_farming",
+  "name": "Fruits, Foraging and Farming",
+  "description": "A mod which seeks to expand Vanilla foraging and farming.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["MotorGorilla1","Javisel"],
+  "credits": "Forge Team.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
