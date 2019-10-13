@@ -9,13 +9,19 @@ public class ItemBase extends Item implements IModelRegisterable{
 
                 setRegistryName(name);
                 setUnlocalizedName(name);
+                this.setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
 
             }
 
+    @Override
     public void registerItemModel() {
+        String name = this.getUnlocalizedName();
 
 
-        FruitsForagingAndFarming.proxy.registerItemRenderer(this, 0, this.getUnlocalizedName());
+        name = name.subSequence(5,name.length()).toString();
+
+
+        FruitsForagingAndFarming.proxy.registerItemRenderer(this, 0, name);
 
     }
 

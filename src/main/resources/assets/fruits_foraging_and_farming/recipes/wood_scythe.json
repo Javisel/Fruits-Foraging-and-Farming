@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IIS",
+    " SI",
+    "S  "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "I": [
+      {
+        "item": "minecraft:planks",
+        "data": 0
+      },
+      {
+        "item": "minecraft:planks",
+        "data": 1
+      },
+      {
+        "item": "minecraft:planks",
+        "data": 2
+      },
+      {
+        "item": "minecraft:planks",
+        "data": 3
+      },
+      {
+        "item": "minecraft:planks",
+        "data": 4
+      },
+      {
+        "item": "minecraft:planks",
+        "data": 5
+      }
+    ]
+  },
+  "result": {
+    "item": "fruits_foraging_and_farming:wooden_scythe",
+    "count": 1
+  }
+}

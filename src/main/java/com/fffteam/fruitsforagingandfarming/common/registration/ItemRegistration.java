@@ -1,25 +1,37 @@
 package com.fffteam.fruitsforagingandfarming.common.registration;
 
-import com.fffteam.fruitsforagingandfarming.common.items.ItemFood;
+import com.fffteam.fruitsforagingandfarming.common.items.*;
 import com.fffteam.fruitsforagingandfarming.common.items.weapon.WeaponScythe;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ItemRegistration {
 
 
-    public static final ItemFood foodOrange = new ItemFood("food_orange",2,1.0F);
-    public static final ItemFood foodBanana = new ItemFood("food_banana",2,1.0F);
-    public static final ItemFood foodPineapple = new ItemFood("food_pineapple",2,1.0F);
-    public static final ItemFood foodCoconut = new ItemFood("food_coconut",2,1.0F);
-    public static final ItemFood foodLemon = new ItemFood("food_lemon",2,1.0f);
-    public static final ItemFood foodLime = new ItemFood("food_lime",2,1.0f);
-    public static final WeaponScythe scytheWood = new WeaponScythe("scythe_wood", Item.ToolMaterial.WOOD, 0);
-    public static final WeaponScythe scytheStone = new WeaponScythe("scythe_stone", Item.ToolMaterial.STONE, 1);
-    public static final WeaponScythe scytheGold = new WeaponScythe("scythe_gold", Item.ToolMaterial.GOLD, 2);
+    //FOOD
+    public static final ItemFoodBase foodOrange = new ItemFoodBase("orange",2,1.0F);
+    public static final ItemFoodBase foodBanana = new ItemFoodBase("banana",2,1.0F);
+    public static final ItemFoodBase foodPineapple = new ItemFoodBase("pineapple",2,1.0F);
+    public static final ItemFoodBase foodCoconut = new ItemFoodBase("coconut",2,1.0F);
+    public static final ItemFoodBase foodLemon = new ItemFoodBase("lemon",2,1.0f);
+    public static final ItemFoodBase foodLime = new ItemFoodBase("lime",2,1.0f);
+    public static final ItemFoodBase foodTurnip = new ItemFoodBase("turnip",2,2.0F);
+    //SEED
+    public static final SeedBase grassSeeds = new GrassSeeds();
+    public static final SeedBase turnipSeeds = new SeedBase("turnip_seeds",BlockRegistration.cropTurnip, Blocks.FARMLAND);
+    public static final WeaponScythe scytheWood = new WeaponScythe("wooden_scythe", Item.ToolMaterial.WOOD, 0);
+    public static final WeaponScythe scytheStone = new WeaponScythe("stone_scythe", Item.ToolMaterial.STONE, 1);
+    public static final WeaponScythe scytheGold = new WeaponScythe("golden_scythe", Item.ToolMaterial.GOLD, 2);
+    public static final WeaponScythe scytheIron = new WeaponScythe("iron_scythe", Item.ToolMaterial.IRON, 3);
+    public static final WeaponScythe scytheDiamond = new WeaponScythe("diamond_scythe", Item.ToolMaterial.DIAMOND, 4);
 
-    public static final WeaponScythe scytheIron = new WeaponScythe("scythe_iron", Item.ToolMaterial.IRON, 3);
-    public static final WeaponScythe scytheDiamond = new WeaponScythe("scythe_diamond", Item.ToolMaterial.DIAMOND, 4);
+    //SEEDFOODS
+    public static final ItemSeedFoodBase seedFoodCorn = new ItemSeedFoodBase("corn",3,5,BlockRegistration.blockCorn, Blocks.FARMLAND);
+
+    //GEMS
+    public static final ItemBase ruby = new ItemBase("ruby");
 
     public  static void registerItems(IForgeRegistry<Item> registry) {
 
@@ -29,13 +41,16 @@ public class ItemRegistration {
       registry.register(foodLime);
       registry.register(foodOrange);
       registry.register(foodPineapple);
+      registry.register(grassSeeds);
+      registry.register(turnipSeeds);
+      registry.register(foodTurnip);
+      registry.register(seedFoodCorn);
         registry.register(scytheWood);
         registry.register(scytheStone);
         registry.register(scytheGold);
-
         registry.register(scytheIron);
         registry.register(scytheDiamond);
-
+        registry.register(ruby);
 
     }
 
@@ -50,9 +65,16 @@ public class ItemRegistration {
                 scytheWood.registerItemModel();
                 scytheDiamond.registerItemModel();
                 scytheGold.registerItemModel();
-
                 scytheIron.registerItemModel();
+                turnipSeeds.registerItemModel();
+                foodTurnip.registerItemModel();
                scytheStone.registerItemModel();
+               grassSeeds.registerItemModel();
+               ruby.registerItemModel();
+    }
 
+    public static void registerOreMaterial() {
+
+        OreDictionary.registerOre("gemRuby",ruby);
     }
 }

@@ -1,11 +1,11 @@
 {
-  "minecraft:recipes/transportation/dark_oak_boat": {
+  "minecraft:recipes/misc/pink_dye_from_red_bonemeal": {
     "criteria": {
-      "entered_water": "2019-10-10 18:22:29 -0400"
+      "has_red_dye": "2019-10-10 21:17:24 -0400"
     },
     "done": true
   },
-  "minecraft:recipes/transportation/birch_boat": {
+  "minecraft:recipes/transportation/dark_oak_boat": {
     "criteria": {
       "entered_water": "2019-10-10 18:22:29 -0400"
     },
@@ -19,9 +19,114 @@
   },
   "minecraft:adventure/kill_all_mobs": {
     "criteria": {
-      "slime": "2019-10-10 18:23:26 -0400"
+      "slime": "2019-10-10 18:23:26 -0400",
+      "skeleton": "2019-10-10 21:03:16 -0400",
+      "zombie": "2019-10-10 21:02:17 -0400",
+      "spider": "2019-10-10 22:09:02 -0400"
     },
     "done": false
+  },
+  "minecraft:recipes/food/cake": {
+    "criteria": {
+      "has_egg": "2019-10-10 21:15:44 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/magenta_dye_from_lapis_ink_bonemeal": {
+    "criteria": {
+      "has_black_dye": "2019-10-10 21:17:23 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/sticky_piston": {
+    "criteria": {
+      "has_slime_ball": "2019-10-10 18:23:30 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/light_blue_dye_from_lapis_bonemeal": {
+    "criteria": {
+      "has_bonemeal": "2019-10-10 21:17:25 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/magenta_dye_from_lapis_red_pink": {
+    "criteria": {
+      "has_red_dye": "2019-10-10 21:17:24 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/lead": {
+    "criteria": {
+      "has_slime_ball": "2019-10-10 18:23:30 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/brewing/cauldron": {
+    "criteria": {
+      "has_water_bucket": "2019-10-10 18:20:29 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/gray_dye": {
+    "criteria": {
+      "has_black_dye": "2019-10-10 21:17:23 -0400"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2019-10-10 18:17:47 -0400"
+    },
+    "done": false
+  },
+  "minecraft:recipes/misc/bone_meal_from_bone": {
+    "criteria": {
+      "has_bone": "2019-10-10 22:08:25 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/bread": {
+    "criteria": {
+      "has_wheat": "2019-10-10 21:47:26 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/light_gray_dye_from_gray_bonemeal": {
+    "criteria": {
+      "has_bonemeal": "2019-10-10 21:17:25 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/birch_boat": {
+    "criteria": {
+      "entered_water": "2019-10-10 18:22:29 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2019-10-10 21:01:18 -0400"
+    },
+    "done": true
+  },
+  "minecraft:story/shiny_gear": {
+    "criteria": {
+      "diamond_chestplate": "2019-10-10 22:08:36 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/bone_meal_from_block": {
+    "criteria": {
+      "has_the_recipe": "2019-10-10 21:17:25 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/light_gray_dye_from_ink_bonemeal": {
+    "criteria": {
+      "has_black_dye": "2019-10-10 21:17:23 -0400"
+    },
+    "done": true
   },
   "minecraft:recipes/transportation/acacia_boat": {
     "criteria": {
@@ -29,9 +134,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/redstone/sticky_piston": {
+  "minecraft:recipes/misc/slime_ball": {
     "criteria": {
-      "has_slime_ball": "2019-10-10 18:23:30 -0400"
+      "has_the_recipe": "2019-10-10 21:02:52 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/orange_dye_from_red_yellow": {
+    "criteria": {
+      "has_red_dye": "2019-10-10 21:17:24 -0400"
     },
     "done": true
   },
@@ -53,9 +164,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/tools/lead": {
+  "minecraft:recipes/misc/purple_dye": {
     "criteria": {
-      "has_slime_ball": "2019-10-10 18:23:30 -0400"
+      "has_red_dye": "2019-10-10 21:17:24 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/lime_dye": {
+    "criteria": {
+      "has_bonemeal": "2019-10-10 21:17:25 -0400"
     },
     "done": true
   },
@@ -71,16 +188,16 @@
     },
     "done": true
   },
-  "minecraft:recipes/brewing/cauldron": {
+  "minecraft:recipes/decorations/slime": {
     "criteria": {
-      "has_water_bucket": "2019-10-10 18:20:29 -0400"
+      "has_at_least_9_slime_ball": "2019-10-10 21:02:52 -0400"
     },
     "done": true
   },
-  "minecraft:adventure/adventuring_time": {
+  "minecraft:recipes/building_blocks/bone_block": {
     "criteria": {
-      "plains": "2019-10-10 18:17:47 -0400"
+      "has_at_least_9_bonemeal": "2019-10-10 21:17:25 -0400"
     },
-    "done": false
+    "done": true
   }
 }

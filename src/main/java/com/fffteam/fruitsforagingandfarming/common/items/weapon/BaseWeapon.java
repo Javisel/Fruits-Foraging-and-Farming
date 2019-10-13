@@ -4,10 +4,13 @@ import com.fffteam.fruitsforagingandfarming.common.items.IModelRegisterable;
 import com.fffteam.fruitsforagingandfarming.common.utilities.ItemUtilities;
 import com.fffteam.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import com.google.common.collect.Multimap;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 
 import javax.tools.Tool;
@@ -17,8 +20,9 @@ public class BaseWeapon extends Item implements  IWeapon, IModelRegisterable {
     float attackDamage;
     double attackSpeed;
     ToolMaterial material;
-    public BaseWeapon(String name, ToolMaterial material, float attackDamage, double attackSpeed) {
-
+    boolean twoHanded;
+    public BaseWeapon(String name, Boolean isTwoHanded, ToolMaterial material, float attackDamage, double attackSpeed) {
+       // super(material);
         this.material=material;
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
@@ -26,7 +30,8 @@ public class BaseWeapon extends Item implements  IWeapon, IModelRegisterable {
         this.attackSpeed=attackSpeed;
         this.setMaxStackSize(1);
         this.setMaxDamage(material.getMaxUses());
-
+        this.setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
+        twoHanded=isTwoHanded;
     }
 
 
@@ -43,7 +48,7 @@ public class BaseWeapon extends Item implements  IWeapon, IModelRegisterable {
 
     @Override
     public boolean isTwoHanded() {
-        return false;
+        return twoHanded;
     }
 
     @Override
@@ -59,6 +64,15 @@ public class BaseWeapon extends Item implements  IWeapon, IModelRegisterable {
         }
 
         return multimap;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+
+
+        return (enchantment.type== EnumEnchantmentType.WEAPON || enchantment.type==EnumEnchantmentType.ALL);
+
+
     }
 
     @Override

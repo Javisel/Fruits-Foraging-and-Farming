@@ -1,6 +1,12 @@
 package com.fffteam.fruitsforagingandfarming.common.items.weapon;
 
+import com.fffteam.fruitsforagingandfarming.common.enchantments.AllVoid;
+import com.fffteam.fruitsforagingandfarming.common.registration.EnchantmentRegistration;
+import com.fffteam.fruitsforagingandfarming.common.utilities.ItemUtilities;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.util.ITooltipFlag;
@@ -15,6 +21,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
@@ -33,20 +40,8 @@ import java.util.List;
 
 public class WeaponScythe extends BaseWeapon {
     public WeaponScythe(String name, ToolMaterial material, float attackDamage) {
-        super(name, material, attackDamage, 1.20);
+        super(name,true, material, attackDamage, 0.8);
 
-    }
-    @Override
-    public boolean isTwoHanded() {
-        return true;
-    }
-    @Override
-    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-
-
-
-
-        super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     @Override
@@ -63,15 +58,9 @@ public class WeaponScythe extends BaseWeapon {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
 
-        if (enchantment==Enchantments.SWEEPING) { return false;}
 
         return (enchantment.type == EnumEnchantmentType.WEAPON || enchantment.type==EnumEnchantmentType.ALL);
 
-    }
-
-    @Override
-    public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-        super.onCreated(stack, worldIn, playerIn);
     }
 
     @Override
@@ -82,7 +71,6 @@ public class WeaponScythe extends BaseWeapon {
             {
                 if (entitylivingbase != player && entitylivingbase != entity && !player.isOnSameTeam(entitylivingbase) && player.getDistanceSq(entitylivingbase) < 9.0D)
                 {
-                //     entitylivingbase.knockBack(player, 0.4F, (double) MathHelper.sin(player.rotationYaw * 0.017453292F), (double)(-MathHelper.cos(player.rotationYaw * 0.017453292F)));
                     entitylivingbase.attackEntityFrom(DamageSource.causePlayerDamage(player), this.getAttackDamage());
                 }
             }
@@ -101,7 +89,7 @@ public class WeaponScythe extends BaseWeapon {
             {
                 if (entitylivingbase != attacker && entitylivingbase != target && !attacker.isOnSameTeam(entitylivingbase) && attacker.getDistanceSq(entitylivingbase) < 9.0D)
                 {
-                    entitylivingbase.attackEntityFrom(DamageSource.causeMobDamage(attacker), this.getAttackDamage());
+                    entitylivingbase.attackEntityFrom(DamageSource.causeMobDamage(attacker), this.getAttackDamage()-1);
                 }
             }
 
@@ -123,9 +111,9 @@ public class WeaponScythe extends BaseWeapon {
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         tooltip.add( "Two-Handed");
-        tooltip.add("Sweeps when swung at 100% Charge for 100% Damage");
-        tooltip.add("Harvesting crops also harvests horizontally adjacent blocks.");
-
+        tooltip.add("Sweeping");
+        tooltip.add("Harvesting crops or tall grass also harvests horizontally adjacent crops/tall grass.");
+        tooltip.add("");
 
     }
 
@@ -180,97 +168,79 @@ public class WeaponScythe extends BaseWeapon {
 
 
 
+        @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 
-        if (state.getBlock() instanceof BlockCrops) {
-            stack.damageItem(1,entityLiving);
-     //       System.out.println("Pos X: "  +pos.getX() + " Pos Y: " + pos.getY() + " Pos Z: " + pos.getZ());
-            BlockPos breakposfirst;
-            BlockPos breakpossecond;
-            double div = 360.0D / 8.0D;
-            double quantized = (int) ((entityLiving.rotationYaw + div / 2.0D) / div) % 8;
+        if (!worldIn.isRemote) {
+            if (state.getBlock() instanceof BlockBush) {
+                stack.damageItem(1, entityLiving);
+                BlockPos breakposfirst;
+                BlockPos breakpossecond;
+                double div = 360.0D / 8.0D;
+                double quantized = (int) ((entityLiving.rotationYaw + div / 2.0D) / div) % 8;
 
-           quantized *=-1;
+                quantized *= -1;
 
-                    if (quantized == 0) {
-                //TODO
-                        breakposfirst=pos.north();
-                        breakposfirst=breakposfirst.east();
-                        breakpossecond=pos.south();
-                        breakpossecond=breakpossecond.west();
+                if (quantized == 0) {
+
+                    breakposfirst = pos.north();
+                    breakposfirst = breakposfirst.east();
+                    breakpossecond = pos.south();
+                    breakpossecond = breakpossecond.west();
+                } else if (quantized == 1 || quantized == 5) {
+                    breakposfirst = pos.north();
+                    breakpossecond = pos.south();
+                } else if (quantized == 2) {
+                    breakposfirst = pos.south();
+                    breakposfirst = breakposfirst.east();
+                    breakpossecond = pos.north();
+                    breakpossecond = breakpossecond.west();
+                } else if (quantized == 3 || quantized == 7) {
+                    breakposfirst = pos.west();
+                    breakpossecond = pos.east();
+
+                } else if (quantized == 4) {
+                    breakposfirst = pos.south();
+                    breakposfirst = breakposfirst.west();
+                    breakpossecond = pos.north();
+                    breakpossecond = breakpossecond.east();
+                }  else if (quantized == 6) {
+                    breakposfirst = pos.north();
+                    breakposfirst = breakposfirst.west();
+                    breakpossecond = pos.south();
+                    breakpossecond = breakpossecond.east();
+
+                } else {
+                    breakposfirst = pos;
+                    breakpossecond = pos;
+                    System.out.println("Unrecognized Numerical: " + quantized);
+                }
+
+
+                if (worldIn.getBlockState(breakposfirst).getBlock() instanceof BlockBush) {
+
+
+                        worldIn.destroyBlock(breakposfirst, !ItemUtilities.hasEnchantment(stack, EnchantmentRegistration.allVoid));
+
+
+                }
+                if (worldIn.getBlockState(breakpossecond).getBlock() instanceof BlockBush) {
+
+                        worldIn.destroyBlock(breakpossecond, !ItemUtilities.hasEnchantment(stack,EnchantmentRegistration.allVoid));
+
+
+
+                }
+
+                double d0 = (double) (-MathHelper.sin(entityLiving.rotationYaw * 0.017453292F));
+                double d1 = (double) MathHelper.cos(entityLiving.rotationYaw * 0.017453292F);
+
+                if (entityLiving.world instanceof WorldServer) {
+                    ((WorldServer) entityLiving.world).spawnParticle(EnumParticleTypes.SWEEP_ATTACK, entityLiving.posX + d0, entityLiving.posY + (double) entityLiving.height * 0.5D, entityLiving.posZ + d1, 0, d0, 0.0D, d1, 0.0D);
+                }
+            } else {
+                stack.damageItem(1, entityLiving);
             }
-         else   if (quantized==1) {
-                breakposfirst = pos.north();
-                breakpossecond = pos.south();
-            }
-
-            else   if (quantized == 2) {
-                breakposfirst=pos.south();
-                breakposfirst=breakposfirst.east();
-                breakpossecond=pos.north();
-                breakpossecond=breakpossecond.west();
-            }
-            else   if (quantized == 3) {
-                breakposfirst=pos.west();
-                breakpossecond=pos.east();
-
-            }
-            else if (quantized==4) {
-                breakposfirst=pos.south();
-                breakposfirst=breakposfirst.west();
-                breakpossecond=pos.north();
-                breakpossecond=breakpossecond.east();
-            }
-
-                    else   if ( quantized == 5) {
-                        breakposfirst = pos.north();
-                        breakpossecond = pos.south();
-                    }
-
-            else if ( quantized == 6) {
-                 breakposfirst=pos.north();
-                 breakposfirst=breakposfirst.west();
-                 breakpossecond=pos.south();
-                 breakpossecond=breakpossecond.east();
-
-            }
-          else  if ( quantized == 7) {
-                breakposfirst=pos.west();
-                breakpossecond=pos.east();
-
-            }
-
-
-          else {
-              breakposfirst=pos;
-              breakpossecond=pos;
-          System.out.println("Unrecognized Numerical: " +quantized);
-            }
-
-         //   System.out.println("Facing: " + entityLiving.getHorizontalFacing().getName() +" Quantified: " + quantized);
-
-
-
-
-            if (worldIn.getBlockState(breakposfirst).getBlock() instanceof BlockCrops) {
-                worldIn.destroyBlock(breakposfirst,true);
-
-            }
-            if (worldIn.getBlockState(breakpossecond).getBlock() instanceof BlockCrops) {
-                worldIn.destroyBlock(breakpossecond,true);
-
-            }
-
-            double d0 = (double)(-MathHelper.sin(entityLiving.rotationYaw * 0.017453292F));
-            double d1 = (double)MathHelper.cos(entityLiving.rotationYaw * 0.017453292F);
-
-            if (entityLiving.world instanceof WorldServer)
-            {
-                ((WorldServer)entityLiving.world).spawnParticle(EnumParticleTypes.SWEEP_ATTACK, entityLiving.posX + d0, entityLiving.posY + (double)entityLiving.height * 0.5D, entityLiving.posZ + d1, 0, d0, 0.0D, d1, 0.0D);
-            }
-        }
-        else {
-            stack.damageItem(2,entityLiving);
         }
         return super.onBlockDestroyed(stack, worldIn, state, pos, entityLiving);
     }

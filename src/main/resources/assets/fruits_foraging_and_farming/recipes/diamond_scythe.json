@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+   
+    "pattern":
+    [
+        "DDS",
+        " SD",
+        "S  "
+    ],
+   
+    "key":
+    {
+        "S":
+        {
+            "item": "minecraft:stick"
+        },
+		"D":
+        {
+            "item": "minecraft:diamond"
+        }
+    },
+   
+    "result":
+    {
+        "item": "fruits_foraging_and_farming:diamond_scythe",
+        "count": 1
+    }
+	}

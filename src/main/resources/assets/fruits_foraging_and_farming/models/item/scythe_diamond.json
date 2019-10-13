@@ -1,6 +1,0 @@
-{
-"parent": "item/handheld",
-"textures": {
-"layer0": "fruits_foraging_and_farming:item/scythe_diamond"
-}
-}
