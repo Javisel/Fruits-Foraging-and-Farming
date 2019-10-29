@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_column",
+  "textures":
+  {
+    "end": "fruits_foraging_and_farming:block/palm_log_top",
+    "side": "fruits_foraging_and_farming:block/palm_log_side"
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/leaves",
+    "textures":
+    {
+        "all": "fruits_foraging_and_farming:block/palm_leaves",
+        "tintindex": 0
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+
+    {
+      "item": "fruits_foraging_and_farming:palm_log",
+      "data": 0
+    }
+  ],
+  "result": {
+    "item": "fruits_foraging_and_farming:palm_planks",
+    "count": 4
+  }
+}

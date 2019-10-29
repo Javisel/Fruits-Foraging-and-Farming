@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "fruits_foraging_and_farming:corn"
+    }
+  ],
+  "result": {
+    "item": "fruits_foraging_and_farming:corn_kernel",
+    "count": 4
+  }
+}

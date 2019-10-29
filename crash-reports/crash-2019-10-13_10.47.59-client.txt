@@ -7,8 +7,8 @@ Description: Initializing game
 java.lang.IllegalStateException: Attempted to set registry name with existing registry name! New: fruits_foraging_and_farming:corn_crop Old: fruits_foraging_and_farming:corn_crop
 	at net.minecraftforge.registries.IForgeRegistryEntry$Impl.setRegistryName(IForgeRegistryEntry.java:71)
 	at net.minecraftforge.registries.IForgeRegistryEntry$Impl.setRegistryName(IForgeRegistryEntry.java:79)
-	at com.fffteam.fruitsforagingandfarming.common.registration.BlockRegistration.registerModels(BlockRegistration.java:33)
-	at com.fffteam.fruitsforagingandfarming.main.FruitsForagingAndFarming$RegistrationHandler.registerModels(FruitsForagingAndFarming.java:87)
+	at BlockRegistration.registerModels(BlockRegistration.java:33)
+	at FruitsForagingAndFarming$RegistrationHandler.registerModels(FruitsForagingAndFarming.java:87)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistrationHandler_registerModels_ModelRegistryEvent.invoke(.dynamic)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
 	at net.minecraftforge.fml.common.eventhandler.EventBus$1.invoke(EventBus.java:144)
@@ -42,8 +42,8 @@ Thread: Client thread
 Stacktrace:
 	at net.minecraftforge.registries.IForgeRegistryEntry$Impl.setRegistryName(IForgeRegistryEntry.java:71)
 	at net.minecraftforge.registries.IForgeRegistryEntry$Impl.setRegistryName(IForgeRegistryEntry.java:79)
-	at com.fffteam.fruitsforagingandfarming.common.registration.BlockRegistration.registerModels(BlockRegistration.java:33)
-	at com.fffteam.fruitsforagingandfarming.main.FruitsForagingAndFarming$RegistrationHandler.registerModels(FruitsForagingAndFarming.java:87)
+	at BlockRegistration.registerModels(BlockRegistration.java:33)
+	at FruitsForagingAndFarming$RegistrationHandler.registerModels(FruitsForagingAndFarming.java:87)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistrationHandler_registerModels_ModelRegistryEvent.invoke(.dynamic)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
 	at net.minecraftforge.fml.common.eventhandler.EventBus$1.invoke(EventBus.java:144)

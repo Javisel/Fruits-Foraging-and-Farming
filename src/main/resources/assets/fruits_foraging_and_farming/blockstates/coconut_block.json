@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "type=0": {
+            "model": "fruits_foraging_and_farming:coconut_block"
+        },
+        "type=1": {
+            "model": "fruits_foraging_and_farming:coconut_block_on_tree"
+        }
+  }
+}

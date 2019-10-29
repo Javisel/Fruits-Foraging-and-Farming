@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "stage=0": { "model": "fruits_foraging_and_farming:palm_sapling" },
+    "stage=1": { "model": "fruits_foraging_and_farming:palm_sapling" }
+  }
+}

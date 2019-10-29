@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "fruits_foraging_and_farming:block/palm_planks"
+  }
+}

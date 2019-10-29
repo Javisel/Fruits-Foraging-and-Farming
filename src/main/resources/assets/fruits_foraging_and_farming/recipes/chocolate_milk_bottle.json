@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "fruits_foraging_and_farming:chocolate_milk_bucket"
+    }
+
+
+  ],
+  "result": {
+    "item": "fruits_foraging_and_farming:chocolate_milk_bottle",
+    "count": 1
+  }
+}

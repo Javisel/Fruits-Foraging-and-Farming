@@ -1,0 +1,23 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "III",
+    "IXI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "fruits_foraging_and_farming:infested_pebble"
+    },
+    "X": [
+      {
+        "item": "minecraft:cobblestone"
+      }
+    ]
+  },
+  "result": {
+    "item": "minecraft:monster_egg",
+    "count": 1,
+    "data": 1
+  }
+}

@@ -5,7 +5,7 @@ Time: 10/12/19 1:49 PM
 Description: Initializing game
 
 java.lang.ExceptionInInitializerError
-	at com.fffteam.fruitsforagingandfarming.main.FruitsForagingAndFarming$RegistrationHandler.registerBlocks(FruitsForagingAndFarming.java:77)
+	at FruitsForagingAndFarming$RegistrationHandler.registerBlocks(FruitsForagingAndFarming.java:77)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_10_RegistrationHandler_registerBlocks_Register.invoke(.dynamic)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
 	at net.minecraftforge.fml.common.eventhandler.EventBus$1.invoke(EventBus.java:144)
@@ -31,9 +31,9 @@ java.lang.ExceptionInInitializerError
 Caused by: java.lang.IllegalArgumentException: Cannot set property PropertyInteger{name=age, clazz=class java.lang.Integer, values=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]} as it does not exist in BlockStateContainer{block=minecraft:air, properties=[age]}
 	at net.minecraft.block.state.BlockStateContainer$StateImplementation.withProperty(BlockStateContainer.java:221)
 	at net.minecraft.block.BlockCrops.<init>(BlockCrops.java:26)
-	at com.fffteam.fruitsforagingandfarming.common.blocks.CropBase.<init>(CropBase.java:25)
-	at com.fffteam.fruitsforagingandfarming.common.blocks.BlockCorn.<init>(BlockCorn.java:28)
-	at com.fffteam.fruitsforagingandfarming.common.registration.BlockRegistration.<clinit>(BlockRegistration.java:11)
+	at CropBase.<init>(CropBase.java:25)
+	at CropCorn.<init>(BlockCorn.java:28)
+	at BlockRegistration.<clinit>(BlockRegistration.java:11)
 	... 23 more
 
 
@@ -43,7 +43,7 @@ A detailed walkthrough of the error, its code path and all known details is as f
 -- Head --
 Thread: Client thread
 Stacktrace:
-	at com.fffteam.fruitsforagingandfarming.main.FruitsForagingAndFarming$RegistrationHandler.registerBlocks(FruitsForagingAndFarming.java:77)
+	at FruitsForagingAndFarming$RegistrationHandler.registerBlocks(FruitsForagingAndFarming.java:77)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_10_RegistrationHandler_registerBlocks_Register.invoke(.dynamic)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
 	at net.minecraftforge.fml.common.eventhandler.EventBus$1.invoke(EventBus.java:144)

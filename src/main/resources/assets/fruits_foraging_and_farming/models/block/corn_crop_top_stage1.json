@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "fruits_foraging_and_farming:block/corn_crop_top_stage1"
+    }
+}

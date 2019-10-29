@@ -7,8 +7,8 @@
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["MotorGorilla1","Javisel"],
-  "credits": "Forge Team.",
+  "authorList": ["Team Leader - MotorGorilla1","Programmer - Javisel", "Textures-  Kolatek", "Textures - Feranogame", "Sound - Orilly"],
+  "credits": "Team Citrus.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

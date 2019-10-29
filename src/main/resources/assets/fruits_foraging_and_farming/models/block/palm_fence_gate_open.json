@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_gate_open",
+    "textures": {
+        "texture": "fruits_foraging_and_farming:block/palm_planks"
+    }
+}

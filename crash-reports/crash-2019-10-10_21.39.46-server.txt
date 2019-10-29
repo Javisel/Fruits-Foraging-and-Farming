@@ -5,7 +5,7 @@ Time: 10/10/19 9:39 PM
 Description: Exception ticking world
 
 java.lang.NullPointerException: Exception ticking world
-	at com.fffteam.fruitsforagingandfarming.main.EventHandler.VoidBlockDrop(EventHandler.java:26)
+	at EventHandler.VoidBlockDrop(EventHandler.java:26)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_21_EventHandler_VoidBlockDrop_HarvestDropsEvent.invoke(.dynamic)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
 	at net.minecraftforge.fml.common.eventhandler.EventBus.post(EventBus.java:182)
@@ -30,7 +30,7 @@ A detailed walkthrough of the error, its code path and all known details is as f
 -- Head --
 Thread: Server thread
 Stacktrace:
-	at com.fffteam.fruitsforagingandfarming.main.EventHandler.VoidBlockDrop(EventHandler.java:26)
+	at EventHandler.VoidBlockDrop(EventHandler.java:26)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_21_EventHandler_VoidBlockDrop_HarvestDropsEvent.invoke(.dynamic)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
 	at net.minecraftforge.fml.common.eventhandler.EventBus.post(EventBus.java:182)

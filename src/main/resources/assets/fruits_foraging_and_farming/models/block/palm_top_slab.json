@@ -1,0 +1,9 @@
+{
+    "parent": "block/upper_slab",
+    "textures":
+    {
+        "bottom": "fruits_foraging_and_farming:block/palm_planks",
+        "top": "fruits_foraging_and_farming:block/palm_planks",
+        "side": "fruits_foraging_and_farming:block/palm_planks"
+    }
+}

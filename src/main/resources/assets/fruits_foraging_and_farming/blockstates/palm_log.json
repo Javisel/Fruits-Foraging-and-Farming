@@ -1,0 +1,9 @@
+{
+  "variants":
+  {
+    "axis=y":  { "model": "fruits_foraging_and_farming:palm_log" },
+    "axis=z":   { "model": "fruits_foraging_and_farming:palm_log", "x": 90 },
+    "axis=x":   { "model": "fruits_foraging_and_farming:palm_log", "x": 90, "y": 90 },
+    "axis=none": { "model": "fruits_foraging_and_farming:palm_bark" }
+  }
+}

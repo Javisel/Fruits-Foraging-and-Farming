@@ -4,13 +4,13 @@
 Time: 10/10/19 12:19 PM
 Description: Initializing game
 
-java.lang.NullPointerException: Can't use a null-name for the registry, object com.fffteam.fruitsforagingandfarming.common.items.weapon.WeaponScythe@56059cf1.
+java.lang.NullPointerException: Can't use a null-name for the registry, object WeaponScythe@56059cf1.
 	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:864)
 	at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:294)
 	at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
 	at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-	at com.fffteam.fruitsforagingandfarming.common.registration.ItemRegistration.registerItems(ItemRegistration.java:32)
-	at com.fffteam.fruitsforagingandfarming.main.FruitsForagingAndFarming$RegistrationHandler.registerItems(FruitsForagingAndFarming.java:46)
+	at ItemRegistration.registerItems(ItemRegistration.java:32)
+	at FruitsForagingAndFarming$RegistrationHandler.registerItems(FruitsForagingAndFarming.java:46)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_7_RegistrationHandler_registerItems_Register.invoke(.dynamic)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
 	at net.minecraftforge.fml.common.eventhandler.EventBus$1.invoke(EventBus.java:144)
@@ -45,8 +45,8 @@ Stacktrace:
 	at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:294)
 	at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
 	at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-	at com.fffteam.fruitsforagingandfarming.common.registration.ItemRegistration.registerItems(ItemRegistration.java:32)
-	at com.fffteam.fruitsforagingandfarming.main.FruitsForagingAndFarming$RegistrationHandler.registerItems(FruitsForagingAndFarming.java:46)
+	at ItemRegistration.registerItems(ItemRegistration.java:32)
+	at FruitsForagingAndFarming$RegistrationHandler.registerItems(FruitsForagingAndFarming.java:46)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_7_RegistrationHandler_registerItems_Register.invoke(.dynamic)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
 	at net.minecraftforge.fml.common.eventhandler.EventBus$1.invoke(EventBus.java:144)

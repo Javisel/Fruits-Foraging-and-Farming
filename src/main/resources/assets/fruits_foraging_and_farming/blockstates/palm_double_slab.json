@@ -1,0 +1,6 @@
+{
+    "variants":
+    {
+        "variant=default": { "model": "fruits_foraging_and_farming:palm_double_slab" }
+    }
+}

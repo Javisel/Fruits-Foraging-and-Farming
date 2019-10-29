@@ -5,7 +5,7 @@ Time: 10/12/19 2:44 PM
 Description: Unexpected error
 
 java.lang.NullPointerException: Unexpected error
-	at com.fffteam.fruitsforagingandfarming.common.items.SeedBase.getPlant(SeedBase.java:31)
+	at SeedBase.getPlant(SeedBase.java:31)
 	at net.minecraft.block.Block.canSustainPlant(Block.java:1936)
 	at net.minecraft.item.ItemSeeds.onItemUse(ItemSeeds.java:34)
 	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:201)
@@ -37,7 +37,7 @@ A detailed walkthrough of the error, its code path and all known details is as f
 -- Head --
 Thread: Client thread
 Stacktrace:
-	at com.fffteam.fruitsforagingandfarming.common.items.SeedBase.getPlant(SeedBase.java:31)
+	at SeedBase.getPlant(SeedBase.java:31)
 	at net.minecraft.block.Block.canSustainPlant(Block.java:1936)
 	at net.minecraft.item.ItemSeeds.onItemUse(ItemSeeds.java:34)
 	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:201)
