@@ -49,7 +49,7 @@ public class FruitsForagingAndFarming {
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
         MinecraftForge.EVENT_BUS.register(new com.teamcitrus.fruitsforagingandfarming.main.EventHandler());
-        MinecraftForge.EVENT_BUS.register(new BlockRegistration());
+        MinecraftForge.EVENT_BUS.register(BlockRegistration.class);
 
     }
 

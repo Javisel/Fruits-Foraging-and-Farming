@@ -37,7 +37,7 @@ public class BlockRegistration {
 
 
     @SubscribeEvent
-    public  void registerBlocks(RegistryEvent.Register<Block> event) {
+    public  static void registerBlocks(RegistryEvent.Register<Block> event) {
 
         event.getRegistry().register(palm_log = new BlockLogBase("palm_log"));
     event.getRegistry().register(palm_leaves = new BlockLeavesBase("palm_leaves", Item.getItemFromBlock(palm_sapling)));
