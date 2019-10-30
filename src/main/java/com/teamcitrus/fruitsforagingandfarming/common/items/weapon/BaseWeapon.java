@@ -1,7 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.items.weapon;
 
 import com.google.common.collect.Multimap;
-import com.teamcitrus.fruitsforagingandfarming.common.items.IModelRegisterable;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -11,7 +10,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class BaseWeapon extends Item implements IWeapon, IModelRegisterable {
+public class BaseWeapon extends Item implements IWeapon {
 
     float attackDamage;
     double attackSpeed;
@@ -69,17 +68,7 @@ public class BaseWeapon extends Item implements IWeapon, IModelRegisterable {
 
     }
 
-    @Override
-    public void registerItemModel() {
-        String name = this.getUnlocalizedName();
 
-
-        name = name.subSequence(5, name.length()).toString();
-
-
-        FruitsForagingAndFarming.proxy.registerItemRenderer(this, 0, name);
-
-    }
 }
 
 

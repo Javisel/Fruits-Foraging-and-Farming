@@ -4,6 +4,7 @@ import com.teamcitrus.fruitsforagingandfarming.client.render.EntityRenderRegistr
 import com.teamcitrus.fruitsforagingandfarming.common.blocks.EnumColorable;
 import com.teamcitrus.fruitsforagingandfarming.common.blocks.IBitMapColorBlock;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
+import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -32,9 +33,6 @@ import net.minecraftforge.registries.ForgeRegistry;
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
 
-    @SubscribeEvent
-    public static void registerModels(ModelRegistryEvent event) {
-    }
 
     @Override
     public void preInit(FMLPreInitializationEvent e) {
@@ -44,15 +42,11 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void init(FMLInitializationEvent e) {
-     //   registerBlockColorHandler(BlockRegistration.palm_leaves);
-       // registerItemColorBlockHandler(BlockRegistration.palm_leaves);
+     //   registerBlockColorHandler(BlockRegistration.PALM_LEAVES);
+       // registerItemColorBlockHandler(BlockRegistration.PALM_LEAVES);
     }
 
-    @SubscribeEvent
-    public void RegisterBlockModel(ModelRegistryEvent e) {
 
-
-    }
 
 
     @Override
@@ -61,7 +55,54 @@ public class ClientProxy extends CommonProxy {
 
     }
 
-    private void registerBlockColorHandler(Block block) {
+    @SubscribeEvent
+    public static void RegisterItemModels(final ModelRegistryEvent event) {
+
+        //Item Blocks
+        registerItemRenderer(ItemRegistration.AVOCADO,0);
+        registerItemRenderer(ItemRegistration.BANANA,0);
+        registerItemRenderer(ItemRegistration.BLUEBERRY,0);
+        registerItemRenderer(ItemRegistration.CHOCOLATE_MILK_BOTTLE,0);
+        registerItemRenderer(ItemRegistration.CHOCOLATE_MILK_BUCKET,0);
+        registerItemRenderer(ItemRegistration.COCONUT,0);
+        registerItemRenderer(ItemRegistration.CORN,0);
+        registerItemRenderer(ItemRegistration.DURIAN,0);
+        registerItemRenderer(ItemRegistration.INFESTED_PEBBLE,0);
+        registerItemRenderer(ItemRegistration.HONEYMELON_SLICE,0);
+        registerItemRenderer(ItemRegistration.KIWI,0);
+        registerItemRenderer(ItemRegistration.LEMON,0);
+        registerItemRenderer(ItemRegistration.LIME,0);
+        registerItemRenderer(ItemRegistration.MANGO,0);
+        registerItemRenderer(ItemRegistration.ORANGE,0);
+        registerItemRenderer(ItemRegistration.PEAR,0);
+        registerItemRenderer(ItemRegistration.PINEAPPLE,0);
+        registerItemRenderer(ItemRegistration.CORN_KERNELS,0);
+        registerItemRenderer(ItemRegistration.TURNIP,0);
+        registerItemRenderer(ItemRegistration.TURNIP_SEEDS,0);
+        registerItemRenderer(ItemRegistration.IRON_SCYTHE,0);
+        registerItemRenderer(ItemRegistration.WOODEN_SCYTHE,0);
+        registerItemRenderer(ItemRegistration.GOLDEN_SCYTHE,0);
+        registerItemRenderer(ItemRegistration.DIAMOND_SCYTHE,0);
+        registerItemRenderer(ItemRegistration.PLUMP,0);
+        registerItemRenderer(ItemRegistration.GRASS_SEEDS,0);
+        registerItemRenderer(ItemRegistration.STONE_SCYTHE,0);
+
+        //BLOCKS
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_LOG),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_LEAVES),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_PLANKS),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.COCONUT_BLOCK),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_HALF_SLAB),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_FENCE),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_FENCE_GATE),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_STAIRS),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_SAPLING),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.CHOCOLATE_CAKE),0);
+
+    }
+
+
+    private static void registerBlockColorHandler(Block block) {
         if (block instanceof IBitMapColorBlock) {
 
             IBitMapColorBlock theblock = (IBitMapColorBlock) block;
@@ -84,7 +125,7 @@ public class ClientProxy extends CommonProxy {
         }
     }
 
-    private void registerItemColorBlockHandler(Block block) {
+    private  static void registerItemColorBlockHandler(Block block) {
 
 
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
@@ -95,8 +136,8 @@ public class ClientProxy extends CommonProxy {
     }
 
 
-    @Override
-    public void registerItemRenderer(Item item, int meta, String id) {
+
+    private static void registerItemRenderer(Item item, int meta) {
 
 
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(FruitsForagingAndFarming.MODID + ":" + item.getRegistryName().getResourcePath(), "inventory"));

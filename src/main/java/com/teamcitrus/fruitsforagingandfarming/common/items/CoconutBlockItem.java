@@ -13,14 +13,15 @@ import net.minecraft.world.World;
 
 public class CoconutBlockItem extends ItemBlock {
     public CoconutBlockItem() {
-        super(BlockRegistration.coconut_block);
+        super(BlockRegistration.COCONUT_BLOCK);
+        setRegistryName(BlockRegistration.COCONUT_BLOCK.getRegistryName());
     }
 
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         Block block = iblockstate.getBlock();
 
-        if (block == BlockRegistration.palm_leaves) {
+        if (block == BlockRegistration.PALM_LEAVES) {
             if (facing != EnumFacing.DOWN) {
                 return EnumActionResult.FAIL;
             }
@@ -28,7 +29,7 @@ public class CoconutBlockItem extends ItemBlock {
             pos = pos.offset(facing);
 
             if (worldIn.isAirBlock(pos)) {
-                IBlockState iblockstate1 = BlockRegistration.coconut_block.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
+                IBlockState iblockstate1 = BlockRegistration.COCONUT_BLOCK.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
                 worldIn.setBlockState(pos, iblockstate1, 10);
 
                 if (!player.capabilities.isCreativeMode) {
@@ -41,7 +42,7 @@ public class CoconutBlockItem extends ItemBlock {
             pos = pos.offset(facing);
 
             if (worldIn.isAirBlock(pos)) {
-                IBlockState iblockstate1 =BlockRegistration.coconut_block.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
+                IBlockState iblockstate1 =BlockRegistration.COCONUT_BLOCK.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
                 worldIn.setBlockState(pos, iblockstate1, 10);
                 if (!player.capabilities.isCreativeMode) {
                     player.getHeldItem(hand).shrink(1);

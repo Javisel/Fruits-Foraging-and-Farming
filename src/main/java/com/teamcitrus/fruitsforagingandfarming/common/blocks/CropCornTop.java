@@ -2,7 +2,6 @@ package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
-import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
@@ -12,7 +11,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -107,7 +105,7 @@ public class CropCornTop extends BlockBush implements IPlantable {
             k += fortune;
 
 
-            drops.add(new ItemStack(ItemRegistration.foodCorn, k, 0));
+            drops.add(new ItemStack(ItemRegistration.CORN, k, 0));
 
         }
     }
@@ -186,17 +184,17 @@ public class CropCornTop extends BlockBush implements IPlantable {
     public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
 
 
-        return worldIn.getBlockState(pos.down()).getBlock() == BlockRegistration.crop_corn_bottom && (worldIn.getBlockState(pos.up()).getBlock() == BlockRegistration.crop_corn_top|| worldIn.isAirBlock(pos.up()));
+        return worldIn.getBlockState(pos.down()).getBlock() == BlockRegistration.CROP_CORN_BOTTOM && (worldIn.getBlockState(pos.up()).getBlock() == BlockRegistration.CROP_CORN_TOP || worldIn.isAirBlock(pos.up()));
 
 
     }
 
     protected Item getSeed() {
-        return ItemRegistration.cornKernels;
+        return ItemRegistration.CORN_KERNELS;
     }
 
     protected Item getCrop() {
-        return ItemRegistration.foodCorn;
+        return ItemRegistration.CORN;
     }
 
 

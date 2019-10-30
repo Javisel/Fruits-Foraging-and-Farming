@@ -82,7 +82,7 @@ public class EventHandler {
 
             if (result > 0) {
 
-                EntityItem theitem = new EntityItem(e.getEntityLiving().getEntityWorld(), e.getEntityLiving().posX, e.getEntityLiving().posY, e.getEntityLiving().posZ, new ItemStack(ItemRegistration.foodInfestedPebble, result));
+                EntityItem theitem = new EntityItem(e.getEntityLiving().getEntityWorld(), e.getEntityLiving().posX, e.getEntityLiving().posY, e.getEntityLiving().posZ, new ItemStack(ItemRegistration.INFESTED_PEBBLE, result));
                 e.getDrops().add(theitem);
             }
 

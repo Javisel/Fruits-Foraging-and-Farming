@@ -26,7 +26,7 @@ public class BlockCoconut extends BlockBase {
     };
 
     public BlockCoconut() {
-        super(Material.ROCK, "coconut_block", 1.0F, 1.0F, SoundType.STONE);
+        super(Material.ROCK, "COCONUT_BLOCK", 1.0F, 1.0F, SoundType.STONE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(this.getTypeInteger(), Integer.valueOf(0)));
 
         setLightOpacity(10);

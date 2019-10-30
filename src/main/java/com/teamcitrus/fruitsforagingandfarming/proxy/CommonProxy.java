@@ -35,13 +35,6 @@ public class CommonProxy {
 
     }
 
-    public void registerItemRenderer(Item item, int meta, String id) {
-
-    }
-
-    private void registerBlockColorHandler(Block block) {
-
-    }
 
 
 }

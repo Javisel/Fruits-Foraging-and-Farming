@@ -24,7 +24,7 @@ public class SeedCornKernel extends ItemBase implements IPlantable {
         ItemStack stack = player.getHeldItem(hand);
         IBlockState state = worldIn.getBlockState(pos);
         if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, stack) && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up())) {
-            worldIn.setBlockState(pos.up(), BlockRegistration.crop_corn_bottom.getDefaultState());
+            worldIn.setBlockState(pos.up(), BlockRegistration.CROP_CORN_BOTTOM.getDefaultState());
             if (!player.capabilities.isCreativeMode && !worldIn.isRemote) {
                 stack.shrink(1);
             }
@@ -40,6 +40,6 @@ public class SeedCornKernel extends ItemBase implements IPlantable {
 
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
-        return BlockRegistration.crop_corn_bottom.getDefaultState();
+        return BlockRegistration.CROP_CORN_BOTTOM.getDefaultState();
     }
 }

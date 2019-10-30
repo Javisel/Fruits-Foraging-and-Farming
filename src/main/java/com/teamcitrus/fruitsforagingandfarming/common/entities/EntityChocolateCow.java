@@ -24,9 +24,9 @@ public class EntityChocolateCow extends EntityCow {
                 itemstack.shrink(1);
 
                 if (itemstack.isEmpty()) {
-                    player.setHeldItem(hand, new ItemStack(ItemRegistration.chocolateMilkBucket));
-                } else if (!player.inventory.addItemStackToInventory(new ItemStack(ItemRegistration.chocolateMilkBucket))) {
-                    player.dropItem(new ItemStack(ItemRegistration.chocolateMilkBucket), false);
+                    player.setHeldItem(hand, new ItemStack(ItemRegistration.CHOCOLATE_MILK_BUCKET));
+                } else if (!player.inventory.addItemStackToInventory(new ItemStack(ItemRegistration.CHOCOLATE_MILK_BUCKET))) {
+                    player.dropItem(new ItemStack(ItemRegistration.CHOCOLATE_MILK_BUCKET), false);
                 }
 
                 return true;
@@ -34,10 +34,10 @@ public class EntityChocolateCow extends EntityCow {
                 player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
                 itemstack.shrink(1);
 
-                if (player.inventory.addItemStackToInventory(new ItemStack(ItemRegistration.chocolateMilkBottle))) {
-                    player.setHeldItem(hand, new ItemStack(ItemRegistration.chocolateMilkBottle));
-                } else if (!player.inventory.addItemStackToInventory(new ItemStack(ItemRegistration.chocolateMilkBottle))) {
-                    player.dropItem(new ItemStack(ItemRegistration.chocolateMilkBottle), false);
+                if (player.inventory.addItemStackToInventory(new ItemStack(ItemRegistration.CHOCOLATE_MILK_BOTTLE))) {
+                    player.setHeldItem(hand, new ItemStack(ItemRegistration.CHOCOLATE_MILK_BOTTLE));
+                } else if (!player.inventory.addItemStackToInventory(new ItemStack(ItemRegistration.CHOCOLATE_MILK_BOTTLE))) {
+                    player.dropItem(new ItemStack(ItemRegistration.CHOCOLATE_MILK_BOTTLE), false);
                 }
 
                 return true;

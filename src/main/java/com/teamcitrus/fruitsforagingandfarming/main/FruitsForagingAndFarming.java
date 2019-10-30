@@ -60,25 +60,7 @@ public class FruitsForagingAndFarming {
 
     @Mod.EventBusSubscriber
     public static class RegistrationHandler {
-        @SubscribeEvent
-        public static void registerItems(RegistryEvent.Register<Item> event) {
 
-            ItemRegistration.registerItems(event.getRegistry());
-
-
-        }
-
-
-        @SubscribeEvent
-        public static void ModdifyDrops(LootTableLoadEvent e) {
-
-
-        }
-
-        @SubscribeEvent
-        public static void RegisterBlocks(RegistryEvent.Register<Block> event) {
-
-        }
 
         @SubscribeEvent
         public static void RegisterPotions(RegistryEvent.Register<Potion> event) {
@@ -90,14 +72,7 @@ public class FruitsForagingAndFarming {
             EnchantmentRegistration.register(event.getRegistry());
         }
 
-        @SubscribeEvent
-        public static void registerModels(ModelRegistryEvent event) {
 
-
-            ItemRegistration.registerModels();
-
-
-        }
 
 
 

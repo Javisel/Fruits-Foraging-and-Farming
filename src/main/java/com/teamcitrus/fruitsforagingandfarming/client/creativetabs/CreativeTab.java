@@ -17,6 +17,6 @@ public class CreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack getTabIconItem() {
-        return new ItemStack(ItemRegistration.scytheDiamond);
+        return new ItemStack(ItemRegistration.DIAMOND_SCYTHE);
     }
 }

@@ -3,118 +3,92 @@ package com.teamcitrus.fruitsforagingandfarming.common.registration;
 
 import com.teamcitrus.fruitsforagingandfarming.common.items.*;
 import com.teamcitrus.fruitsforagingandfarming.common.items.weapon.WeaponScythe;
+import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
+
+import javax.annotation.Nonnull;
+
+@Mod.EventBusSubscriber(modid = FruitsForagingAndFarming.MODID)
+@GameRegistry.ObjectHolder(FruitsForagingAndFarming.MODID)
+@SuppressWarnings("null")
 
 public class ItemRegistration {
 
 
     //FOOD
 
-    public static final ItemFoodBase foodAvocado = new ItemFoodBase("avocado", 2, 2.8F);
-    public static final ItemFoodBase foodBanana = new ItemFoodBase("banana", 2, 2.1F);
-    public static final ItemFoodBase foodBlueberry = new ItemFoodBase("blueberry", 1, 0.5F);
+    public static final ItemFoodBase AVOCADO = null;
+    public static final ItemFoodBase BANANA = null;
+    public static final ItemFoodBase BLUEBERRY = null;
 
-    public static final ItemFoodBase foodCoconut = new ItemFoodBase("coconut", 2, 2.5F);
-    public static final ItemFoodBase foodCorn = new ItemFoodBase("corn", 3, 0.2F);
-    public static final ItemFoodBase foodHoneyMelonSlice = new ItemFoodBase("honeymelon_slice", 1, 0.5F);
-    public static final ItemFoodBase foodKiwi = new ItemFoodBase("kiwi", 1, 0.4F);
-    public static final ItemFoodBase foodLemon = new ItemFoodBase("lemon", 2, 2.3F);
-    public static final ItemFoodBase foodLime = new ItemFoodBase("lime", 2, 2.3F);
-    public static final ItemFoodBase foodMango = new ItemFoodBase("mango", 2, 0.5F);
-    public static final ItemFoodBase foodOrange = new ItemFoodBase("orange", 2, 3);
-    public static final ItemFoodBase foodPear = new ItemFoodBase("pear", 2, 0.5F);
-    public static final ItemFoodBase foodPineapple = new ItemFoodBase("pineapple", 2, 2.5F);
-    public static final ItemFoodBase foodPlum = new ItemFoodBase("plum", 2, 0.5F);
-    public static final ItemFoodBase foodTurnip = new ItemFoodBase("turnip", 2, 0.5F);
-    public static final ItemFoodBase foodInfestedPebble = new InfestedPebble();
-    public static final ItemFoodBase foodDurian = new foodDurian();
+    public static final ItemFoodBase COCONUT = null;
+    public static final ItemFoodBase CORN = null;
+    public static final ItemFoodBase HONEYMELON_SLICE  = null;
+    public static final ItemFoodBase KIWI = null;
+    public static final ItemFoodBase LEMON = null;
+    public static final ItemFoodBase LIME = null;
+    public static final ItemFoodBase MANGO = null;
+    public static final ItemFoodBase ORANGE= null;
+    public static final ItemFoodBase PEAR = null;
+    public static final ItemFoodBase PINEAPPLE = null;
+    public static final ItemFoodBase PLUMP = null;
+    public static final ItemFoodBase TURNIP = null;
+    public static final ItemFoodBase INFESTED_PEBBLE = null;
+    public static final ItemFoodBase DURIAN = null;
 
 
-    public static final ChocolateMilkBucket chocolateMilkBucket = new ChocolateMilkBucket();
-    public static final ChocolateMilkBottle chocolateMilkBottle = new ChocolateMilkBottle();
-    public static final ItemBase bananaBunch = new ItemBase("banana_bunch");
+    public static final ChocolateMilkBucket CHOCOLATE_MILK_BUCKET =  null;
+    public static final ChocolateMilkBottle CHOCOLATE_MILK_BOTTLE = null;
 
     //SEED
-    public static final SeedBase grassSeeds = new GrassSeeds();
-    public static final TurnipSeeds turnipSeeds = new TurnipSeeds();
-    public static final SeedCornKernel cornKernels = new SeedCornKernel();
+    public static final GrassSeeds GRASS_SEEDS = null;
+    public static final TurnipSeeds TURNIP_SEEDS = null;
+    public static final SeedCornKernel CORN_KERNELS = null;
     //TOOLS & WEAPONS
-    public static final WeaponScythe scytheWood = new WeaponScythe("wooden_scythe", Item.ToolMaterial.WOOD, 1);
-    public static final WeaponScythe scytheStone = new WeaponScythe("stone_scythe", Item.ToolMaterial.STONE, 2);
-    public static final WeaponScythe scytheGold = new WeaponScythe("golden_scythe", Item.ToolMaterial.GOLD, 3);
-    public static final WeaponScythe scytheIron = new WeaponScythe("iron_scythe", Item.ToolMaterial.IRON, 4);
-    public static final WeaponScythe scytheDiamond = new WeaponScythe("diamond_scythe", Item.ToolMaterial.DIAMOND, 5);
-
-    //SEEDFOODS
-
-    //GEMS
+    public static final WeaponScythe WOODEN_SCYTHE = null;
+    public static final WeaponScythe STONE_SCYTHE = null;
+    public static final WeaponScythe GOLDEN_SCYTHE = null;
+    public static final WeaponScythe IRON_SCYTHE = null;
+    public static final WeaponScythe DIAMOND_SCYTHE = null;
 
 
-    public static void registerItems(IForgeRegistry<Item> registry) {
-        registry.register(foodAvocado);
-        registry.register(Item.getItemFromBlock(BlockRegistration.PALM_LOG));
-        registry.register(foodBlueberry);
-        registry.register(foodHoneyMelonSlice);
-        registry.register(foodKiwi);
-        registry.register(foodMango);
-        registry.register(foodPear);
-        registry.register(foodPlum);
-        registry.register(bananaBunch);
-        registry.register(foodBanana);
-        registry.register(foodCoconut);
-        registry.register(foodLemon);
-        registry.register(foodLime);
-        registry.register(foodOrange);
-        registry.register(foodDurian);
-        registry.register(foodPineapple);
-        registry.register(foodInfestedPebble);
-        registry.register(grassSeeds);
-        registry.register(turnipSeeds);
-        registry.register(cornKernels);
-        registry.register(foodTurnip);
-        registry.register(chocolateMilkBucket);
-        registry.register(chocolateMilkBottle);
-        registry.register(foodCorn);
-        registry.register(scytheWood);
-        registry.register(scytheStone);
-        registry.register(scytheGold);
-        registry.register(scytheIron);
-        registry.register(scytheDiamond);
-
+    @SubscribeEvent
+    public static final void registerItemEvent(@Nonnull final  RegistryEvent.Register<Item> event) {
+            event.getRegistry().register(new ItemFoodBase("avocado",1,1));
+            event.getRegistry().register(new ItemFoodBase("banana",1,1));
+            event.getRegistry().register(new ItemFoodBase("blueberry",1,1));
+        event.getRegistry().register(new ItemFoodBase("coconut",1,1));
+        event.getRegistry().register(new ItemFoodBase("corn",1,1));
+        event.getRegistry().register(new ItemFoodBase("honeymelon_slice",1,1));
+        event.getRegistry().register(new ItemFoodBase("kiwi",1,1));
+        event.getRegistry().register(new ItemFoodBase("lemon",1,1));
+        event.getRegistry().register(new ItemFoodBase("lime",1,1));
+        event.getRegistry().register(new ItemFoodBase("mango",1,1));
+        event.getRegistry().register(new ItemFoodBase("orange",1,1));
+        event.getRegistry().register(new ItemFoodBase("pear",1,1));
+        event.getRegistry().register(new ItemFoodBase("pineapple",1,1));
+        event.getRegistry().register(new ItemFoodBase("plump",1,1));
+        event.getRegistry().register(new ItemFoodBase("turnip",1,1));
+        event.getRegistry().register(new ItemFoodBase("infested_pebble",1,1));
+        event.getRegistry().register(new ItemFoodBase("durian",1,1));
+        event.getRegistry().register(new ChocolateMilkBucket());
+        event.getRegistry().register(new ChocolateMilkBottle());
+        event.getRegistry().register(new GrassSeeds());
+        event.getRegistry().register(new TurnipSeeds());
+        event.getRegistry().register(new SeedCornKernel());
+        event.getRegistry().register(new WeaponScythe("wooden_scythe", Item.ToolMaterial.WOOD,1));
+        event.getRegistry().register(new WeaponScythe("stone_scythe", Item.ToolMaterial.WOOD,2));
+        event.getRegistry().register(new WeaponScythe("golden_scythe", Item.ToolMaterial.WOOD,3));
+        event.getRegistry().register(new WeaponScythe("iron_scythe", Item.ToolMaterial.WOOD,4));
+        event.getRegistry().register(new WeaponScythe("diamond_scythe", Item.ToolMaterial.WOOD,5));
     }
 
-    public static void registerModels() {
-        foodAvocado.registerItemModel();
-        foodBanana.registerItemModel();
-        foodBlueberry.registerItemModel();
-        foodHoneyMelonSlice.registerItemModel();
-        foodKiwi.registerItemModel();
-        foodPlum.registerItemModel();
-        foodPear.registerItemModel();
-        foodMango.registerItemModel();
-        foodCoconut.registerItemModel();
-        foodLemon.registerItemModel();
-        foodDurian.registerItemModel();
-        foodLime.registerItemModel();
-        foodOrange.registerItemModel();
-        foodPineapple.registerItemModel();
-        foodCorn.registerItemModel();
-        chocolateMilkBucket.registerItemModel();
-        chocolateMilkBottle.registerItemModel();
-        scytheWood.registerItemModel();
-        scytheDiamond.registerItemModel();
-        scytheGold.registerItemModel();
-        scytheIron.registerItemModel();
-        turnipSeeds.registerItemModel();
-        cornKernels.registerItemModel();
-        foodTurnip.registerItemModel();
-        scytheStone.registerItemModel();
-        grassSeeds.registerItemModel();
-        foodInfestedPebble.registerItemModel();
-    }
 
-    public static void registerOreMaterial() {
 
-    }
 }

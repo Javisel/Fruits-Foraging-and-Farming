@@ -1,7 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
-import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -12,7 +11,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -162,11 +160,11 @@ public class CropTurnip extends BlockBush implements IGrowable {
     }
 
     protected Item getSeed() {
-        return ItemRegistration.turnipSeeds;
+        return ItemRegistration.TURNIP_SEEDS;
     }
 
     protected Item getCrop() {
-        return ItemRegistration.foodTurnip;
+        return ItemRegistration.TURNIP;
     }
 
     @SuppressWarnings("unused")

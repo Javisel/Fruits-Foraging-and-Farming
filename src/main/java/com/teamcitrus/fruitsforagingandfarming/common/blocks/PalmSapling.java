@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class PalmSapling extends BlockSaplingBase {
     public PalmSapling() {
-        super("palm_sapling");
+        super("PALM_SAPLING");
     }
 
     @Override
@@ -21,7 +21,7 @@ public class PalmSapling extends BlockSaplingBase {
             if (i <= 6) {
                 worldIn.setBlockState(pos.up(i), BlockRegistration.PALM_LOG.getDefaultState());
             } else if (i == 7) {
-                worldIn.setBlockState(pos.up(i), BlockRegistration.palm_leaves.getDefaultState());
+                worldIn.setBlockState(pos.up(i), BlockRegistration.PALM_LEAVES.getDefaultState());
             }
         }
         BlockPos top = pos.up(7);
@@ -29,7 +29,7 @@ public class PalmSapling extends BlockSaplingBase {
 
             for (int y1 = -1; y1 < 2; y1++) {
 
-                worldIn.setBlockState(top.add(x1, 0, y1), BlockRegistration.palm_leaves.getDefaultState());
+                worldIn.setBlockState(top.add(x1, 0, y1), BlockRegistration.PALM_LEAVES.getDefaultState());
 
 
             }
@@ -37,46 +37,46 @@ public class PalmSapling extends BlockSaplingBase {
         }
 
         //Crown extentions
-        worldIn.setBlockState(top.north(2), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.north(3).down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.north(4).down(2), BlockRegistration.palm_leaves.getDefaultState());
+        worldIn.setBlockState(top.north(2), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.north(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.north(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
 
 
-        worldIn.setBlockState(top.south(2), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.south(3).down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.south(4).down(2), BlockRegistration.palm_leaves.getDefaultState());
+        worldIn.setBlockState(top.south(2), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.south(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.south(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
 
-        worldIn.setBlockState(top.west(2), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.west(3).down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.west(4).down(2), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.east(2), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.east(3).down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.east(4).down(2), BlockRegistration.palm_leaves.getDefaultState());
+        worldIn.setBlockState(top.west(2), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.west(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.west(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.east(2), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.east(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.east(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
         //Diagonal
-        worldIn.setBlockState(top.north(2).east(2).down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.north(3).east(3).down(2), BlockRegistration.palm_leaves.getDefaultState());
+        worldIn.setBlockState(top.north(2).east(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.north(3).east(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
 
 
-        worldIn.setBlockState(top.north(2).west(2).down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.north(3).west(3).down(2), BlockRegistration.palm_leaves.getDefaultState());
+        worldIn.setBlockState(top.north(2).west(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.north(3).west(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
 
-        worldIn.setBlockState(top.south(2).east(2).down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.south(3).east(3).down(2), BlockRegistration.palm_leaves.getDefaultState());
+        worldIn.setBlockState(top.south(2).east(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.south(3).east(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
 
-        worldIn.setBlockState(top.south(2).west(2).down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.south(3).west(3).down(2), BlockRegistration.palm_leaves.getDefaultState());
+        worldIn.setBlockState(top.south(2).west(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.south(3).west(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
 
         //Bellow Crown
-        worldIn.setBlockState(top.north().down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.east().down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.south().down(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.west().down(), BlockRegistration.palm_leaves.getDefaultState());
+        worldIn.setBlockState(top.north().down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.east().down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.south().down(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.west().down(), BlockRegistration.PALM_LEAVES.getDefaultState());
 
         //Bellow Crown Diagonal
-        worldIn.setBlockState(top.north().down(2).east(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.north().down(2).west(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.south().down(2).east(), BlockRegistration.palm_leaves.getDefaultState());
-        worldIn.setBlockState(top.south().down(2).west(), BlockRegistration.palm_leaves.getDefaultState());
+        worldIn.setBlockState(top.north().down(2).east(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.north().down(2).west(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.south().down(2).east(), BlockRegistration.PALM_LEAVES.getDefaultState());
+        worldIn.setBlockState(top.south().down(2).west(), BlockRegistration.PALM_LEAVES.getDefaultState());
 
 
     }

@@ -2,7 +2,6 @@ package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
-import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
@@ -12,7 +11,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -142,7 +140,7 @@ public class CropCornBottom extends BlockBush implements IPlantable {
                 if (this.getAge(state) == 2) {
 
                     if (worldIn.isAirBlock(pos.up())) {
-                        worldIn.setBlockState(pos.up(), BlockRegistration.crop_corn_top.getDefaultState());
+                        worldIn.setBlockState(pos.up(), BlockRegistration.CROP_CORN_TOP.getDefaultState());
 
 
                     } else if (this.getAge(state) < 2) {
@@ -188,7 +186,7 @@ public class CropCornBottom extends BlockBush implements IPlantable {
 
 
         } else if (age == 2) {
-            return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this) && (worldIn.getBlockState(pos.up()).getBlock() ==BlockRegistration.crop_corn_top|| worldIn.canSeeSky(pos));
+            return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this) && (worldIn.getBlockState(pos.up()).getBlock() ==BlockRegistration.CROP_CORN_TOP || worldIn.canSeeSky(pos));
         } else {
 
             return false;
@@ -198,7 +196,7 @@ public class CropCornBottom extends BlockBush implements IPlantable {
     }
 
     protected Item getSeed() {
-        return ItemRegistration.cornKernels;
+        return ItemRegistration.CORN_KERNELS;
     }
 
     protected Item getCrop() {

@@ -14,9 +14,9 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class ChocolateMilkBucket extends ItemBucketMilk implements IModelRegisterable {
+public class ChocolateMilkBucket extends ItemBucketMilk {
     public ChocolateMilkBucket() {
-        setRegistryName("chocolate_milk_bucket");
+        setRegistryName("CHOCOLATE_MILK_BUCKET");
         setUnlocalizedName("chocolate_milk_bucket");
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
         this.setMaxStackSize(1);
@@ -45,13 +45,6 @@ public class ChocolateMilkBucket extends ItemBucketMilk implements IModelRegiste
         return stack.isEmpty() ? new ItemStack(Items.BUCKET) : stack;
     }
 
-    @Override
-    public void registerItemModel() {
-
-
-        FruitsForagingAndFarming.proxy.registerItemRenderer(this, 0, this.getRegistryName().getResourcePath());
-
-    }
 
 
 }

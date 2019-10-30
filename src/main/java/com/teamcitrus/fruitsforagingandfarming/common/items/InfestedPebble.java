@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class InfestedPebble extends ItemFoodBase {
 
     public InfestedPebble() {
-        super("infested_pebble", 1, -1);
+        super("INFESTED_PEBBLE", 1, -1);
 
     }
 
