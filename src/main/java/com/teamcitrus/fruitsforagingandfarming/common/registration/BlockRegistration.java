@@ -36,9 +36,9 @@ public class BlockRegistration {
 
 
 
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+    @SubscribeEvent
+    public  void registerBlocks(RegistryEvent.Register<Block> event) {
 
-       System.out.println("Attempting Registration!");
         event.getRegistry().register(palm_log = new BlockLogBase("palm_log"));
     event.getRegistry().register(palm_leaves = new BlockLeavesBase("palm_leaves", Item.getItemFromBlock(palm_sapling)));
     event.getRegistry().register(palm_planks = new BlockBase(Material.WOOD,"palm_planks",2,5,SoundType.WOOD));

@@ -37,7 +37,6 @@ public class FruitsForagingAndFarming {
     public static CommonProxy proxy;
     private static Logger logger;
 
-    //    public static ClientProxy clientproxy;
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         EntityRegistration.RegisterEntities();
@@ -50,7 +49,7 @@ public class FruitsForagingAndFarming {
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
         MinecraftForge.EVENT_BUS.register(new com.teamcitrus.fruitsforagingandfarming.main.EventHandler());
-
+        MinecraftForge.EVENT_BUS.register(new BlockRegistration());
 
     }
 
