@@ -2,7 +2,6 @@ package com.teamcitrus.fruitsforagingandfarming.common.items;
 
 import com.teamcitrus.fruitsforagingandfarming.common.registration.MobEffectRegistration;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;

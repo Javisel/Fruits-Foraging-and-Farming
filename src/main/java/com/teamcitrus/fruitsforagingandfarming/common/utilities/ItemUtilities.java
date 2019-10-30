@@ -5,28 +5,27 @@ import net.minecraft.item.ItemStack;
 
 public class ItemUtilities {
 
-            public static boolean hasEnchantment(ItemStack stack, Enchantment enchantment) {
+    public static boolean hasExactEnchantment(ItemStack stack, Enchantment enchantment) {
 
 
-                if (!stack.isItemEnchanted())  {return false;}
+        if (!stack.isItemEnchanted()) {
+            return false;
+        } else {
 
-                else {
-
-                    for (int i =0; i < stack.getEnchantmentTagList().tagCount(); i ++) {
-                        if (Enchantment.getEnchantmentByID(stack.getEnchantmentTagList().getCompoundTagAt(i).getShort("id")).getName().equalsIgnoreCase( enchantment.getName())) {
-
-
-                            return  true;
+            for (int i = 0; i < stack.getEnchantmentTagList().tagCount(); i++) {
+                if (Enchantment.getEnchantmentByID(stack.getEnchantmentTagList().getCompoundTagAt(i).getShort("id")).getName().equalsIgnoreCase(enchantment.getName())) {
 
 
+                    return true;
 
-                        }
 
-                    }
                 }
 
-        return  false;
-
             }
+        }
+
+        return false;
+
+    }
 
 }

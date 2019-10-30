@@ -1,6 +1,6 @@
 {
-    "parent": "block/crop",
-    "textures": {
-        "crop": "fruits_foraging_and_farming:block/turnip_stage2"
-    }
+  "parent": "block/crop",
+  "textures": {
+    "crop": "fruits_foraging_and_farming:block/turnip_stage2"
+  }
 }

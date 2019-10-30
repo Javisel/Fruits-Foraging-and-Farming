@@ -30,9 +30,7 @@ public class EntityChocolateCow extends EntityCow {
                 }
 
                 return true;
-            }
-
-            else if (itemstack.getItem() == Items.GLASS_BOTTLE) {
+            } else if (itemstack.getItem() == Items.GLASS_BOTTLE) {
                 player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
                 itemstack.shrink(1);
 
@@ -51,8 +49,7 @@ public class EntityChocolateCow extends EntityCow {
 
     }
 
-    public EntityChocolateCow createChild(EntityAgeable ageable)
-    {
+    public EntityChocolateCow createChild(EntityAgeable ageable) {
         return new EntityChocolateCow(this.world);
     }
 }

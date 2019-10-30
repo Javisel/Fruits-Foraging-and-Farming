@@ -1,7 +1,10 @@
 {
-    "variants":
-    {
-        "half=bottom,variant=default": { "model": "fruits_foraging_and_farming:palm_bottom_slab" },
-        "half=top,variant=default": { "model": "fruits_foraging_and_farming:palm_top_slab" }
+  "variants": {
+    "half=bottom,variant=default": {
+      "model": "fruits_foraging_and_farming:palm_bottom_slab"
+    },
+    "half=top,variant=default": {
+      "model": "fruits_foraging_and_farming:palm_top_slab"
     }
+  }
 }

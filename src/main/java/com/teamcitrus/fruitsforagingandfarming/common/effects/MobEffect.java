@@ -9,14 +9,16 @@ import net.minecraft.util.ResourceLocation;
 
 public class MobEffect extends Potion {
     String textureid;
-    protected MobEffect(boolean isBadEffectIn, int liquidColorIn,String name) {
+
+    protected MobEffect(boolean isBadEffectIn, int liquidColorIn, String name) {
         super(isBadEffectIn, liquidColorIn);
-        this.textureid=name;
-        setPotionName("effect."+name);
+        this.textureid = name;
+        setPotionName("effect." + name);
         setRegistryName(name);
 
 
     }
+
     @Override
     public void renderInventoryEffect(int x, int y, PotionEffect effect, Minecraft mc) {
         mc.getTextureManager().bindTexture(new ResourceLocation(FruitsForagingAndFarming.MODID, "textures/effect/" + textureid + ".png"));
@@ -29,10 +31,9 @@ public class MobEffect extends Potion {
     public void renderHUDEffect(int x, int y, PotionEffect effect, net.minecraft.client.Minecraft mc, float alpha) {
 
 
-
         mc.getTextureManager().bindTexture(new ResourceLocation(FruitsForagingAndFarming.MODID, "textures/effect/" + textureid + ".png"));
 
-        Gui.drawModalRectWithCustomSizedTexture(x+3, y+3, 0, 0, 18, 18, 18, 18);
+        Gui.drawModalRectWithCustomSizedTexture(x + 3, y + 3, 0, 0, 18, 18, 18, 18);
 
     }
 

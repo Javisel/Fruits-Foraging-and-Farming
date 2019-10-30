@@ -1,7 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
 
-import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -16,7 +15,6 @@ public class BlockBase extends Block {
 
         super(material);
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
-        BlockRegistration.BLOCKS.add(this);
         setHardness(hardness);
         setResistance(resistance);
         setSoundType(soundType);
@@ -24,18 +22,5 @@ public class BlockBase extends Block {
         setUnlocalizedName(name);
     }
 
-    public void registerItemModel(Item itemBlock) {
-        String name = this.getUnlocalizedName();
 
-
-        name = name.subSequence(5, name.length()).toString();
-
-
-        FruitsForagingAndFarming.proxy.registerItemRenderer(itemBlock, 0, name);
-
-    }
-
-    public Item createItemBlock() {
-        return new ItemBlock(this).setRegistryName(getRegistryName());
-    }
 }

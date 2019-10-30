@@ -1,10 +1,9 @@
 package com.teamcitrus.fruitsforagingandfarming.common.registration;
 
 
-import com.teamcitrus.fruitsforagingandfarming.common.items.weapon.WeaponScythe;
 import com.teamcitrus.fruitsforagingandfarming.common.items.*;
+import com.teamcitrus.fruitsforagingandfarming.common.items.weapon.WeaponScythe;
 import net.minecraft.item.Item;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ItemRegistration {
@@ -12,25 +11,24 @@ public class ItemRegistration {
 
     //FOOD
 
-    public static final ItemFoodBase foodAvocado = new ItemFoodBase("avocado",2,2.8F);
-    public static final ItemFoodBase foodBanana = new ItemFoodBase("banana",2,2.1F);
-    public static final ItemFoodBase foodBlueberry = new ItemFoodBase("blueberry",1,0.5F);
+    public static final ItemFoodBase foodAvocado = new ItemFoodBase("avocado", 2, 2.8F);
+    public static final ItemFoodBase foodBanana = new ItemFoodBase("banana", 2, 2.1F);
+    public static final ItemFoodBase foodBlueberry = new ItemFoodBase("blueberry", 1, 0.5F);
 
-    public static final ItemFoodBase foodCoconut = new ItemFoodBase("coconut",2,2.5F);
-    public static final ItemFoodBase foodCorn = new ItemFoodBase("corn",3,0.2F);
-    public static final ItemFoodBase foodHoneyMelonSlice = new ItemFoodBase("honeymelon_slice",1,0.5F);
-    public static final ItemFoodBase foodKiwi = new ItemFoodBase("kiwi",1,0.4F);
-    public static final ItemFoodBase foodLemon = new ItemFoodBase("lemon",2,2.3F);
-    public static final ItemFoodBase foodLime = new ItemFoodBase("lime",2,2.3F);
-    public static final ItemFoodBase foodMango = new ItemFoodBase("mango",2,0.5F);
-    public static final ItemFoodBase foodOrange = new ItemFoodBase("orange",2,3);
-    public static final ItemFoodBase foodPear = new ItemFoodBase("pear",2,0.5F);
-    public static final ItemFoodBase foodPineapple = new ItemFoodBase("pineapple",2,2.5F);
-    public static final ItemFoodBase foodPlum = new ItemFoodBase("plum",2,0.5F);
-    public static final ItemFoodBase foodTurnip = new ItemFoodBase("turnip",2,0.5F);
+    public static final ItemFoodBase foodCoconut = new ItemFoodBase("coconut", 2, 2.5F);
+    public static final ItemFoodBase foodCorn = new ItemFoodBase("corn", 3, 0.2F);
+    public static final ItemFoodBase foodHoneyMelonSlice = new ItemFoodBase("honeymelon_slice", 1, 0.5F);
+    public static final ItemFoodBase foodKiwi = new ItemFoodBase("kiwi", 1, 0.4F);
+    public static final ItemFoodBase foodLemon = new ItemFoodBase("lemon", 2, 2.3F);
+    public static final ItemFoodBase foodLime = new ItemFoodBase("lime", 2, 2.3F);
+    public static final ItemFoodBase foodMango = new ItemFoodBase("mango", 2, 0.5F);
+    public static final ItemFoodBase foodOrange = new ItemFoodBase("orange", 2, 3);
+    public static final ItemFoodBase foodPear = new ItemFoodBase("pear", 2, 0.5F);
+    public static final ItemFoodBase foodPineapple = new ItemFoodBase("pineapple", 2, 2.5F);
+    public static final ItemFoodBase foodPlum = new ItemFoodBase("plum", 2, 0.5F);
+    public static final ItemFoodBase foodTurnip = new ItemFoodBase("turnip", 2, 0.5F);
     public static final ItemFoodBase foodInfestedPebble = new InfestedPebble();
     public static final ItemFoodBase foodDurian = new foodDurian();
-
 
 
     public static final ChocolateMilkBucket chocolateMilkBucket = new ChocolateMilkBucket();
@@ -53,31 +51,31 @@ public class ItemRegistration {
     //GEMS
 
 
-    public  static void registerItems(IForgeRegistry<Item> registry) {
+    public static void registerItems(IForgeRegistry<Item> registry) {
         registry.register(foodAvocado);
 
-registry.register(foodBlueberry);
-registry.register(foodHoneyMelonSlice);
-registry.register(foodKiwi);
-registry.register(foodMango);
-registry.register(foodPear);
-registry.register(foodPlum);
-registry.register(bananaBunch);
-      registry.register(foodBanana);
-      registry.register(foodCoconut);
-      registry.register(foodLemon);
-      registry.register(foodLime);
-      registry.register(foodOrange);
-      registry.register(foodDurian);
-      registry.register(foodPineapple);
-      registry.register(foodInfestedPebble);
-      registry.register(grassSeeds);
-      registry.register(turnipSeeds);
-      registry.register(cornKernels);
-      registry.register(foodTurnip);
-      registry.register(chocolateMilkBucket);
-      registry.register(chocolateMilkBottle);
-      registry.register(foodCorn);
+        registry.register(foodBlueberry);
+        registry.register(foodHoneyMelonSlice);
+        registry.register(foodKiwi);
+        registry.register(foodMango);
+        registry.register(foodPear);
+        registry.register(foodPlum);
+        registry.register(bananaBunch);
+        registry.register(foodBanana);
+        registry.register(foodCoconut);
+        registry.register(foodLemon);
+        registry.register(foodLime);
+        registry.register(foodOrange);
+        registry.register(foodDurian);
+        registry.register(foodPineapple);
+        registry.register(foodInfestedPebble);
+        registry.register(grassSeeds);
+        registry.register(turnipSeeds);
+        registry.register(cornKernels);
+        registry.register(foodTurnip);
+        registry.register(chocolateMilkBucket);
+        registry.register(chocolateMilkBottle);
+        registry.register(foodCorn);
         registry.register(scytheWood);
         registry.register(scytheStone);
         registry.register(scytheGold);
@@ -88,31 +86,31 @@ registry.register(bananaBunch);
 
     public static void registerModels() {
         foodAvocado.registerItemModel();
-                foodBanana.registerItemModel();
-                foodBlueberry.registerItemModel();
-                foodHoneyMelonSlice.registerItemModel();
-                foodKiwi.registerItemModel();
-                foodPlum.registerItemModel();
-                foodPear.registerItemModel();
-                foodMango.registerItemModel();
-                foodCoconut.registerItemModel();
-                foodLemon.registerItemModel();
-                foodDurian.registerItemModel();
-                foodLime.registerItemModel();
-                foodOrange.registerItemModel();
-                foodPineapple.registerItemModel();
-                foodCorn.registerItemModel();
+        foodBanana.registerItemModel();
+        foodBlueberry.registerItemModel();
+        foodHoneyMelonSlice.registerItemModel();
+        foodKiwi.registerItemModel();
+        foodPlum.registerItemModel();
+        foodPear.registerItemModel();
+        foodMango.registerItemModel();
+        foodCoconut.registerItemModel();
+        foodLemon.registerItemModel();
+        foodDurian.registerItemModel();
+        foodLime.registerItemModel();
+        foodOrange.registerItemModel();
+        foodPineapple.registerItemModel();
+        foodCorn.registerItemModel();
         chocolateMilkBucket.registerItemModel();
         chocolateMilkBottle.registerItemModel();
-                scytheWood.registerItemModel();
-                scytheDiamond.registerItemModel();
-                scytheGold.registerItemModel();
-                scytheIron.registerItemModel();
-                turnipSeeds.registerItemModel();
-                cornKernels.registerItemModel();
-                foodTurnip.registerItemModel();
-               scytheStone.registerItemModel();
-               grassSeeds.registerItemModel();
+        scytheWood.registerItemModel();
+        scytheDiamond.registerItemModel();
+        scytheGold.registerItemModel();
+        scytheIron.registerItemModel();
+        turnipSeeds.registerItemModel();
+        cornKernels.registerItemModel();
+        foodTurnip.registerItemModel();
+        scytheStone.registerItemModel();
+        grassSeeds.registerItemModel();
         foodInfestedPebble.registerItemModel();
     }
 

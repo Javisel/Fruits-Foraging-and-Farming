@@ -1,6 +1,6 @@
 {
-    "parent": "block/fence_post",
-    "textures": {
-        "texture": "fruits_foraging_and_farming:block/palm_planks"
-    }
+  "parent": "block/fence_post",
+  "textures": {
+    "texture": "fruits_foraging_and_farming:block/palm_planks"
+  }
 }

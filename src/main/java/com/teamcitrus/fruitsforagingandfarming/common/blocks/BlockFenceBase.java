@@ -17,19 +17,7 @@ public class BlockFenceBase extends BlockFence {
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
 
     }
-    public void registerItemModel(Item itemBlock) {
-        String name = this.getUnlocalizedName();
 
-
-        name = name.subSequence(5,name.length()).toString();
-
-
-        FruitsForagingAndFarming.proxy.registerItemRenderer(itemBlock, 0, name);
-
-    }
-    public Item createItemBlock() {
-        return new ItemBlock(this).setRegistryName(getRegistryName());
-    }
 
 
 }

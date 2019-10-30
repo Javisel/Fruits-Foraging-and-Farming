@@ -1,6 +1,5 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
-import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
@@ -17,25 +16,15 @@ public class OreBase extends BlockOre {
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
         this.drop = drop;
-       this. setHardness(hardness);
+        this.setHardness(hardness);
         this.setResistance(resistance);
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
-        BlockRegistration.BLOCKS.add(this);
 
     }
 
-    public void registerItemModel(Item itemBlock) {
-        String name = this.getUnlocalizedName();
 
 
-        name = name.subSequence(5, name.length()).toString();
-
-
-        FruitsForagingAndFarming.proxy.registerItemRenderer(itemBlock, 0, name);
-
-    }
-
-    public Item getItemDropped(IBlockState state, Random rand, int fortune){
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 
 
         return drop;
@@ -43,7 +32,4 @@ public class OreBase extends BlockOre {
     }
 
 
-    public Item createItemBlock() {
-        return new ItemBlock(this).setRegistryName(getRegistryName());
-    }
 }

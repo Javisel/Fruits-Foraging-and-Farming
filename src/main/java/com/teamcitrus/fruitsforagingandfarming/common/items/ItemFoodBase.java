@@ -4,7 +4,7 @@ import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 
-public class ItemFoodBase extends ItemFood implements IModelRegisterable{
+public class ItemFoodBase extends ItemFood implements IModelRegisterable {
 
     int maxItemUseDuration;
 
@@ -12,14 +12,9 @@ public class ItemFoodBase extends ItemFood implements IModelRegisterable{
         super(shanks, saturation, false);
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
-        maxItemUseDuration=32;
+        maxItemUseDuration = 32;
         this.setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
 
-    }
-
-    @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
-        return maxItemUseDuration;
     }
 
     public ItemFoodBase(String name, int amount) {
@@ -28,15 +23,21 @@ public class ItemFoodBase extends ItemFood implements IModelRegisterable{
         this.setUnlocalizedName(name);
     }
 
+    @Override
+    public int getMaxItemUseDuration(ItemStack stack) {
+        return maxItemUseDuration;
+    }
+
     public void setMaxItemUseDuration(int amount) {
         maxItemUseDuration = amount;
     }
+
     @Override
     public void registerItemModel() {
         String name = this.getUnlocalizedName();
 
 
-        name = name.subSequence(5,name.length()).toString();
+        name = name.subSequence(5, name.length()).toString();
 
 
         FruitsForagingAndFarming.proxy.registerItemRenderer(this, 0, name);

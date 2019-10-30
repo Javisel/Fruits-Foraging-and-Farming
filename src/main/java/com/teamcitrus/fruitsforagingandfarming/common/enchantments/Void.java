@@ -12,7 +12,7 @@ import net.minecraft.item.ItemTool;
 
 public class Void extends Enchantment {
     public Void() {
-        super(Rarity.VERY_RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND,EntityEquipmentSlot.OFFHAND});
+        super(Rarity.VERY_RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND, EntityEquipmentSlot.OFFHAND});
         setName("void");
         setRegistryName("void");
     }
@@ -30,17 +30,17 @@ public class Void extends Enchantment {
     @Override
     protected boolean canApplyTogether(Enchantment ench) {
 
-        return  (!(ench instanceof EnchantmentLootBonus) && !(ench instanceof EnchantmentUntouching));
+        return (!(ench instanceof EnchantmentLootBonus) && !(ench instanceof EnchantmentUntouching));
     }
 
     @Override
     public boolean canApply(ItemStack stack) {
-        return (stack.getItem() instanceof  ItemSword || stack.getItem() instanceof  ItemTool || stack.getItem() instanceof BaseWeapon);
+        return (stack.getItem() instanceof ItemSword || stack.getItem() instanceof ItemTool || stack.getItem() instanceof BaseWeapon);
     }
 
     @Override
     public boolean isTreasureEnchantment() {
-        return  true;
+        return true;
     }
 
     @Override

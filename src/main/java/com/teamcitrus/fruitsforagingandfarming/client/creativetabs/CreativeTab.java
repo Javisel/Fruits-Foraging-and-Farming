@@ -12,7 +12,7 @@ public class CreativeTab extends CreativeTabs {
     public CreativeTab(String label) {
         super(label);
         this.hasSearchBar();
-      //  this.setBackgroundImageName("fruits_foraging_and_farming");
+        //  this.setBackgroundImageName("fruits_foraging_and_farming");
     }
 
     @Override

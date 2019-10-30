@@ -10,7 +10,4 @@ public class Growth extends Enchantment {
     }
 
 
-
-
-
 }

@@ -4,11 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeBeach;
-import net.minecraft.world.biome.BiomeDesert;
-import net.minecraft.world.biome.BiomeForest;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -21,6 +17,19 @@ import java.util.Random;
 
 public class TreeGenerator implements IWorldGenerator {
     private final WorldGenerator palmtree = new PalmTree(true);
+
+    private static int calculateGenerationHeight(World world, int x, int z, Block topBlock) {
+        int y = world.getHeight();
+        boolean foundGround = false;
+
+        while (!foundGround && y-- >= 0) {
+            Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
+            foundGround = block == topBlock;
+        }
+
+        return y;
+    }
+
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 
@@ -28,11 +37,11 @@ public class TreeGenerator implements IWorldGenerator {
             case -1:
                 break;
 
-        case 0:
-                runGenerator(palmtree,world,random,chunkX,chunkZ,5, Blocks.SAND, BiomeBeach.class);
+            case 0:
+                runGenerator(palmtree, world, random, chunkX, chunkZ, 5, Blocks.SAND, BiomeBeach.class);
 
 
-            break;
+                break;
 
             case 1:
                 break;
@@ -41,42 +50,25 @@ public class TreeGenerator implements IWorldGenerator {
 
     }
 
-
-    private void runGenerator(WorldGenerator generator, World world, Random random, int chunkX, int chunkZ, int chance, Block topBlock, Class<?>... classes)
-    {
+    private void runGenerator(WorldGenerator generator, World world, Random random, int chunkX, int chunkZ, int chance, Block topBlock, Class<?>... classes) {
         ArrayList<Class<?>> classesList = new ArrayList<Class<?>>(Arrays.asList(classes));
 
         int x = (chunkX * 16) + random.nextInt(15);
         int z = (chunkZ * 16) + random.nextInt(15);
         int y = calculateGenerationHeight(world, x, z, topBlock);
-        BlockPos pos = new BlockPos(x,y,z);
+        BlockPos pos = new BlockPos(x, y, z);
 
         Class<?> biome = world.provider.getBiomeForCoords(pos).getClass();
 
 
-            if(classesList.contains(biome))
-            {
-                    int rando = random.nextInt(chance);
+        if (classesList.contains(biome)) {
+            int rando = random.nextInt(chance);
 
-                if(rando == 0)
-                {
-                    generator.generate(world, random, pos);
-                }
+            if (rando == 0) {
+                generator.generate(world, random, pos);
+            }
 
         }
-    }
-    private static int calculateGenerationHeight(World world, int x, int z, Block topBlock)
-    {
-        int y = world.getHeight();
-        boolean foundGround = false;
-
-        while(!foundGround && y-- >= 0)
-        {
-            Block block = world.getBlockState(new BlockPos(x,y,z)).getBlock();
-            foundGround = block == topBlock;
-        }
-
-        return y;
     }
 
 }

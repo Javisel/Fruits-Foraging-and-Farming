@@ -12,28 +12,24 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 
-public class RenderGoldenChicken extends RenderLiving<EntityGoldenChicken>
-{
-    private static final ResourceLocation BROWN_CHICKEN_TEXTURES = new ResourceLocation(FruitsForagingAndFarming.MODID + ":" +"textures/entity/golden_chicken.png");
+public class RenderGoldenChicken extends RenderLiving<EntityGoldenChicken> {
+    private static final ResourceLocation BROWN_CHICKEN_TEXTURES = new ResourceLocation(FruitsForagingAndFarming.MODID + ":" + "textures/entity/golden_chicken.png");
 
-    public RenderGoldenChicken(RenderManager p_i47211_1_)
-    {
+    public RenderGoldenChicken(RenderManager p_i47211_1_) {
         super(p_i47211_1_, new ModelChicken(), 0.3F);
     }
 
     /**
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
-    protected ResourceLocation getEntityTexture(EntityGoldenChicken entity)
-    {
+    protected ResourceLocation getEntityTexture(EntityGoldenChicken entity) {
         return BROWN_CHICKEN_TEXTURES;
     }
 
     /**
      * Defines what float the third param in setRotationAngles of ModelBase is
      */
-    protected float handleRotationFloat(EntityGoldenChicken livingBase, float partialTicks)
-    {
+    protected float handleRotationFloat(EntityGoldenChicken livingBase, float partialTicks) {
         float f = livingBase.oFlap + (livingBase.wingRotation - livingBase.oFlap) * partialTicks;
         float f1 = livingBase.oFlapSpeed + (livingBase.destPos - livingBase.oFlapSpeed) * partialTicks;
         return (MathHelper.sin(f) + 1.0F) * f1;

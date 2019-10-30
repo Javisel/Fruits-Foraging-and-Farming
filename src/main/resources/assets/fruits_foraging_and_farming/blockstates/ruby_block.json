@@ -1,8 +1,9 @@
 {
-  "variants":{
-    "normal":[
-      {"model":"fruits_foraging_and_farming:ruby_block"}
-
+  "variants": {
+    "normal": [
+      {
+        "model": "fruits_foraging_and_farming:ruby_block"
+      }
     ]
   }
 }

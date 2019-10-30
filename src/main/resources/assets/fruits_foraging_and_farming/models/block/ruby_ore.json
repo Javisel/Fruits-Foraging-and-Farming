@@ -1,6 +1,6 @@
 {
-"parent": "block/cube_all",
-"textures": {
-	"all": "fruits_foraging_and_farming:block/ruby_ore"
-}
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "fruits_foraging_and_farming:block/ruby_ore"
+  }
 }

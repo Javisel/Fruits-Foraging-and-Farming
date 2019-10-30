@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -18,20 +19,22 @@ public class ChocolateMilkBottle extends ItemBase {
         super("chocolate_milk_bottle");
         setMaxStackSize(1);
     }
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
-    {
+    @Override
+    public Item getContainerItem() {
+        return Items.GLASS_BOTTLE;
+    }
+
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         if (!worldIn.isRemote)
-        if (entityLiving instanceof EntityPlayerMP)
-        {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)entityLiving;
-            CriteriaTriggers.CONSUME_ITEM.trigger(entityplayermp, stack);
-            entityplayermp.addStat(StatList.getObjectUseStats(this));
-            entityplayermp.getFoodStats().addStats(2,2);
+            if (entityLiving instanceof EntityPlayerMP) {
+                EntityPlayerMP entityplayermp = (EntityPlayerMP) entityLiving;
+                CriteriaTriggers.CONSUME_ITEM.trigger(entityplayermp, stack);
+                entityplayermp.addStat(StatList.getObjectUseStats(this));
+                entityplayermp.getFoodStats().addStats(2, 2);
 
-        }
+            }
 
-        if (entityLiving instanceof EntityPlayer && !((EntityPlayer)entityLiving).capabilities.isCreativeMode)
-        {
+        if (entityLiving instanceof EntityPlayer && !((EntityPlayer) entityLiving).capabilities.isCreativeMode) {
             stack.shrink(1);
         }
 
@@ -41,16 +44,14 @@ public class ChocolateMilkBottle extends ItemBase {
     /**
      * How long it takes to use or consume an item
      */
-    public int getMaxItemUseDuration(ItemStack stack)
-    {
+    public int getMaxItemUseDuration(ItemStack stack) {
         return 32;
     }
 
     /**
      * returns the action that specifies what animation to play when the items is being used
      */
-    public EnumAction getItemUseAction(ItemStack stack)
-    {
+    public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.DRINK;
     }
 
@@ -62,8 +63,7 @@ public class ChocolateMilkBottle extends ItemBase {
     /**
      * Called when the equipped item is right clicked.
      */
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
-    {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         playerIn.setActiveHand(handIn);
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }

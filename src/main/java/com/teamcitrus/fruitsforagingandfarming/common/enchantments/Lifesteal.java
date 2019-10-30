@@ -2,8 +2,6 @@ package com.teamcitrus.fruitsforagingandfarming.common.enchantments;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 
 public class Lifesteal extends Enchantment {

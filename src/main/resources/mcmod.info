@@ -1,16 +1,22 @@
 [
-{
-  "modid": "fruits_foraging_and_farming",
-  "name": "Fruits, Foraging and Farming",
-  "description": "A mod which seeks to expand Vanilla foraging and farming.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["Team Leader - MotorGorilla1","Programmer - Javisel", "Textures-  Kolatek", "Textures - Feranogame", "Sound - Orilly"],
-  "credits": "Team Citrus.",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+  {
+    "modid": "fruits_foraging_and_farming",
+    "name": "Fruits, Foraging and Farming",
+    "description": "A mod which seeks to expand Vanilla foraging and farming.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "Team Leader - MotorGorilla1",
+      "Programmer - Javisel",
+      "Textures-  Kolatek",
+      "Textures - Feranogame",
+      "Sound - Orilly"
+    ],
+    "credits": "Team Citrus.",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
 ]

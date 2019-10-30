@@ -9,10 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class BlockLogBase extends BlockLog
-{
-    public BlockLogBase(String name)
-    {
+public class BlockLogBase extends BlockLog {
+    public BlockLogBase(String name) {
         setUnlocalizedName(name);
         setRegistryName(name);
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
@@ -22,12 +20,10 @@ public class BlockLogBase extends BlockLog
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
+    public IBlockState getStateFromMeta(int meta) {
         IBlockState state = this.getDefaultState();
 
-        switch(meta & 6)
-        {
+        switch (meta & 6) {
             case 0:
                 state = state.withProperty(LOG_AXIS, EnumAxis.Y);
                 break;
@@ -49,12 +45,10 @@ public class BlockLogBase extends BlockLog
 
     @SuppressWarnings("incomplete-switch")
     @Override
-    public int getMetaFromState(IBlockState state)
-    {
+    public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        switch((BlockLog.EnumAxis)state.getValue(LOG_AXIS))
-        {
+        switch ((BlockLog.EnumAxis) state.getValue(LOG_AXIS)) {
             case X:
                 i |= 2;
                 break;
@@ -71,26 +65,16 @@ public class BlockLogBase extends BlockLog
     }
 
     @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[] {LOG_AXIS});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{LOG_AXIS});
     }
 
     @Override
-    protected ItemStack getSilkTouchDrop(IBlockState state)
-    {
+    protected ItemStack getSilkTouchDrop(IBlockState state) {
         return new ItemStack(this);
     }
-    public void registerItemModel(Item itemBlock) {
-        String name = this.getUnlocalizedName();
 
 
-        name = name.subSequence(5,name.length()).toString();
-
-
-        FruitsForagingAndFarming.proxy.registerItemRenderer(itemBlock, 0, name);
-
-    }
     public Item createItemBlock() {
         return new ItemBlock(this).setRegistryName(getRegistryName());
     }

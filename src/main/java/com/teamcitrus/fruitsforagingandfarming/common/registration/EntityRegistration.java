@@ -11,18 +11,18 @@ import java.awt.*;
 
 public class EntityRegistration {
 
-  private static int id = 0;
+    private static int id = 0;
 
-  public static void RegisterEntities() {
+    public static void RegisterEntities() {
 
-      registerLivingEntityWithEgg("golden_chicken", EntityGoldenChicken.class,Color.YELLOW.getRGB(),Color.RED.getRGB());
+        registerLivingEntityWithEgg("golden_chicken", EntityGoldenChicken.class, Color.YELLOW.getRGB(), Color.RED.getRGB());
 
-  }
-    private static void registerLivingEntityWithEgg(final String name,final Class<? extends Entity> entity, final int eggPrimaryColor,
-                                                    final int eggSecondaryColor)
-    {
+    }
 
-        EntityRegistry.registerModEntity(new ResourceLocation(FruitsForagingAndFarming.MODID,name), entity, name, id++, FruitsForagingAndFarming.INSTANCE, 80, 3, true, eggPrimaryColor,
+    private static void registerLivingEntityWithEgg(final String name, final Class<? extends Entity> entity, final int eggPrimaryColor,
+                                                    final int eggSecondaryColor) {
+
+        EntityRegistry.registerModEntity(new ResourceLocation(FruitsForagingAndFarming.MODID, name), entity, name, id++, FruitsForagingAndFarming.INSTANCE, 80, 3, true, eggPrimaryColor,
                 eggSecondaryColor);
 
     }
