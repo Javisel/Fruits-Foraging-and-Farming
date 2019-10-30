@@ -6,6 +6,7 @@ import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -198,13 +199,13 @@ public class WeaponScythe extends BaseWeapon {
                     if (worldIn.getBlockState(breakposfirst).getBlock() instanceof BlockBush) {
 
 
-                        worldIn.destroyBlock(breakposfirst, !ItemUtilities.hasExactEnchantment(stack, EnchantmentRegistration.allVoid));
+                        worldIn.destroyBlock(breakposfirst, EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.allVoid,stack) < 1);
 
 
                     }
                     if (worldIn.getBlockState(breakpossecond).getBlock() instanceof BlockBush) {
 
-                        worldIn.destroyBlock(breakpossecond, !ItemUtilities.hasExactEnchantment(stack, EnchantmentRegistration.allVoid));
+                        worldIn.destroyBlock(breakpossecond, EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.allVoid,stack) <1 );
 
 
                     }

@@ -75,6 +75,11 @@ public class FruitsForagingAndFarming {
 
         }
 
+        @SubscribeEvent
+        public static void RegisterBlocks(RegistryEvent.Register<Block> event) {
+            BlockRegistration.registerBlocks(event);
+
+        }
 
         @SubscribeEvent
         public static void RegisterPotions(RegistryEvent.Register<Potion> event) {

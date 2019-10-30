@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 public class BlockLogBase extends BlockLog {
     public BlockLogBase(String name) {
         setUnlocalizedName(name);
-        setRegistryName(name);
+       //setRegistryName(name);
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
         setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, EnumAxis.Y));
 
