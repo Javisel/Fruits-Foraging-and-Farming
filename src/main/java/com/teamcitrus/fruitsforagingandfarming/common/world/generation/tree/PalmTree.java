@@ -23,7 +23,7 @@ public class PalmTree extends WorldGenAbstractTree {
                 if (!isReplaceable(worldIn, pos.up(i))) {
                     return;
                 }
-                worldIn.setBlockState(pos.up(i), BlockRegistration.palm_log.getDefaultState());
+                worldIn.setBlockState(pos.up(i), BlockRegistration.PALM_LOG.getDefaultState());
             } else if (i == 7) {
                 if (!isReplaceable(worldIn, pos.up(i))) {
                     return;
@@ -105,7 +105,7 @@ public class PalmTree extends WorldGenAbstractTree {
 
                     return false;
                 }
-                worldIn.setBlockState(position.up(i), BlockRegistration.palm_log.getDefaultState());
+                worldIn.setBlockState(position.up(i), BlockRegistration.PALM_LOG.getDefaultState());
             } else if (i == 7) {
                 if (!isReplaceable(worldIn, position.up(i))) {
 

@@ -77,7 +77,6 @@ public class FruitsForagingAndFarming {
 
         @SubscribeEvent
         public static void RegisterBlocks(RegistryEvent.Register<Block> event) {
-            BlockRegistration.registerBlocks(event);
 
         }
 

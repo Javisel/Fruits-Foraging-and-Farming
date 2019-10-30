@@ -53,7 +53,7 @@ public class ItemRegistration {
 
     public static void registerItems(IForgeRegistry<Item> registry) {
         registry.register(foodAvocado);
-
+        registry.register(Item.getItemFromBlock(BlockRegistration.PALM_LOG));
         registry.register(foodBlueberry);
         registry.register(foodHoneyMelonSlice);
         registry.register(foodKiwi);

@@ -17,59 +17,40 @@ import javax.annotation.Nonnull;
 
 @Mod.EventBusSubscriber(modid = FruitsForagingAndFarming.MODID)
 @ObjectHolder(FruitsForagingAndFarming.MODID)
-@Nonnull
+@SuppressWarnings("null")
+
 public class BlockRegistration {
 
     //Palm Stuff
 
-   public static BlockLogBase palm_log;
-    public static BlockLeavesBase palm_leaves;
 
-    public static BlockBase palm_planks;
-    public static BlockStairBase palm_stairs;
-    public static  BlockHalfSlabBase palm_half_slab;
-    public static  BlockDoubleSlabBase palm_double_slab;
-    public static BlockFenceBase palm_fence;
-    public static FenceGateBase palm_fence_gate;
-    public static BlockCoconut coconut_block;
-    public static PalmSapling palm_sapling;
+   public static final   BlockLogBase PALM_LOG = null;
+    public static final   BlockLeavesBase palm_leaves= null;
+
+    public static final   BlockBase palm_planks = null;
+    public static final    BlockStairBase palm_stairs = null;
+    public static final    BlockHalfSlabBase palm_half_slab = null;
+    public static final   BlockDoubleSlabBase palm_double_slab = null;
+    public static final  BlockFenceBase palm_fence = null;
+    public static final  FenceGateBase palm_fence_gate = null;
+    public static final  BlockCoconut coconut_block = null;
+    public static final  PalmSapling palm_sapling = null;
     //Corn
-    public static  CropCornBottom crop_corn_bottom;
-    public static  CropCornTop crop_corn_top;
-    public static  CropTurnip crop_turnip;
+    public static final   CropCornBottom crop_corn_bottom = null;
+    public static final   CropCornTop crop_corn_top = null;
+    public static final   CropTurnip crop_turnip = null;
     //Cake
-    public static  CakeBase chocolate_cake;
+    public static final   CakeBase chocolate_cake = null;
 
 
 
 
     @SubscribeEvent
-    public  static void registerBlocks(RegistryEvent.Register<Block> event) {
+    public static final  void onRegisterEvent(@Nonnull final RegistryEvent.Register<Block> event) {
+     System.out.println("REGISTERING BLOCK!");
+        event.getRegistry().register(new BlockLogBase("palm_log"));
 
-
-        event.getRegistry().register(palm_log = new BlockLogBase("palm_log"));
-    event.getRegistry().register(palm_leaves = new BlockLeavesBase("palm_leaves", Item.getItemFromBlock(palm_sapling)));
-
-    event.getRegistry().register(palm_planks = new BlockBase(Material.WOOD,"palm_planks",2,5,SoundType.WOOD));
-
-
-
-    event.getRegistry().register(palm_stairs = new BlockStairBase("palm_stairs",palm_planks.getDefaultState()));
-    event.getRegistry().register(palm_half_slab =new BlockHalfSlabBase("palm_half_slab",Material.WOOD,SoundType.WOOD,BlockRegistration.palm_half_slab));
-    event.getRegistry().register(palm_double_slab= new BlockDoubleSlabBase("palm_double_slab", Material.WOOD, SoundType.WOOD, BlockRegistration.palm_half_slab));
-    event.getRegistry().register(palm_fence=new WoodFenceBase("palm_fence",MapColor.BROWN));
-    event.getRegistry().register(palm_fence_gate=new FenceGateBase("palm_fence_gate"));
-    event.getRegistry().register(coconut_block = new BlockCoconut());
-    event.getRegistry().register(palm_sapling = new PalmSapling());
-    event.getRegistry().register(crop_corn_bottom = new CropCornBottom());
-    event.getRegistry().register(crop_corn_top=new CropCornTop());
-    event.getRegistry().register(crop_turnip=new CropTurnip());
-    event.getRegistry().register(chocolate_cake=new CakeBase("chocolate_cake",2,0.3F));
-
-}
-
-
-
+    }
 
 
 }

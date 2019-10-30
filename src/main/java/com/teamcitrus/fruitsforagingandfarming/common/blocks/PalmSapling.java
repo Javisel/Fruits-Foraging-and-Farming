@@ -19,7 +19,7 @@ public class PalmSapling extends BlockSaplingBase {
         for (int i = 0; i < 7; i++) {
 
             if (i <= 6) {
-                worldIn.setBlockState(pos.up(i), BlockRegistration.palm_log.getDefaultState());
+                worldIn.setBlockState(pos.up(i), BlockRegistration.PALM_LOG.getDefaultState());
             } else if (i == 7) {
                 worldIn.setBlockState(pos.up(i), BlockRegistration.palm_leaves.getDefaultState());
             }
