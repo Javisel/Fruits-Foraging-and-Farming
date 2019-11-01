@@ -16,9 +16,10 @@ import net.minecraft.world.World;
 
 public class ChocolateMilkBottle extends ItemBase {
     public ChocolateMilkBottle() {
-        super("CHOCOLATE_MILK_BOTTLE");
+        super("chocolate_milk_bottle");
         setMaxStackSize(1);
     }
+
     @Override
     public Item getContainerItem() {
         return Items.GLASS_BOTTLE;

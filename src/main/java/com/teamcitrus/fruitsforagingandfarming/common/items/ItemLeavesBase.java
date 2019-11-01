@@ -37,7 +37,7 @@ public class ItemLeavesBase extends ItemLeaves {
 
         if (!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && worldIn.mayPlace(this.block, pos, false, facing, player)) {
             int i = this.getMetadata(itemstack.getMetadata());
-            IBlockState iblockstate1 = this.block.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, player, hand);
+            IBlockState iblockstate1 = this.block.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, player, hand).withProperty(BlockLeavesBase.CHECK_DECAY, false).withProperty(BlockLeavesBase.DECAYABLE, false);
 
             if (placeBlockAt(itemstack, player, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1)) {
                 iblockstate1 = worldIn.getBlockState(pos).withProperty(BlockLeavesBase.CHECK_DECAY, false).withProperty(BlockLeavesBase.DECAYABLE, false);

@@ -27,9 +27,6 @@ import java.util.Random;
 public class EventHandler {
 
 
-
-
-
     @SubscribeEvent
     public void VoidBlockDrop(BlockEvent.HarvestDropsEvent e) {
 
@@ -37,9 +34,8 @@ public class EventHandler {
         if (e.getHarvester() != null && !e.getHarvester().getHeldItemMainhand().isEmpty() && e.getHarvester().getHeldItemMainhand().isItemEnchanted()) {
 
 
-
-            if (EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.allVoid,e.getHarvester().getHeldItemMainhand()) > 0) {
-                    e.setDropChance(0);
+            if (EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.VOID, e.getHarvester().getHeldItemMainhand()) > 0) {
+                e.setDropChance(0);
             }
 
         }
@@ -60,14 +56,14 @@ public class EventHandler {
 
             EntityPlayer harvester = (EntityPlayer) e.getSource().getTrueSource();
 
-                    if (EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.allVoid,harvester.getHeldItemMainhand()) > 0) {
-                        e.setCanceled(true);
-                    }
-
-                }
-
+            if (EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.VOID, harvester.getHeldItemMainhand()) > 0) {
+                e.setCanceled(true);
+            }
 
         }
+
+
+    }
 
 
     @SubscribeEvent
@@ -93,11 +89,11 @@ public class EventHandler {
     @SubscribeEvent
     public void InfestationExplosion(LivingDeathEvent e) {
 
-        if (e.getEntityLiving().getActivePotionEffect(MobEffectRegistration.infestation) != null) {
+        if (e.getEntityLiving().getActivePotionEffect(MobEffectRegistration.INFESTATION) != null) {
 
-            int remainingduration = e.getEntityLiving().getActivePotionEffect(MobEffectRegistration.infestation).getDuration() % 20;
+            int remainingduration = e.getEntityLiving().getActivePotionEffect(MobEffectRegistration.INFESTATION).getDuration() % 20;
 
-            for (int i = 0; i < remainingduration * (1 + e.getEntityLiving().getActivePotionEffect(MobEffectRegistration.infestation).getAmplifier()); i++) {
+            for (int i = 0; i < remainingduration * (1 + e.getEntityLiving().getActivePotionEffect(MobEffectRegistration.INFESTATION).getAmplifier()); i++) {
 
                 MobUtilities.spawnCreature(e.getEntityLiving().getEntityWorld(),
                         new EntitySilverfish(e.getEntityLiving().world), e.getEntityLiving().posX,
@@ -118,12 +114,11 @@ public class EventHandler {
 
             if (e.getSource().getImmediateSource() == attacker) {
                 if (attacker.getHealth() < attacker.getMaxHealth()) {
-
                     for (int i = 0; i < attacker.getHeldItemMainhand().getEnchantmentTagList().tagCount(); i++) {
 
-                        if (EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.weaponLifesteal,attacker.getHeldItemMainhand()) > 0) {
+                        if (EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.LIFESTEAL, attacker.getHeldItemMainhand()) > 0) {
 
-                            float healamount = e.getAmount() * (0.10F + (0.05F * EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.weaponLifesteal,attacker.getHeldItemMainhand())));
+                            float healamount = e.getAmount() * (0.05F + (0.05F * EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.LIFESTEAL, attacker.getHeldItemMainhand())));
                             attacker.heal(healamount);
                             attacker.getHeldItemMainhand().damageItem(1, attacker);
 

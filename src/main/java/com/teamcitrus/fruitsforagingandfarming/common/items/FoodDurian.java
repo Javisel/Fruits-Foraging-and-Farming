@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class foodDurian extends ItemFoodBase {
-    public foodDurian() {
+public class FoodDurian extends ItemFoodBase {
+    public FoodDurian() {
         super("durian", 2, 1.0F);
     }
 

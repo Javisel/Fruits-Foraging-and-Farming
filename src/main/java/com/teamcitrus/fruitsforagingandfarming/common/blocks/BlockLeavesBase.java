@@ -1,5 +1,7 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
+import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
+import com.teamcitrus.fruitsforagingandfarming.common.registration.EnumTreeType;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -30,21 +32,30 @@ public class BlockLeavesBase extends BlockLeaves implements IBitMapColorBlock {
     public static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
     Item sapling;
     int[] surroundings;
+    EnumTreeType type;
 
-    public BlockLeavesBase(String name, Item sapling) {
+    public BlockLeavesBase(String name, EnumTreeType type) {
 
         setUnlocalizedName(name);
         setRegistryName(name);
         setSoundType(SoundType.PLANT);
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
         setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(false)).withProperty(DECAYABLE, Boolean.valueOf(false)));
-        this.sapling = sapling;
+
+        this.type = type;
+
+
     }
 
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return sapling;
+
+        if (type == EnumTreeType.PALM) {
+            return Item.getItemFromBlock(BlockRegistration.PALM_SAPLING);
+        }
+        return null;
+
     }
 
     @Override
@@ -97,7 +108,7 @@ public class BlockLeavesBase extends BlockLeaves implements IBitMapColorBlock {
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         {
             if (!worldIn.isRemote) {
-                if (((Boolean) state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean) state.getValue(DECAYABLE)).booleanValue()) {
+                if (state.getValue(CHECK_DECAY).booleanValue() && state.getValue(DECAYABLE).booleanValue()) {
                     int i = 4;
                     int j = 5;
                     int k = pos.getX();
@@ -205,7 +216,7 @@ public class BlockLeavesBase extends BlockLeaves implements IBitMapColorBlock {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{CHECK_DECAY, DECAYABLE});
+        return new BlockStateContainer(this, CHECK_DECAY, DECAYABLE);
     }
 
     @Override

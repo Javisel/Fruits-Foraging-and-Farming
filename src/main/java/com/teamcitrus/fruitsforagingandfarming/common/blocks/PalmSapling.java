@@ -1,6 +1,7 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
+import com.teamcitrus.fruitsforagingandfarming.common.world.generation.tree.PalmTree;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -10,74 +11,18 @@ import java.util.Random;
 
 public class PalmSapling extends BlockSaplingBase {
     public PalmSapling() {
-        super("PALM_SAPLING");
+        super("palm_sapling");
     }
 
     @Override
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 
-        for (int i = 0; i < 7; i++) {
+        PalmTree palmtree = new PalmTree(true);
 
-            if (i <= 6) {
-                worldIn.setBlockState(pos.up(i), BlockRegistration.PALM_LOG.getDefaultState());
-            } else if (i == 7) {
-                worldIn.setBlockState(pos.up(i), BlockRegistration.PALM_LEAVES.getDefaultState());
-            }
+        if (palmtree.generateSapling(worldIn, rand, pos)) {
+
+            worldIn.setBlockState(pos, BlockRegistration.PALM_LOG.getDefaultState());
         }
-        BlockPos top = pos.up(7);
-        for (int x1 = -1; x1 < 2; x1++) {
-
-            for (int y1 = -1; y1 < 2; y1++) {
-
-                worldIn.setBlockState(top.add(x1, 0, y1), BlockRegistration.PALM_LEAVES.getDefaultState());
-
-
-            }
-
-        }
-
-        //Crown extentions
-        worldIn.setBlockState(top.north(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.north(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.north(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-
-
-        worldIn.setBlockState(top.south(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.south(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.south(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-
-        worldIn.setBlockState(top.west(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.west(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.west(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.east(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.east(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.east(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        //Diagonal
-        worldIn.setBlockState(top.north(2).east(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.north(3).east(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-
-
-        worldIn.setBlockState(top.north(2).west(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.north(3).west(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-
-        worldIn.setBlockState(top.south(2).east(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.south(3).east(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-
-        worldIn.setBlockState(top.south(2).west(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.south(3).west(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-
-        //Bellow Crown
-        worldIn.setBlockState(top.north().down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.east().down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.south().down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.west().down(), BlockRegistration.PALM_LEAVES.getDefaultState());
-
-        //Bellow Crown Diagonal
-        worldIn.setBlockState(top.north().down(2).east(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.north().down(2).west(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.south().down(2).east(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        worldIn.setBlockState(top.south().down(2).west(), BlockRegistration.PALM_LEAVES.getDefaultState());
-
 
     }
 
@@ -86,13 +31,15 @@ public class PalmSapling extends BlockSaplingBase {
 
         for (int i = 1; i < 7; i++) {
 
-            if (!worldIn.isAirBlock(pos.up(i))) {
+            if (!this.canBeReplacedByLeaves(worldIn.getBlockState(pos), worldIn, pos)) {
                 return false;
             }
         }
         return true;
 
     }
+
+
 
     @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {

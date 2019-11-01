@@ -1,7 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.items.weapon;
 
 import com.teamcitrus.fruitsforagingandfarming.common.registration.EnchantmentRegistration;
-import com.teamcitrus.fruitsforagingandfarming.common.utilities.ItemUtilities;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -59,7 +58,7 @@ public class WeaponScythe extends BaseWeapon {
                 }
             }
 
-            player.world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, player.getSoundCategory(), 1.0F, 1.0F);
+            player.world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, player.getSoundCategory(), 1.0F, 1.0F);
             player.spawnSweepParticles();
         }
         return false;
@@ -75,7 +74,7 @@ public class WeaponScythe extends BaseWeapon {
                 }
             }
 
-            attacker.world.playSound((EntityPlayer) null, attacker.posX, attacker.posY, attacker.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, attacker.getSoundCategory(), 1.0F, 1.0F);
+            attacker.world.playSound(null, attacker.posX, attacker.posY, attacker.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, attacker.getSoundCategory(), 1.0F, 1.0F);
             double d0 = (double) (-MathHelper.sin(attacker.rotationYaw * 0.017453292F));
             double d1 = (double) MathHelper.cos(attacker.rotationYaw * 0.017453292F);
 
@@ -199,13 +198,13 @@ public class WeaponScythe extends BaseWeapon {
                     if (worldIn.getBlockState(breakposfirst).getBlock() instanceof BlockBush) {
 
 
-                        worldIn.destroyBlock(breakposfirst, EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.allVoid,stack) < 1);
+                        worldIn.destroyBlock(breakposfirst, EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.VOID, stack) < 1);
 
 
                     }
                     if (worldIn.getBlockState(breakpossecond).getBlock() instanceof BlockBush) {
 
-                        worldIn.destroyBlock(breakpossecond, EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.allVoid,stack) <1 );
+                        worldIn.destroyBlock(breakpossecond, EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistration.VOID, stack) < 1);
 
 
                     }

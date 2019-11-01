@@ -34,7 +34,7 @@ public class CropCornTop extends BlockBush implements IPlantable {
         this.setRegistryName("corn_crop_top");
 
         this.setUnlocalizedName("corn_crop_top");
-        this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
 
         this.setTickRandomly(true);
         this.setHardness(0.0F);
@@ -111,7 +111,6 @@ public class CropCornTop extends BlockBush implements IPlantable {
     }
 
 
-
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return CROPS_AABB[(state.getValue(this.getAgeProperty())).intValue()];
     }
@@ -136,11 +135,11 @@ public class CropCornTop extends BlockBush implements IPlantable {
     }
 
     public IBlockState withAge(int age) {
-        return this.getDefaultState().withProperty(this.getAgeProperty(), Integer.valueOf(age));
+        return this.getDefaultState().withProperty(this.getAgeProperty(), age);
     }
 
     public boolean isMaxAge(IBlockState state) {
-        return ((Integer) state.getValue(this.getAgeProperty())).intValue() >= this.getMaxAge();
+        return state.getValue(this.getAgeProperty()).intValue() >= this.getMaxAge();
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
@@ -190,7 +189,7 @@ public class CropCornTop extends BlockBush implements IPlantable {
     }
 
     protected Item getSeed() {
-        return ItemRegistration.CORN_KERNELS;
+        return ItemRegistration.CORN_KERNEL;
     }
 
     protected Item getCrop() {
@@ -220,21 +219,21 @@ public class CropCornTop extends BlockBush implements IPlantable {
         return true;
     }
 
-    /**
-     * Convert the given metadata into a BlockState for this Block
-     */
+
     public IBlockState getStateFromMeta(int meta) {
         return this.withAge(meta);
     }
 
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
+
+    @Override
+
+
     public int getMetaFromState(IBlockState state) {
         return this.getAge(state);
     }
 
+    @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{AGE});
+        return new BlockStateContainer(this, AGE);
     }
 }

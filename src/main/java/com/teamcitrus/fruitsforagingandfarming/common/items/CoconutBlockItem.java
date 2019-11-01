@@ -42,7 +42,7 @@ public class CoconutBlockItem extends ItemBlock {
             pos = pos.offset(facing);
 
             if (worldIn.isAirBlock(pos)) {
-                IBlockState iblockstate1 =BlockRegistration.COCONUT_BLOCK.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
+                IBlockState iblockstate1 = BlockRegistration.COCONUT_BLOCK.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
                 worldIn.setBlockState(pos, iblockstate1, 10);
                 if (!player.capabilities.isCreativeMode) {
                     player.getHeldItem(hand).shrink(1);

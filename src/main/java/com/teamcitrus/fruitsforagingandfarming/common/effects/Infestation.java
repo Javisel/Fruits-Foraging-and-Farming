@@ -10,7 +10,7 @@ import net.minecraft.world.EnumDifficulty;
 public class Infestation extends MobEffect {
 
     public Infestation() {
-        super(true, 0x7F7F7F, "infestation");
+        super(true, 0x7F7F7F, "INFESTATION");
     }
 
     @Override

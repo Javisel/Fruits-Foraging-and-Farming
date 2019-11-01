@@ -1,6 +1,5 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
-import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -11,7 +10,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -40,6 +38,8 @@ public class CropBase extends BlockBush implements IGrowable {
         this.disableStats();
 
     }
+
+
 
     protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos) {
         float f = 1.0F;
@@ -88,7 +88,7 @@ public class CropBase extends BlockBush implements IGrowable {
 
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return CROPS_AABB[((Integer) state.getValue(this.getAgeProperty())).intValue()];
+        return CROPS_AABB[state.getValue(this.getAgeProperty()).intValue()];
     }
 
     /**
@@ -107,7 +107,7 @@ public class CropBase extends BlockBush implements IGrowable {
     }
 
     protected int getAge(IBlockState state) {
-        return ((Integer) state.getValue(this.getAgeProperty())).intValue();
+        return state.getValue(this.getAgeProperty()).intValue();
     }
 
     public IBlockState withAge(int age) {
@@ -115,7 +115,7 @@ public class CropBase extends BlockBush implements IGrowable {
     }
 
     public boolean isMaxAge(IBlockState state) {
-        return ((Integer) state.getValue(this.getAgeProperty())).intValue() >= this.getMaxAge();
+        return state.getValue(this.getAgeProperty()).intValue() >= this.getMaxAge();
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
@@ -245,6 +245,6 @@ public class CropBase extends BlockBush implements IGrowable {
     }
 
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{AGE});
+        return new BlockStateContainer(this, AGE);
     }
 }

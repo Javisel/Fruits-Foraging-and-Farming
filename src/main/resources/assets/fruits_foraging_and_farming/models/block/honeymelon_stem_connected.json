@@ -1,0 +1,7 @@
+{
+    "parent": "block/stem_fruit",
+    "textures": {
+        "stem": "fruits_foraging_and_farming:block/honeymelon_stem_disconnected",
+        "upperstem": "fruits_foraging_and_farming:block/honeymelon_stem_connected"
+    }
+}

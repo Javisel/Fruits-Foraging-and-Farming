@@ -34,12 +34,12 @@ public class CropCornBottom extends BlockBush implements IPlantable {
         this.setRegistryName("corn_crop_base");
 
         this.setUnlocalizedName("corn_crop_base");
-        this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), 0));
 
         this.setTickRandomly(true);
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);
-        this.disableStats();
+
 
     }
 
@@ -140,17 +140,17 @@ public class CropCornBottom extends BlockBush implements IPlantable {
                 if (this.getAge(state) == 2) {
 
                     if (worldIn.isAirBlock(pos.up())) {
-                        worldIn.setBlockState(pos.up(), BlockRegistration.CROP_CORN_TOP.getDefaultState());
+                        worldIn.setBlockState(pos.up(), BlockRegistration.CROP_CORN_TOP.getStateFromMeta(0));
 
-
-                    } else if (this.getAge(state) < 2) {
-                        worldIn.setBlockState(pos, this.withAge(i + 1), 2);
-                    } else {
 
                     }
                 }
 
+                else if (this.getAge(state) < 2) {
+                    worldIn.setBlockState(pos, this.withAge(i + 1), 2);
+                } else {
 
+                }
                 net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
             }
 
@@ -196,7 +196,7 @@ public class CropCornBottom extends BlockBush implements IPlantable {
     }
 
     protected Item getSeed() {
-        return ItemRegistration.CORN_KERNELS;
+        return ItemRegistration.CORN_KERNEL;
     }
 
     protected Item getCrop() {
@@ -240,7 +240,10 @@ public class CropCornBottom extends BlockBush implements IPlantable {
         return this.getAge(state);
     }
 
+    @Override
+
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{AGE});
+        return new BlockStateContainer(this, AGE);
     }
+
 }

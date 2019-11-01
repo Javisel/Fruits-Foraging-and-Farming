@@ -19,7 +19,7 @@ public class InfestedPebble extends ItemFoodBase {
     @Override
     protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
         super.onFoodEaten(stack, worldIn, player);
-        player.addPotionEffect(new PotionEffect(MobEffectRegistration.infestation, 100));
+        player.addPotionEffect(new PotionEffect(MobEffectRegistration.INFESTATION, 100));
     }
 
     @Override

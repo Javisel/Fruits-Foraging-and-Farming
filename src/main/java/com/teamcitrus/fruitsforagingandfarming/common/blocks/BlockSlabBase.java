@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public abstract class BlockSlabBase extends BlockSlab {
-    public static final PropertyEnum<Variant> VARIANT = PropertyEnum.<Variant>create("variant", Variant.class);
+    public static final PropertyEnum<Variant> VARIANT = PropertyEnum.create("variant", Variant.class);
     Block half;
 
     public BlockSlabBase(String name, Material material, BlockSlab half) {
@@ -58,8 +58,8 @@ public abstract class BlockSlabBase extends BlockSlab {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        if (!this.isDouble()) return new BlockStateContainer(this, new IProperty[]{VARIANT, HALF});
-        else return new BlockStateContainer(this, new IProperty[]{VARIANT});
+        if (!this.isDouble()) return new BlockStateContainer(this, VARIANT, HALF);
+        else return new BlockStateContainer(this, VARIANT);
     }
 
 
@@ -78,7 +78,7 @@ public abstract class BlockSlabBase extends BlockSlab {
         return Variant.DEFAULT;
     }
 
-    public static enum Variant implements IStringSerializable {
+    public enum Variant implements IStringSerializable {
         DEFAULT;
 
         @Override

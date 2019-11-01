@@ -2,17 +2,16 @@ package com.teamcitrus.fruitsforagingandfarming.main;
 
 import com.teamcitrus.fruitsforagingandfarming.client.creativetabs.CreativeTab;
 import com.teamcitrus.fruitsforagingandfarming.common.damagesource.SilverfishAlien;
-import com.teamcitrus.fruitsforagingandfarming.common.registration.*;
+import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
+import com.teamcitrus.fruitsforagingandfarming.common.registration.EnchantmentRegistration;
+import com.teamcitrus.fruitsforagingandfarming.common.registration.EntityRegistration;
+import com.teamcitrus.fruitsforagingandfarming.common.registration.MobEffectRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.world.generation.tree.TreeGenerator;
 import com.teamcitrus.fruitsforagingandfarming.proxy.CommonProxy;
-import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -49,8 +48,7 @@ public class FruitsForagingAndFarming {
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
         MinecraftForge.EVENT_BUS.register(new com.teamcitrus.fruitsforagingandfarming.main.EventHandler());
-        MinecraftForge.EVENT_BUS.register(BlockRegistration.class);
-
+        BlockRegistration.RegisterOre();
     }
 
     @EventHandler
@@ -58,23 +56,4 @@ public class FruitsForagingAndFarming {
         proxy.postInit(event);
     }
 
-    @Mod.EventBusSubscriber
-    public static class RegistrationHandler {
-
-
-        @SubscribeEvent
-        public static void RegisterPotions(RegistryEvent.Register<Potion> event) {
-            MobEffectRegistration.register(event.getRegistry());
-        }
-
-        @SubscribeEvent
-        public static void RegisterEnchantments(RegistryEvent.Register<Enchantment> event) {
-            EnchantmentRegistration.register(event.getRegistry());
-        }
-
-
-
-
-
-    }
 }

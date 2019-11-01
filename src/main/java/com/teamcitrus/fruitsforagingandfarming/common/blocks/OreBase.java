@@ -4,7 +4,6 @@ import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 
 import java.util.Random;
 
@@ -21,7 +20,6 @@ public class OreBase extends BlockOre {
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
 
     }
-
 
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {

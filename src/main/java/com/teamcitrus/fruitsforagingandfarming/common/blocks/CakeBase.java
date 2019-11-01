@@ -5,8 +5,6 @@ import net.minecraft.block.BlockCake;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumFacing;
@@ -45,7 +43,7 @@ public class CakeBase extends BlockCake {
         } else {
             player.addStat(StatList.CAKE_SLICES_EATEN);
             player.getFoodStats().addStats(foodheal, saturation);
-            int i = ((Integer) state.getValue(BITES)).intValue();
+            int i = state.getValue(BITES).intValue();
 
             if (i < 6) {
                 worldIn.setBlockState(pos, state.withProperty(BITES, Integer.valueOf(i + 1)), 3);

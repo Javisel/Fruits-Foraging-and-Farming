@@ -1,5 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.items;
 
+import com.teamcitrus.fruitsforagingandfarming.common.blocks.CropTurnip;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +16,7 @@ import net.minecraftforge.common.IPlantable;
 
 public class TurnipSeeds extends ItemBase implements IPlantable {
     public TurnipSeeds() {
-        super("TURNIP_SEEDS");
+        super("turnip_seeds");
 
     }
 
@@ -24,7 +25,7 @@ public class TurnipSeeds extends ItemBase implements IPlantable {
         ItemStack stack = player.getHeldItem(hand);
         IBlockState state = worldIn.getBlockState(pos);
         if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, stack) && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up())) {
-            worldIn.setBlockState(pos.up(), BlockRegistration.CROP_TURNIP.getDefaultState());
+            worldIn.setBlockState(pos.up(),getPlant(worldIn,pos));
             if (!player.capabilities.isCreativeMode && !worldIn.isRemote) {
                 stack.shrink(1);
             }
@@ -40,6 +41,6 @@ public class TurnipSeeds extends ItemBase implements IPlantable {
 
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
-        return BlockRegistration.CROP_TURNIP.getDefaultState();
+        return BlockRegistration.CROP_TURNIP.getStateFromMeta(0);
     }
 }

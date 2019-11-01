@@ -3,8 +3,6 @@ package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 
 public class BlockStairBase extends BlockStairs {
 

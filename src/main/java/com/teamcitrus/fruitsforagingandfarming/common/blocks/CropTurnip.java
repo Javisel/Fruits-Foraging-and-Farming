@@ -109,7 +109,7 @@ public class CropTurnip extends BlockBush implements IGrowable {
     }
 
     protected int getAge(IBlockState state) {
-        return ((Integer) state.getValue(this.getAgeProperty())).intValue();
+        return state.getValue(this.getAgeProperty()).intValue();
     }
 
     public IBlockState withAge(int age) {
@@ -117,7 +117,7 @@ public class CropTurnip extends BlockBush implements IGrowable {
     }
 
     public boolean isMaxAge(IBlockState state) {
-        return ((Integer) state.getValue(this.getAgeProperty())).intValue() >= this.getMaxAge();
+        return state.getValue(this.getAgeProperty()).intValue() >= this.getMaxAge();
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
@@ -247,8 +247,9 @@ public class CropTurnip extends BlockBush implements IGrowable {
     public int getMetaFromState(IBlockState state) {
         return this.getAge(state);
     }
+    @Override
 
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{AGE});
+        return new BlockStateContainer(this, AGE);
     }
 }

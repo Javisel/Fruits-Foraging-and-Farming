@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "age=0,facing=up": { "model": "fruits_foraging_and_farming:honeymelon_stem_growth0" },
+        "age=1,facing=up": { "model": "fruits_foraging_and_farming:honeymelon_stem_growth1" },
+        "age=2,facing=up": { "model": "fruits_foraging_and_farming:honeymelon_stem_growth2" },
+        "age=3,facing=up": { "model": "fruits_foraging_and_farming:honeymelon_stem_growth3" },
+        "age=4,facing=up": { "model": "fruits_foraging_and_farming:honeymelon_stem_growth4" },
+        "age=5,facing=up": { "model": "fruits_foraging_and_farming:honeymelon_stem_growth5" },
+        "age=6,facing=up": { "model": "fruits_foraging_and_farming:honeymelon_stem_growth6" },
+        "age=7,facing=up": { "model": "fruits_foraging_and_farming:honeymelon_stem_growth7" },
+        "age=7,facing=west": { "model": "fruits_foraging_and_farming:honeymelon_stem_connected" },
+        "age=7,facing=east": { "model": "fruits_foraging_and_farming:honeymelon_stem_connected", "y": 180 },
+        "age=7,facing=north": { "model": "fruits_foraging_and_farming:honeymelon_stem_connected", "y": 90 },
+        "age=7,facing=south": { "model": "fruits_foraging_and_farming:honeymelon_stem_connected", "y": 270 }
+    }
+}

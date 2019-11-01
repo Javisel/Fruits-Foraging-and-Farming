@@ -1,6 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
-import com.teamcitrus.fruitsforagingandfarming.common.items.CoconutBlockItem;
+import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -15,6 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class BlockCoconut extends BlockBase {
     public static final PropertyInteger TYPE = net.minecraft.block.properties.PropertyInteger.create("type", 0, 1);
 
@@ -26,8 +28,8 @@ public class BlockCoconut extends BlockBase {
     };
 
     public BlockCoconut() {
-        super(Material.ROCK, "COCONUT_BLOCK", 1.0F, 1.0F, SoundType.STONE);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(this.getTypeInteger(), Integer.valueOf(0)));
+        super(Material.PLANTS, "coconut_block", 2, 2, SoundType.STONE);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(getTypeInteger(), Integer.valueOf(0)));
 
         setLightOpacity(10);
     }
@@ -37,18 +39,34 @@ public class BlockCoconut extends BlockBase {
     }
 
     @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        return Item.getItemFromBlock(BlockRegistration.COCONUT_BLOCK);
+    }
+
+    public int quantityDropped(Random random) {
+        return 1;
+    }
+
+    /**
+     * Get the quantity dropped based on the given fortune level
+     */
+    public int quantityDroppedWithBonus(int fortune, Random random) {
+        return 1;
+    }
+
+    @Override
     public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
         return false;
     }
 
 
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{TYPE});
+        return new BlockStateContainer(this, TYPE);
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return COCONUT_AABB[(state.getValue(this.getTypeInteger())).intValue()];
+        return COCONUT_AABB[(state.getValue(getTypeInteger())).intValue()];
     }
 
 
@@ -82,7 +100,7 @@ public class BlockCoconut extends BlockBase {
     }
 
     public IBlockState withType(int type) {
-        return this.getDefaultState().withProperty(this.getTypeInteger(), Integer.valueOf(type));
+        return this.getDefaultState().withProperty(getTypeInteger(), Integer.valueOf(type));
     }
 
     @Override
@@ -106,6 +124,6 @@ public class BlockCoconut extends BlockBase {
     }
 
     public int getType(IBlockState state) {
-        return ((Integer) state.getValue(this.getTypeInteger())).intValue();
+        return state.getValue(getTypeInteger()).intValue();
     }
 }

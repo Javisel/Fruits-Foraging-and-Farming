@@ -2,8 +2,6 @@ package com.teamcitrus.fruitsforagingandfarming.common.utilities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -17,7 +15,7 @@ public class MobUtilities {
         entitycreature.rotationYawHead = entitycreature.rotationYaw;
         entitycreature.renderYawOffset = entitycreature.rotationYaw;
 
-            world.spawnEntity(entitycreature);
+        world.spawnEntity(entitycreature);
 
         entitycreature.spawnExplosionParticle();
         entitycreature.playLivingSound();

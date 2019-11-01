@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 public class BlockLogBase extends BlockLog {
     public BlockLogBase(String name) {
         setUnlocalizedName(name);
-       setRegistryName(name);
+        setRegistryName(name);
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
         setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, EnumAxis.Y));
 
@@ -48,7 +48,7 @@ public class BlockLogBase extends BlockLog {
     public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        switch ((BlockLog.EnumAxis) state.getValue(LOG_AXIS)) {
+        switch (state.getValue(LOG_AXIS)) {
             case X:
                 i |= 2;
                 break;
@@ -66,7 +66,7 @@ public class BlockLogBase extends BlockLog {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{LOG_AXIS});
+        return new BlockStateContainer(this, LOG_AXIS);
     }
 
     @Override

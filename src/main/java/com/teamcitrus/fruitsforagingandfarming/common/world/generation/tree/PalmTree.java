@@ -14,21 +14,33 @@ public class PalmTree extends WorldGenAbstractTree {
         super(notify);
     }
 
-    public void generateSaplings(World worldIn, Random random, BlockPos pos) {
+    public static boolean makeCoconut(World world, BlockPos pos) {
 
-        for (int i = 0; i < 7; i++) {
+        if (world.getBlockState(pos.up()).getBlock() == BlockRegistration.PALM_LEAVES && world.isAirBlock(pos.down())) {
+
+            world.setBlockState(pos, BlockRegistration.COCONUT_BLOCK.getStateFromMeta(1));
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean generateSapling(World worldIn, Random random, BlockPos pos) {
+
+        for (int i = 1; i < 7; i++) {
 
             if (i <= 6) {
 
                 if (!isReplaceable(worldIn, pos.up(i))) {
-                    return;
+                    return false;
                 }
                 worldIn.setBlockState(pos.up(i), BlockRegistration.PALM_LOG.getDefaultState());
             } else if (i == 7) {
                 if (!isReplaceable(worldIn, pos.up(i))) {
-                    return;
+                    return false;
                 }
                 worldIn.setBlockState(pos.up(i), BlockRegistration.PALM_LEAVES.getDefaultState());
+
             }
         }
         BlockPos top = pos.up(7);
@@ -86,9 +98,8 @@ public class PalmTree extends WorldGenAbstractTree {
         StrictLeaves(worldIn, top.south().down(2).west(), BlockRegistration.PALM_LEAVES.getDefaultState());
 
 
-        return;
+        return true;
     }
-
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
@@ -96,7 +107,6 @@ public class PalmTree extends WorldGenAbstractTree {
         if (worldIn.getBlockState(position.down()).getMaterial() != Material.SAND && worldIn.getBlockState(position.down()).getMaterial() != Material.GRASS) {
             return false;
         }
-        System.out.println("tree coming!");
         for (int i = 1; i < 7; i++) {
 
             if (i <= 6) {
@@ -180,12 +190,12 @@ public class PalmTree extends WorldGenAbstractTree {
 
             if (world.isAirBlock(pos.down())) {
                 Random rand = new Random();
-                int low = 0;
-                int high = 20;
+                int low = 1;
+                int high = 100;
                 int coconut = rand.nextInt(high - low) + low;
 
-                if (coconut == 20) {
-                    world.setBlockState(pos.down(), BlockRegistration.COCONUT_BLOCK.getStateFromMeta(1));
+                if (coconut <= 5) {
+                    makeCoconut(world, pos.down());
                 }
 
             }

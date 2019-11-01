@@ -4,8 +4,6 @@ import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 
 public class BlockFenceBase extends BlockFence {
 
@@ -17,7 +15,6 @@ public class BlockFenceBase extends BlockFence {
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
 
     }
-
 
 
 }

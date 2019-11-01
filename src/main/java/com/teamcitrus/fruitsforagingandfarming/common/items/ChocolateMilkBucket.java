@@ -46,5 +46,4 @@ public class ChocolateMilkBucket extends ItemBucketMilk {
     }
 
 
-
 }

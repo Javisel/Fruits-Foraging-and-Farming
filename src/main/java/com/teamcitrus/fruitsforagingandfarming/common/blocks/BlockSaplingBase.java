@@ -8,8 +8,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -71,8 +69,8 @@ public abstract class BlockSaplingBase extends BlockBush implements IGrowable {
     }
 
     @Override
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return true;
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)  {      return (double) worldIn.rand.nextFloat() < 0.45D;
+
     }
 
     @Override
@@ -84,7 +82,6 @@ public abstract class BlockSaplingBase extends BlockBush implements IGrowable {
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 
     }
-
 
 
     @Override

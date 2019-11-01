@@ -48,4 +48,5 @@ tile.palm_sapling.name=Palm Sapling
 tile.ruby_block.name=Block of Rubies
 tile.ruby_ore.name=Ruby Ore
 tile.coconut_block.name=Coconut
+tile.honeymelon_block.name=Honeymelon Block
 death.attack.fruits_foraging_and_farming.silverfishalien=%1$s was Aliened by a Silverfish
