@@ -1,9 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.items;
 
-import com.teamcitrus.fruitsforagingandfarming.common.blocks.BlockLeavesBase;
-import com.teamcitrus.fruitsforagingandfarming.common.blocks.CropCornBottom;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -28,7 +25,7 @@ public class SeedCornKernel extends ItemBase implements IPlantable {
         ItemStack stack = player.getHeldItem(hand);
         IBlockState state = worldIn.getBlockState(pos);
         if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, stack) && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up())) {
-            worldIn.setBlockState(pos.up(), getPlant(worldIn,pos));
+            worldIn.setBlockState(pos.up(), getPlant(worldIn, pos));
             if (!player.capabilities.isCreativeMode && !worldIn.isRemote) {
                 stack.shrink(1);
             }
@@ -45,6 +42,6 @@ public class SeedCornKernel extends ItemBase implements IPlantable {
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
 
-        return BlockRegistration.CROP_CORN_BOTTOM.getStateFromMeta(0);
+        return BlockRegistration.CORN_CROP_BOTTOM.getStateFromMeta(0);
     }
 }

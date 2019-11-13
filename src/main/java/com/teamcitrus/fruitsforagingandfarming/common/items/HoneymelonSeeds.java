@@ -1,7 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.items;
 
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

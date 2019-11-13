@@ -61,7 +61,7 @@ public class ClientProxy extends CommonProxy {
         registerItemRenderer(ItemRegistration.PLUM, 0);
         registerItemRenderer(ItemRegistration.GRASS_SEEDS, 0);
         registerItemRenderer(ItemRegistration.STONE_SCYTHE, 0);
-        registerItemRenderer(ItemRegistration.HONEYMELON_SEEDS,0);
+        registerItemRenderer(ItemRegistration.HONEYMELON_SEEDS, 0);
         //BLOCKS
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_LOG), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_LEAVES), 0);
@@ -73,7 +73,8 @@ public class ClientProxy extends CommonProxy {
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_STAIRS), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_SAPLING), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.CHOCOLATE_CAKE), 0);
-        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.HONEYMELON_BLOCK),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.HONEYMELON_BLOCK), 0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.BANANA_BUNCH),0);
 
     }
 

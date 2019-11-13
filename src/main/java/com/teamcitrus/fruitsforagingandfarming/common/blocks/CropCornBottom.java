@@ -5,7 +5,6 @@ import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistrat
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -124,11 +123,10 @@ public class CropCornBottom extends BlockBush implements IPlantable {
     }
 
     public boolean isMaxAge(IBlockState state) {
-        return ((Integer) state.getValue(this.getAgeProperty())).intValue() >= this.getMaxAge();
+        return state.getValue(this.getAgeProperty()).intValue() >= this.getMaxAge();
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        super.updateTick(worldIn, pos, state, rand);
         if (!worldIn.isAreaLoaded(pos, 1)) return;
         if (worldIn.getLightFromNeighbors(pos.up()) >= 8) {
             int i = this.getAge(state);
@@ -137,16 +135,15 @@ public class CropCornBottom extends BlockBush implements IPlantable {
             float f = getGrowthChance(this, worldIn, pos);
 
             if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0)) {
-                if (this.getAge(state) == 2) {
+                if (i == 2) {
 
                     if (worldIn.isAirBlock(pos.up())) {
-                        worldIn.setBlockState(pos.up(), BlockRegistration.CROP_CORN_TOP.getStateFromMeta(0));
+                        System.out.println("GROW MY MINION!");
+                        worldIn.setBlockState(pos.up(), BlockRegistration.CORN_CROP_TOP.getDefaultState().withProperty(CropCornTop.AGE,0));
 
 
                     }
-                }
-
-                else if (this.getAge(state) < 2) {
+                } else if (i< 2) {
                     worldIn.setBlockState(pos, this.withAge(i + 1), 2);
                 } else {
 
@@ -186,7 +183,7 @@ public class CropCornBottom extends BlockBush implements IPlantable {
 
 
         } else if (age == 2) {
-            return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this) && (worldIn.getBlockState(pos.up()).getBlock() ==BlockRegistration.CROP_CORN_TOP || worldIn.canSeeSky(pos));
+            return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this) && (worldIn.getBlockState(pos.up()).getBlock() == BlockRegistration.CORN_CROP_TOP || worldIn.canSeeSky(pos));
         } else {
 
             return false;

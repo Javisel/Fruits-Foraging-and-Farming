@@ -25,7 +25,7 @@ public class TurnipSeeds extends ItemBase implements IPlantable {
         ItemStack stack = player.getHeldItem(hand);
         IBlockState state = worldIn.getBlockState(pos);
         if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, stack) && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up())) {
-            worldIn.setBlockState(pos.up(),getPlant(worldIn,pos));
+            worldIn.setBlockState(pos.up(), getPlant(worldIn, pos));
             if (!player.capabilities.isCreativeMode && !worldIn.isRemote) {
                 stack.shrink(1);
             }
@@ -41,6 +41,6 @@ public class TurnipSeeds extends ItemBase implements IPlantable {
 
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
-        return BlockRegistration.CROP_TURNIP.getStateFromMeta(0);
+        return BlockRegistration.TURNIP_CROP.getDefaultState().withProperty(CropTurnip.AGE,0);
     }
 }

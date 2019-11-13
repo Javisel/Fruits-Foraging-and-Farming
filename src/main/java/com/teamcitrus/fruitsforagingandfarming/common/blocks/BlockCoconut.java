@@ -1,13 +1,14 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -109,6 +110,14 @@ public class BlockCoconut extends BlockBase {
 
     }
 
+    @Override
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+        if (worldIn.getBlockState(pos.up()).getBlock() != Blocks.LEAVES && worldIn.isAirBlock(pos.down())) {
+
+            this.dropBlockAsItem(worldIn,pos,state,0);
+        }
+
+    }
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;

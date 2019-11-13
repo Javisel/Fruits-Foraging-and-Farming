@@ -34,7 +34,7 @@ public abstract class BlockSaplingBase extends BlockBush implements IGrowable {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{STAGE});
+        return new BlockStateContainer(this, STAGE);
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
@@ -50,7 +50,7 @@ public abstract class BlockSaplingBase extends BlockBush implements IGrowable {
     }
 
     public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        if (((Integer) state.getValue(STAGE)).intValue() == 0) {
+        if (state.getValue(STAGE).intValue() == 0) {
             worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
         } else {
             this.generateTree(worldIn, pos, state, rand);
@@ -69,7 +69,8 @@ public abstract class BlockSaplingBase extends BlockBush implements IGrowable {
     }
 
     @Override
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)  {      return (double) worldIn.rand.nextFloat() < 0.45D;
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+        return (double) worldIn.rand.nextFloat() < 0.45D;
 
     }
 

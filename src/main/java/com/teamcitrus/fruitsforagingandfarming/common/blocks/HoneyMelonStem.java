@@ -1,14 +1,15 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
-import net.minecraft.block.*;
-import net.minecraft.block.BlockStem;
-import net.minecraft.block.properties.IProperty;
+import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockTorch;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -23,10 +24,9 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class HoneyMelonStem extends BlockBush implements IGrowable, IBitMapColorBlock{
+public class HoneyMelonStem extends BlockBush implements IGrowable, IBitMapColorBlock {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
     public static final PropertyDirection FACING = BlockTorch.FACING;
-    BlockHoneyMelon crop = BlockRegistration.HONEYMELON_BLOCK;
     protected static final AxisAlignedBB[] STEM_AABB = new AxisAlignedBB[]{new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.125D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.25D, 0.625D),
             new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.375D, 0.625D),
             new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.5D, 0.625D),
@@ -41,75 +41,6 @@ public class HoneyMelonStem extends BlockBush implements IGrowable, IBitMapColor
 
         setRegistryName("honeymelon_stem");
         setUnlocalizedName("honeymelon_stem");
-    }
-
-
-
-
-
-
-
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return STEM_AABB[((Integer) state.getValue(AGE)).intValue()];
-    }
-
-    /**
-     * Get the actual Block state of this Block at the given position. This applies properties not visible in the
-     * metadata, such as fence connections.
-     */
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        int i = ((Integer) state.getValue(AGE)).intValue();
-        state = state.withProperty(FACING, EnumFacing.UP);
-
-        for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
-            if (worldIn.getBlockState(pos.offset(enumfacing)).getBlock() == this.crop && i == 7) {
-                state = state.withProperty(FACING, enumfacing);
-                break;
-            }
-        }
-
-        return state;
-    }
-
-    /**
-     * Return true if the block can sustain a Bush
-     */
-    protected boolean canSustainBush(IBlockState state) {
-        return state.getBlock() == Blocks.FARMLAND;
-    }
-
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        super.updateTick(worldIn, pos, state, rand);
-
-        if (!worldIn.isAreaLoaded(pos, 1))
-            return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-        if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
-            float f = getGrowthChance(this, worldIn, pos);
-
-            if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0)) {
-                int i = ((Integer) state.getValue(AGE)).intValue();
-
-                if (i < 7) {
-                    IBlockState newState = state.withProperty(AGE, Integer.valueOf(i + 1));
-                    worldIn.setBlockState(pos, newState, 2);
-                } else {
-                    for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
-                        if (worldIn.getBlockState(pos.offset(enumfacing)).getBlock() == this.crop) {
-                            return;
-                        }
-                    }
-
-                    pos = pos.offset(EnumFacing.Plane.HORIZONTAL.random(rand));
-                    IBlockState soil = worldIn.getBlockState(pos.down());
-                    Block block = soil.getBlock();
-
-                    if (worldIn.isAirBlock(pos) && (block.canSustainPlant(soil, worldIn, pos.down(), EnumFacing.UP, this) || block == Blocks.DIRT || block == Blocks.GRASS)) {
-                        worldIn.setBlockState(pos, this.crop.getDefaultState().withProperty(BlockHoneyMelon.getRotationInteger(),0));
-                    }
-                }
-                net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
-            }
-        }
     }
 
     protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos) {
@@ -157,8 +88,90 @@ public class HoneyMelonStem extends BlockBush implements IGrowable, IBitMapColor
         return f;
     }
 
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return STEM_AABB[state.getValue(AGE).intValue()];
+    }
+
+    /**
+     * Get the actual Block state of this Block at the given position. This applies properties not visible in the
+     * metadata, such as fence connections.
+     */
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        int i = state.getValue(AGE).intValue();
+        state = state.withProperty(FACING, EnumFacing.UP);
+
+        for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
+            if (worldIn.getBlockState(pos.offset(enumfacing)).getBlock() == BlockRegistration.HONEYMELON_BLOCK && i == 7) {
+                state = state.withProperty(FACING, enumfacing);
+                break;
+            }
+        }
+
+        return state;
+    }
+
+    /**
+     * Return true if the block can sustain a Bush
+     */
+    protected boolean canSustainBush(IBlockState state) {
+        return state.getBlock() == Blocks.FARMLAND;
+    }
+
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+        super.updateTick(worldIn, pos, state, rand);
+
+        if (!worldIn.isAreaLoaded(pos, 1))
+            return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+        if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
+            float f = getGrowthChance(this, worldIn, pos);
+
+            if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0)) {
+                int i = state.getValue(AGE).intValue();
+
+                if (i < 7) {
+                    IBlockState newState = state.withProperty(AGE, Integer.valueOf(i + 1));
+                    worldIn.setBlockState(pos, newState, 2);
+                } else {
+                    for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
+                        if (worldIn.getBlockState(pos.offset(enumfacing)).getBlock() == BlockRegistration.HONEYMELON_BLOCK) {
+                            return;
+                        }
+                    }
+                  EnumFacing facing =  EnumFacing.Plane.HORIZONTAL.random(rand);
+
+                    int honeystate = 0;
+                    if (facing==EnumFacing.NORTH){
+                        honeystate =1;
+                    }
+                    else if (facing==EnumFacing.EAST){
+                        honeystate=2;
+                    }
+                    else if (facing==EnumFacing.SOUTH) {
+                        honeystate=3;
+
+                    }
+                    else if (facing==EnumFacing.WEST) {
+                        honeystate=4;
+                    }
+
+                    pos = pos.offset(facing);
+
+                    IBlockState soil = worldIn.getBlockState(pos.down());
+                    Block block = soil.getBlock();
+
+                    if (worldIn.isAirBlock(pos) && (block.canSustainPlant(soil, worldIn, pos.down(), EnumFacing.UP, this) || block == Blocks.DIRT || block == Blocks.GRASS)) {
+
+
+                        worldIn.setBlockState(pos, BlockRegistration.HONEYMELON_BLOCK.getDefaultState().withProperty(BlockHoneyMelon.getRotationInteger(), honeystate));
+                    }
+                }
+                net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
+            }
+        }
+    }
+
     public void growStem(World worldIn, BlockPos pos, IBlockState state) {
-        int i = ((Integer) state.getValue(AGE)).intValue() + MathHelper.getInt(worldIn.rand, 2, 5);
+        int i = state.getValue(AGE).intValue() + MathHelper.getInt(worldIn.rand, 2, 5);
         worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(Math.min(7, i))), 2);
     }
 
@@ -175,7 +188,7 @@ public class HoneyMelonStem extends BlockBush implements IGrowable, IBitMapColor
             Item item = this.getSeedItem();
 
             if (item != null) {
-                int i = ((Integer) state.getValue(AGE)).intValue();
+                int i = state.getValue(AGE).intValue();
 
                 for (int j = 0; j < 3; ++j) {
                     if (RANDOM.nextInt(15) <= i) {
@@ -188,11 +201,8 @@ public class HoneyMelonStem extends BlockBush implements IGrowable, IBitMapColor
 
     @Nullable
     protected Item getSeedItem() {
-        if (this.crop == Blocks.PUMPKIN) {
-            return Items.PUMPKIN_SEEDS;
-        } else {
-            return this.crop == Blocks.MELON_BLOCK ? Items.MELON_SEEDS : null;
-        }
+
+        return ItemRegistration.HONEYMELON_SEEDS;
     }
 
     /**
@@ -211,7 +221,7 @@ public class HoneyMelonStem extends BlockBush implements IGrowable, IBitMapColor
      * Whether this IGrowable can grow
      */
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return ((Integer) state.getValue(AGE)).intValue() != 7;
+        return state.getValue(AGE).intValue() != 7;
     }
 
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
@@ -233,11 +243,11 @@ public class HoneyMelonStem extends BlockBush implements IGrowable, IBitMapColor
      * Convert the BlockState into the correct metadata value
      */
     public int getMetaFromState(IBlockState state) {
-        return ((Integer) state.getValue(AGE)).intValue();
+        return state.getValue(AGE).intValue();
     }
 
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{AGE, FACING});
+        return new BlockStateContainer(this, AGE, FACING);
     }
 
     @Override

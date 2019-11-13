@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -38,7 +37,6 @@ public class CropBase extends BlockBush implements IGrowable {
         this.disableStats();
 
     }
-
 
 
     protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos) {

@@ -5,7 +5,6 @@ import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistrat
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -95,7 +94,6 @@ public class CropCornTop extends BlockBush implements IPlantable {
     public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         super.getDrops(drops, world, pos, state, 0);
         int age = getAge(state);
-        Random rand = world instanceof World ? ((World) world).rand : new Random();
 
         if (age >= getMaxAge()) {
 
@@ -115,11 +113,8 @@ public class CropCornTop extends BlockBush implements IPlantable {
         return CROPS_AABB[(state.getValue(this.getAgeProperty())).intValue()];
     }
 
-    /**
-     * Return true if the block can sustain a Bush
-     */
     protected boolean canSustainBush(IBlockState state) {
-        return state.getBlock() == Blocks.FARMLAND;
+        return state.getBlock()== BlockRegistration.CORN_CROP_BOTTOM;
     }
 
     protected PropertyInteger getAgeProperty() {
@@ -143,7 +138,6 @@ public class CropCornTop extends BlockBush implements IPlantable {
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        super.updateTick(worldIn, pos, state, rand);
         if (!worldIn.isAreaLoaded(pos, 1)) return;
         if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
             int i = this.getAge(state);
@@ -153,6 +147,7 @@ public class CropCornTop extends BlockBush implements IPlantable {
             if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0)) {
                 if (this.getAge(state) != 2) {
                     worldIn.setBlockState(pos, this.withAge(i + 1), 2);
+
                 }
 
 
@@ -183,7 +178,7 @@ public class CropCornTop extends BlockBush implements IPlantable {
     public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
 
 
-        return worldIn.getBlockState(pos.down()).getBlock() == BlockRegistration.CROP_CORN_BOTTOM && (worldIn.getBlockState(pos.up()).getBlock() == BlockRegistration.CROP_CORN_TOP || worldIn.isAirBlock(pos.up()));
+        return worldIn.getBlockState(pos.down()).getBlock() == BlockRegistration.CORN_CROP_BOTTOM;
 
 
     }

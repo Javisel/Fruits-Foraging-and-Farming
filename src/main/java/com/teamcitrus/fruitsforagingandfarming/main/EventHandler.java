@@ -5,16 +5,23 @@ import com.teamcitrus.fruitsforagingandfarming.common.registration.EnchantmentRe
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.MobEffectRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.utilities.MobUtilities;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockOldLog;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -26,6 +33,68 @@ import java.util.Random;
 
 public class EventHandler {
 
+
+    static final Item[]fruits ={ItemRegistration.AVOCADO,ItemRegistration.BANANA,ItemRegistration.BLUEBERRY,ItemRegistration.KIWI,ItemRegistration.LEMON,ItemRegistration.LIME,ItemRegistration.MANGO,ItemRegistration.DURIAN,ItemRegistration.ORANGE,ItemRegistration.PEAR,ItemRegistration.PLUM,ItemRegistration.PINEAPPLE};
+    static final Item[] seeds={ItemRegistration.GRASS_SEEDS,ItemRegistration.HONEYMELON_SEEDS,ItemRegistration.CORN_KERNEL};
+    static  final  Item[] vanillaseeds={Items.WHEAT_SEEDS,Items.BEETROOT_SEEDS,Items.PUMPKIN_SEEDS,Items.MELON_SEEDS};
+    @SubscribeEvent
+    public void ModifyBlockDrops(BlockEvent.HarvestDropsEvent e) {
+
+        if (e.getHarvester() !=null && !e.isSilkTouching() ) {
+            if (e.getState() == Blocks.LEAVES.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE)) {
+
+                for (int i = 0; i < e.getDrops().size(); i++) {
+
+                    if (e.getDrops().get(i).getItem() == Item.getItemFromBlock(Blocks.LEAVES)) {
+                        return;
+                    }
+                    Random random = new Random();
+                    if (MathHelper.getInt(random, 1, 100) > (80 - (10 * e.getFortuneLevel()))) {
+
+                        e.getDrops().add(new ItemStack(fruits[MathHelper.getInt(random, 0, fruits.length)], MathHelper.getInt(random, 1, 3)));
+
+
+                    }
+
+
+                }
+
+
+            }
+
+        }
+
+        else if (e.getState()==Blocks.TALLGRASS) {
+
+            Random random = new Random();
+
+            if (e.getFortuneLevel() >0) {
+
+                if (MathHelper.getInt(random,1,100) > (90-(10*e.getFortuneLevel()))) {
+
+                    e.getDrops().add(new ItemStack(vanillaseeds[MathHelper.getInt(random,0,vanillaseeds.length)],MathHelper.getInt(random,1,e.getFortuneLevel())));
+
+                }
+
+
+
+            }
+
+            if (MathHelper.getInt(random, 1, 100) > (50 - (10 * e.getFortuneLevel()))) {
+
+
+                e.getDrops().add(new ItemStack(seeds[MathHelper.getInt(random, 0, seeds.length)], MathHelper.getInt(random, 1, 3)));
+
+
+            }
+
+
+
+
+            }
+
+
+    }
 
     @SubscribeEvent
     public void VoidBlockDrop(BlockEvent.HarvestDropsEvent e) {
@@ -66,25 +135,7 @@ public class EventHandler {
     }
 
 
-    @SubscribeEvent
-    public void InfestedStone(LivingDropsEvent e) {
 
-        if (e.getEntityLiving() instanceof EntitySilverfish) {
-
-            Random r = new Random();
-            int low = 0;
-            int high = 3;
-            int result = r.nextInt(high - low) + low;
-
-            if (result > 0) {
-
-                EntityItem theitem = new EntityItem(e.getEntityLiving().getEntityWorld(), e.getEntityLiving().posX, e.getEntityLiving().posY, e.getEntityLiving().posZ, new ItemStack(ItemRegistration.INFESTED_PEBBLE, result));
-                e.getDrops().add(theitem);
-            }
-
-        }
-
-    }
 
     @SubscribeEvent
     public void InfestationExplosion(LivingDeathEvent e) {

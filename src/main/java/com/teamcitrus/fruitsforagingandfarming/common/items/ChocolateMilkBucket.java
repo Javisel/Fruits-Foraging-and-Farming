@@ -30,7 +30,7 @@ public class ChocolateMilkBucket extends ItemBucketMilk {
     }
 
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
-        if (!worldIn.isRemote)  // FORGE - move up so stack.shrink does not turn stack into air
+        if (!worldIn.isRemote)
             if (entityLiving instanceof EntityPlayerMP) {
                 EntityPlayerMP entityplayermp = (EntityPlayerMP) entityLiving;
                 CriteriaTriggers.CONSUME_ITEM.trigger(entityplayermp, stack);

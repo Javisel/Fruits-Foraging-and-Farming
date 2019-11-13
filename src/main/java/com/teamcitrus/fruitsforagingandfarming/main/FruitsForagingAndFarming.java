@@ -3,16 +3,22 @@ package com.teamcitrus.fruitsforagingandfarming.main;
 import com.teamcitrus.fruitsforagingandfarming.client.creativetabs.CreativeTab;
 import com.teamcitrus.fruitsforagingandfarming.common.damagesource.SilverfishAlien;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
-import com.teamcitrus.fruitsforagingandfarming.common.registration.EnchantmentRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.EntityRegistration;
-import com.teamcitrus.fruitsforagingandfarming.common.registration.MobEffectRegistration;
+import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.world.generation.tree.TreeGenerator;
 import com.teamcitrus.fruitsforagingandfarming.proxy.CommonProxy;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.storage.loot.LootEntryItem;
+import net.minecraft.world.storage.loot.LootPool;
+import net.minecraft.world.storage.loot.RandomValueRange;
+import net.minecraft.world.storage.loot.conditions.KilledByPlayer;
+import net.minecraft.world.storage.loot.conditions.LootCondition;
+import net.minecraft.world.storage.loot.conditions.RandomChance;
+import net.minecraft.world.storage.loot.functions.LootFunction;
+import net.minecraft.world.storage.loot.functions.LootFunctionManager;
+import net.minecraft.world.storage.loot.functions.SetCount;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -51,9 +57,27 @@ public class FruitsForagingAndFarming {
         BlockRegistration.RegisterOre();
     }
 
+
+
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
     }
 
+
+    @Mod.EventBusSubscriber
+    public static class RegistrationHandler {
+        @SubscribeEvent
+        public static void ModifyLoot(LootTableLoadEvent event) {
+
+            if (event.getName().getResourcePath().equals("entities/silverfish")) {
+                LootCondition conditions[] = new LootCondition[] {new KilledByPlayer(false), new RandomChance(1)};
+                LootFunction functions[] = new LootFunction[]{new SetCount(conditions, new RandomValueRange(1,4))};
+                LootEntryItem entries[] = new LootEntryItem[]{new LootEntryItem(ItemRegistration.INFESTED_PEBBLE,1,1,functions,conditions,MODID + ":infested_pebbles")};
+                LootPool pool = new LootPool(entries,conditions,new RandomValueRange(1,4),new RandomValueRange(1,2),MODID +":infested_pebbles");
+                event.getTable().addPool(pool);
+            }
+        }
+
+    }
 }

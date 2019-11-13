@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -106,7 +105,7 @@ public class BlockLeavesBase extends BlockLeaves implements IBitMapColorBlock {
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        {
+
             if (!worldIn.isRemote) {
                 if (state.getValue(CHECK_DECAY).booleanValue() && state.getValue(DECAYABLE).booleanValue()) {
                     int i = 4;
@@ -191,7 +190,7 @@ public class BlockLeavesBase extends BlockLeaves implements IBitMapColorBlock {
                     }
                 }
             }
-        }
+
     }
 
     private void destroy(World worldIn, BlockPos pos) {

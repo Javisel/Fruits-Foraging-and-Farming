@@ -18,25 +18,6 @@ public class FoodDurian extends ItemFoodBase {
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 
 
-        if (entityIn instanceof EntityPlayer) {
-
-            EntityPlayer player = (EntityPlayer) entityIn;
-
-            for (int i = 0; i < 8; i++) {
-                if (player.inventory.mainInventory.get(i).getItem() == this && player.getActivePotionEffect(MobEffects.NAUSEA) != null) {
-                    Random r = new Random();
-                    int low = 5;
-                    int high = 1000;
-                    int result = r.nextInt(high - low) + low;
-
-                    if (result == 5) {
-                        player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 200));
-                    }
-                    break;
-                }
-
-            }
-        }
 
 
     }

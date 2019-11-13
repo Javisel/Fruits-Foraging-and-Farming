@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -29,9 +28,9 @@ public class CropTurnip extends BlockBush implements IGrowable {
             new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
 
     public CropTurnip() {
-        this.setRegistryName("turnip_crop");
+        this.setRegistryName("TURNIP_CROP");
 
-        this.setUnlocalizedName("turnip_crop");
+        this.setUnlocalizedName("TURNIP_CROP");
         this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
 
         this.setTickRandomly(true);
@@ -83,7 +82,6 @@ public class CropTurnip extends BlockBush implements IGrowable {
                 f /= 2.0F;
             }
         }
-        System.out.println("Chance: " + f);
 
         return f;
     }
@@ -247,6 +245,7 @@ public class CropTurnip extends BlockBush implements IGrowable {
     public int getMetaFromState(IBlockState state) {
         return this.getAge(state);
     }
+
     @Override
 
     protected BlockStateContainer createBlockState() {

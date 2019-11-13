@@ -1,6 +1,5 @@
 package com.teamcitrus.fruitsforagingandfarming.proxy;
 
-import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;

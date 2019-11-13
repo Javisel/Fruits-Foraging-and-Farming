@@ -22,20 +22,18 @@ public class BlockHoneyMelon extends BlockBase {
 
     private static final AxisAlignedBB[] HONEY_MELONAABB = {
 
-//STANDING
-            new AxisAlignedBB(0, 0, 0, 0.75, .75, 0.75).offset(0.125,0,0.125),
-
-
+           //STANDING
+            new AxisAlignedBB(0, 0, 0, 0.75, .75, 0.75).offset(0.125, 0, 0.125),
             //NORTH
-            new AxisAlignedBB(0, 0, 0, 0.75, 0.75, 0.75).offset(0.125,0,.25),
+            new AxisAlignedBB(0, 0, 0, 0.75, 0.75, 0.75).offset(0.125, 0, .25),
             //EAST
-            new AxisAlignedBB(0, 0, 0, 0.75, 0.75, 0.75).offset(0,0,0.125),
+            new AxisAlignedBB(0, 0, 0, 0.75, 0.75, 0.75).offset(0, 0, 0.125),
 
             //SOUTH
-            new AxisAlignedBB(0, 0, 0, 0.75, 0.75, 0.75).offset(0.125,0,0),
+            new AxisAlignedBB(0, 0, 0, 0.75, 0.75, 0.75).offset(0.125, 0, 0),
 
-                //WEST
-            new AxisAlignedBB(0, 0, 0, 0.75, 0.75, 0.75).offset(0.25,0,0.125),
+            //WEST
+            new AxisAlignedBB(0, 0, 0, 0.75, 0.75, 0.75).offset(0.25, 0, 0.125),
             //
 
     };
@@ -91,18 +89,16 @@ public class BlockHoneyMelon extends BlockBase {
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
             return this.getDefaultState().withProperty(ROTATION, Integer.valueOf(0));
-        } else if (facing==EnumFacing.NORTH) {
+        } else if (facing == EnumFacing.NORTH) {
             return this.getDefaultState().withProperty(ROTATION, Integer.valueOf(1));
-        } else if (facing==EnumFacing.EAST) {
+        } else if (facing == EnumFacing.EAST) {
             return this.getDefaultState().withProperty(ROTATION, Integer.valueOf(2));
-        }
-        else if (facing==EnumFacing.SOUTH) {
+        } else if (facing == EnumFacing.SOUTH) {
             return this.getDefaultState().withProperty(ROTATION, Integer.valueOf(3));
-        }
-        else if (facing==EnumFacing.WEST) {
+        } else if (facing == EnumFacing.WEST) {
             return this.getDefaultState().withProperty(ROTATION, Integer.valueOf(4));
         } else {
-            return this.getDefaultState().withProperty(ROTATION,Integer.valueOf(0));
+            return this.getDefaultState().withProperty(ROTATION, Integer.valueOf(0));
         }
 
     }

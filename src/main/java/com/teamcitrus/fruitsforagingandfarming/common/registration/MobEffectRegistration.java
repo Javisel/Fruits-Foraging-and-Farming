@@ -2,13 +2,11 @@ package com.teamcitrus.fruitsforagingandfarming.common.registration;
 
 import com.teamcitrus.fruitsforagingandfarming.common.effects.Infestation;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nonnull;
 
@@ -23,7 +21,7 @@ public class MobEffectRegistration {
     public static final void register(@Nonnull final RegistryEvent.Register<Potion> event) {
 
         event.getRegistry().registerAll(
-               new Infestation()
+                new Infestation()
         );
 
     }

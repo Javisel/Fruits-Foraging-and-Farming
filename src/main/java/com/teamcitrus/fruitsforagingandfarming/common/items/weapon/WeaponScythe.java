@@ -17,6 +17,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
@@ -90,8 +91,8 @@ public class WeaponScythe extends BaseWeapon {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("Two-Handed");
-        tooltip.add("Sweeping");
+        tooltip.add(TextFormatting.GOLD + "Two-Handed");
+        tooltip.add(TextFormatting.GOLD + "Sweeping");
         tooltip.add("When not sneaking, harvesting crops or tall grass also harvests horizontally adjacent crops/tall grass.");
         tooltip.add("");
 

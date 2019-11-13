@@ -41,9 +41,10 @@ public class BlockRegistration {
     public static final BlockCoconut COCONUT_BLOCK = null;
     public static final PalmSapling PALM_SAPLING = null;
     //Crops
-    public static final CropCornBottom CROP_CORN_BOTTOM = null;
-    public static final CropCornTop CROP_CORN_TOP = null;
-    public static final CropTurnip CROP_TURNIP = null;
+    public static final CropCornTop CORN_CROP_TOP = null;
+
+    public static final CropCornBottom CORN_CROP_BOTTOM = null;
+    public static final CropTurnip TURNIP_CROP = null;
 
     //Honeymelon
     public static final BlockHoneyMelon HONEYMELON_BLOCK = null;
@@ -51,6 +52,8 @@ public class BlockRegistration {
     //Cake
     public static final CakeBase CHOCOLATE_CAKE = null;
 
+    //Fruit-Blocks that hang from trees
+    public static final BlockFruit BANANA_BUNCH = null;
 
     @SubscribeEvent
     public static final void onRegisterEvent(@Nonnull final RegistryEvent.Register<Block> event) {
@@ -67,8 +70,9 @@ public class BlockRegistration {
         event.getRegistry().register(new FenceGateBase("palm_fence_gate"));
         event.getRegistry().register(new BlockCoconut());
         event.getRegistry().register(new PalmSapling());
-        event.getRegistry().register(new CropCornBottom());
         event.getRegistry().register(new CropCornTop());
+        event.getRegistry().registerAll(new BlockFruit("banana_bunch"));
+        event.getRegistry().register(new CropCornBottom());
         event.getRegistry().register(new CropTurnip());
         event.getRegistry().register(new BlockHoneyMelon());
         event.getRegistry().registerAll(new HoneyMelonStem());
@@ -84,6 +88,7 @@ public class BlockRegistration {
         event.getRegistry().register(new ItemSlab(BlockRegistration.PALM_HALF_SLAB, BlockRegistration.PALM_HALF_SLAB, BlockRegistration.PALM_DOUBLE_SLAB).setRegistryName(BlockRegistration.PALM_HALF_SLAB.getRegistryName()));
         event.getRegistry().register(new ItemBlock(BlockRegistration.PALM_FENCE).setRegistryName(BlockRegistration.PALM_FENCE.getRegistryName()));
         event.getRegistry().register(new ItemBlock(BlockRegistration.PALM_FENCE_GATE).setRegistryName(BlockRegistration.PALM_FENCE_GATE.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(BlockRegistration.BANANA_BUNCH).setRegistryName(BlockRegistration.BANANA_BUNCH.getRegistryName()));
         event.getRegistry().register(new CoconutBlockItem());
         event.getRegistry().register(new ItemBlock(BlockRegistration.PALM_SAPLING).setRegistryName(BlockRegistration.PALM_SAPLING.getRegistryName()));
         event.getRegistry().register(new ItemBlock(BlockRegistration.HONEYMELON_BLOCK).setRegistryName(BlockRegistration.HONEYMELON_BLOCK.getRegistryName()));

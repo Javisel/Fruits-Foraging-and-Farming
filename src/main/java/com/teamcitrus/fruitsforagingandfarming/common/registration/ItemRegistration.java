@@ -5,6 +5,7 @@ import com.teamcitrus.fruitsforagingandfarming.common.items.*;
 import com.teamcitrus.fruitsforagingandfarming.common.items.weapon.WeaponScythe;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
