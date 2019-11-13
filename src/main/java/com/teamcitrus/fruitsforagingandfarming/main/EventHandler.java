@@ -5,13 +5,11 @@ import com.teamcitrus.fruitsforagingandfarming.common.registration.EnchantmentRe
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.MobEffectRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.utilities.MobUtilities;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -26,15 +24,17 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.Random;
 
+
 public class EventHandler {
 
 
-    static final Item[]fruits ={ItemRegistration.AVOCADO,ItemRegistration.BANANA,ItemRegistration.BLUEBERRY,ItemRegistration.KIWI,ItemRegistration.LEMON,ItemRegistration.LIME,ItemRegistration.MANGO,ItemRegistration.DURIAN,ItemRegistration.ORANGE,ItemRegistration.PEAR,ItemRegistration.PLUM,ItemRegistration.PINEAPPLE};
+    static final Item[] fruits = {ItemRegistration.AVOCADO, ItemRegistration.KIWANO, ItemRegistration.BANANA, ItemRegistration.BLUEBERRY, ItemRegistration.KIWI, ItemRegistration.LEMON, ItemRegistration.LIME, ItemRegistration.MANGO, ItemRegistration.DURIAN, ItemRegistration.ORANGE, ItemRegistration.PEAR, ItemRegistration.PLUM, ItemRegistration.PINEAPPLE};
     static final Item[] seeds={ItemRegistration.GRASS_SEEDS,ItemRegistration.HONEYMELON_SEEDS,ItemRegistration.CORN_KERNEL};
     static  final  Item[] vanillaseeds={Items.WHEAT_SEEDS,Items.BEETROOT_SEEDS,Items.PUMPKIN_SEEDS,Items.MELON_SEEDS};
     @SubscribeEvent
@@ -134,6 +134,13 @@ public class EventHandler {
 
     }
 
+
+    @SubscribeEvent
+
+    public void PatreonDonation(ItemTooltipEvent e) {
+
+
+    }
 
 
 

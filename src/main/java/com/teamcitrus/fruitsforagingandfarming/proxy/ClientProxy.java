@@ -45,6 +45,7 @@ public class ClientProxy extends CommonProxy {
         registerItemRenderer(ItemRegistration.INFESTED_PEBBLE, 0);
         registerItemRenderer(ItemRegistration.HONEYMELON_SLICE, 0);
         registerItemRenderer(ItemRegistration.KIWI, 0);
+        registerItemRenderer(ItemRegistration.KIWANO, 0);
         registerItemRenderer(ItemRegistration.LEMON, 0);
         registerItemRenderer(ItemRegistration.LIME, 0);
         registerItemRenderer(ItemRegistration.MANGO, 0);

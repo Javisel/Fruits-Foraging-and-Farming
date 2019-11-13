@@ -138,7 +138,7 @@ public class CropCornBottom extends BlockBush implements IPlantable {
                 if (i == 2) {
 
                     if (worldIn.isAirBlock(pos.up())) {
-                        System.out.println("GROW MY MINION!");
+                        //  System.out.println("GROW MY MINION!");
                         worldIn.setBlockState(pos.up(), BlockRegistration.CORN_CROP_TOP.getDefaultState().withProperty(CropCornTop.AGE,0));
 
 
