@@ -114,6 +114,7 @@ public class BlockCoconut extends BlockBase {
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
         if (worldIn.getBlockState(pos.up()).getBlock() != Blocks.LEAVES && worldIn.isAirBlock(pos.down())) {
 
+            worldIn.setBlockToAir(pos);
             this.dropBlockAsItem(worldIn,pos,state,0);
         }
 

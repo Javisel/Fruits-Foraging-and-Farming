@@ -1,10 +1,12 @@
 package com.teamcitrus.fruitsforagingandfarming.main;
 
 import com.teamcitrus.fruitsforagingandfarming.common.items.weapon.BaseWeapon;
+import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.EnchantmentRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.MobEffectRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.utilities.MobUtilities;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -18,13 +20,17 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -95,6 +101,18 @@ public class EventHandler {
 
 
     }
+
+    @SubscribeEvent
+    public void CoconutCracking(PlayerInteractEvent.LeftClickBlock e) {
+
+        if (!e.getWorld().isRemote && e.getWorld().getBlockState(e.getPos()).getBlock() == BlockRegistration.COCONUT_BLOCK && e.getItemStack().getItem() instanceof ItemSword) {
+
+            Block.spawnAsEntity(e.getWorld(), e.getPos(), new ItemStack(ItemRegistration.COCONUT,4));
+            e.getWorld().setBlockToAir(e.getPos());
+        }
+
+    }
+
 
     @SubscribeEvent
     public void VoidBlockDrop(BlockEvent.HarvestDropsEvent e) {
