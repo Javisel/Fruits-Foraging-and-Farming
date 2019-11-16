@@ -1,6 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.items;
 
-import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
+import com.teamcitrus.fruitsforagingandfarming.main.*;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +35,7 @@ public class ChocolateMilkBucket extends ItemBucketMilk {
                 EntityPlayerMP entityplayermp = (EntityPlayerMP) entityLiving;
                 CriteriaTriggers.CONSUME_ITEM.trigger(entityplayermp, stack);
                 entityplayermp.addStat(StatList.getObjectUseStats(this));
-                entityplayermp.getFoodStats().addStats(2, 2);
+                entityplayermp.getFoodStats().addStats(ConfigHandler.CHOC_MILK_SHANKS, ConfigHandler.CHOC_MILK_SAT);
             }
 
         if (entityLiving instanceof EntityPlayer && !((EntityPlayer) entityLiving).capabilities.isCreativeMode) {

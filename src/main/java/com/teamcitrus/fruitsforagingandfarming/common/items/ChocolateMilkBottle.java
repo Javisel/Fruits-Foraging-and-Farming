@@ -1,18 +1,14 @@
 package com.teamcitrus.fruitsforagingandfarming.common.items;
 
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.world.World;
+import com.teamcitrus.fruitsforagingandfarming.main.*;
+import net.minecraft.advancements.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.init.*;
+import net.minecraft.item.*;
+import net.minecraft.stats.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
 public class ChocolateMilkBottle extends ItemBase {
     public ChocolateMilkBottle() {
@@ -31,8 +27,7 @@ public class ChocolateMilkBottle extends ItemBase {
                 EntityPlayerMP entityplayermp = (EntityPlayerMP) entityLiving;
                 CriteriaTriggers.CONSUME_ITEM.trigger(entityplayermp, stack);
                 entityplayermp.addStat(StatList.getObjectUseStats(this));
-                entityplayermp.getFoodStats().addStats(2, 2);
-
+                entityplayermp.getFoodStats().addStats(ConfigHandler.CHOC_MILK_SHANKS, ConfigHandler.CHOC_MILK_SAT);
             }
 
         if (entityLiving instanceof EntityPlayer && !((EntityPlayer) entityLiving).capabilities.isCreativeMode) {

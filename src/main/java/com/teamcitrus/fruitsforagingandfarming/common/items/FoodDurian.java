@@ -1,12 +1,13 @@
 package com.teamcitrus.fruitsforagingandfarming.common.items;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import com.teamcitrus.fruitsforagingandfarming.main.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
 
 public class FoodDurian extends ItemFoodBase {
     public FoodDurian() {
-        super("durian", 4, 1.0F);
+        super("durian", ConfigHandler.DURIAN_SHANKS, ConfigHandler.DURIAN_SAT);
     }
 
     @Override
