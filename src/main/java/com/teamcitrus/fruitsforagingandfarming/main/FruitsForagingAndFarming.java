@@ -41,7 +41,7 @@ public class FruitsForagingAndFarming {
 
         logger = event.getModLog();
     }
-
+ 
     @EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
