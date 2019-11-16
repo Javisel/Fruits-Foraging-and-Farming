@@ -7,7 +7,7 @@ import net.minecraft.world.*;
 
 public class FoodDurian extends ItemFoodBase {
     public FoodDurian() {
-        super("durian", ConfigHandler.DURIAN_SHANKS, ConfigHandler.DURIAN_SAT);
+        super("durian", ConfigHandler.DURIAN_SHANK, ConfigHandler.DURIAN_SAT);
     }
 
     @Override

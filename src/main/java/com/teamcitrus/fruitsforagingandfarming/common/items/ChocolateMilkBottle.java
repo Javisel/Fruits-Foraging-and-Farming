@@ -27,7 +27,7 @@ public class ChocolateMilkBottle extends ItemBase {
                 EntityPlayerMP entityplayermp = (EntityPlayerMP) entityLiving;
                 CriteriaTriggers.CONSUME_ITEM.trigger(entityplayermp, stack);
                 entityplayermp.addStat(StatList.getObjectUseStats(this));
-                entityplayermp.getFoodStats().addStats(ConfigHandler.CHOC_MILK_SHANKS, ConfigHandler.CHOC_MILK_SAT);
+                entityplayermp.getFoodStats().addStats(ConfigHandler.CHOC_MILK_SHANK, ConfigHandler.CHOC_MILK_SAT);
             }
 
         if (entityLiving instanceof EntityPlayer && !((EntityPlayer) entityLiving).capabilities.isCreativeMode) {
