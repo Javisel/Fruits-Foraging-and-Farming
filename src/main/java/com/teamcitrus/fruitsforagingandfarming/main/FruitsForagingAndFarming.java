@@ -37,7 +37,8 @@ public class FruitsForagingAndFarming {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         EntityRegistration.RegisterEntities();
-        GameRegistry.registerWorldGenerator(new TreeGenerator(), 0);
+        if(ConfigHandler.WORLD_GEN)
+        	GameRegistry.registerWorldGenerator(new TreeGenerator(), 0);
 
         logger = event.getModLog();
     }
