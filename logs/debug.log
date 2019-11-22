@@ -5577,3 +5577,8 @@ Caused by: java.lang.IllegalArgumentException: Can not set static com.teamcitrus
 [19:52:27] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
 [19:52:27] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'Showcase'/overworld
 [19:52:27] [Server thread/DEBUG] [FML]: Gathering id map for writing to world save Showcase
+[20:03:41] [Server thread/DEBUG] [FML]: Gathering id map for writing to world save Showcase
+[20:04:26] [Server thread/DEBUG] [FML]: Gathering id map for writing to world save Showcase
+[20:05:12] [Server thread/DEBUG] [FML]: Gathering id map for writing to world save Showcase
+[20:05:56] [Server thread/DEBUG] [FML]: Gathering id map for writing to world save Showcase
+[20:06:41] [Server thread/DEBUG] [FML]: Gathering id map for writing to world save Showcase
