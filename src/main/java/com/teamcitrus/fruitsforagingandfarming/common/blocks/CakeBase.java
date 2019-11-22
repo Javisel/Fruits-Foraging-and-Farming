@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 
 public class CakeBase extends BlockCake {
 
+
     int foodheal;
     float saturation;
 
@@ -26,6 +27,14 @@ public class CakeBase extends BlockCake {
         setSoundType(SoundType.CLOTH);
         this.foodheal = foodheal;
         this.saturation = saturation;
+    }
+
+    public int getFoodheal() {
+        return foodheal;
+    }
+
+    public float getSaturation() {
+        return saturation;
     }
 
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {

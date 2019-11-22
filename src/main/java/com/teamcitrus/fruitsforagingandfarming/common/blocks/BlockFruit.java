@@ -1,13 +1,14 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
+import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -31,7 +32,8 @@ public class BlockFruit extends BlockBush {
     public BlockFruit(String name) {
         setRegistryName(name);
         setUnlocalizedName(name);
-
+        setSoundType(SoundType.PLANT);
+        setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
     }
 
 

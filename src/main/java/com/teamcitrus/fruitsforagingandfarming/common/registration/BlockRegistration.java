@@ -2,8 +2,13 @@ package com.teamcitrus.fruitsforagingandfarming.common.registration;
 
 
 import com.teamcitrus.fruitsforagingandfarming.common.blocks.*;
+import com.teamcitrus.fruitsforagingandfarming.common.blocks.fruits.BananaBunch;
+import com.teamcitrus.fruitsforagingandfarming.common.blocks.fruits.OrangeFruit;
 import com.teamcitrus.fruitsforagingandfarming.common.items.CoconutBlockItem;
+import com.teamcitrus.fruitsforagingandfarming.common.items.ItemCakeBlock;
 import com.teamcitrus.fruitsforagingandfarming.common.items.ItemLeavesBase;
+import com.teamcitrus.fruitsforagingandfarming.common.items.ItemPlaceableFruit;
+import com.teamcitrus.fruitsforagingandfarming.main.ConfigHandler;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -53,7 +58,10 @@ public class BlockRegistration {
     public static final CakeBase CHOCOLATE_CAKE = null;
 
     //Fruit-Blocks that hang from trees
-    public static final BlockFruit BANANA_BUNCH = null;
+    public static final OrangeFruit ORANGE = null;
+    public static final BananaBunch BANANA_BUNCH = null;
+    public static final BlockFruit MANGO = null;
+
 
     @SubscribeEvent
     public static final void onRegisterEvent(@Nonnull final RegistryEvent.Register<Block> event) {
@@ -71,7 +79,9 @@ public class BlockRegistration {
         event.getRegistry().register(new BlockCoconut());
         event.getRegistry().register(new PalmSapling());
         event.getRegistry().register(new CropCornTop());
-        event.getRegistry().registerAll(new BlockFruit("banana_bunch"));
+        event.getRegistry().register(new BananaBunch());
+        event.getRegistry().register(new OrangeFruit());
+        event.getRegistry().register(new BlockFruit("mango"));
         event.getRegistry().register(new CropCornBottom());
         event.getRegistry().register(new CropTurnip());
         event.getRegistry().register(new BlockHoneyMelon());
@@ -89,10 +99,12 @@ public class BlockRegistration {
         event.getRegistry().register(new ItemBlock(BlockRegistration.PALM_FENCE).setRegistryName(BlockRegistration.PALM_FENCE.getRegistryName()));
         event.getRegistry().register(new ItemBlock(BlockRegistration.PALM_FENCE_GATE).setRegistryName(BlockRegistration.PALM_FENCE_GATE.getRegistryName()));
         event.getRegistry().register(new ItemBlock(BlockRegistration.BANANA_BUNCH).setRegistryName(BlockRegistration.BANANA_BUNCH.getRegistryName()));
+        event.getRegistry().register(new ItemPlaceableFruit("orange", BlockRegistration.ORANGE, ConfigHandler.ORANGE_SHANK, ConfigHandler.ORANGE_SAT, false));
+        event.getRegistry().register(new ItemPlaceableFruit("mango", BlockRegistration.MANGO, ConfigHandler.MANGO_SHANK, ConfigHandler.MANGO_SHANK, false));
         event.getRegistry().register(new CoconutBlockItem());
         event.getRegistry().register(new ItemBlock(BlockRegistration.PALM_SAPLING).setRegistryName(BlockRegistration.PALM_SAPLING.getRegistryName()));
         event.getRegistry().register(new ItemBlock(BlockRegistration.HONEYMELON_BLOCK).setRegistryName(BlockRegistration.HONEYMELON_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(BlockRegistration.CHOCOLATE_CAKE).setRegistryName(BlockRegistration.CHOCOLATE_CAKE.getRegistryName()));
+        event.getRegistry().register(new ItemCakeBlock(BlockRegistration.CHOCOLATE_CAKE).setRegistryName(BlockRegistration.CHOCOLATE_CAKE.getRegistryName()));
 
 
     }

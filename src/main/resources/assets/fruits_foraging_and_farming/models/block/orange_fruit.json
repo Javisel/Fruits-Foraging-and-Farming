@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "fruits_foraging_and_farming:block/orange"
+  }
+}

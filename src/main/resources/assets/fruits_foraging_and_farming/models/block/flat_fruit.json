@@ -1,8 +1,8 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "fruit": "fruits_foraging_and_farming:block/banana_bunch",
-    "particle": "fruits_foraging_and_farming:block/banana_bunch"
+    "fruit": "#fruit",
+    "particle": "#fruit"
   },
   "elements": [
     {

@@ -1,17 +1,17 @@
 package com.teamcitrus.fruitsforagingandfarming.main;
 
-import net.minecraftforge.common.config.*;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import java.io.*;
+import java.io.File;
 
 public class ConfigHandler {
 	public static Configuration config;
 	public static boolean WORLD_GEN;
-	public static float DURIAN_SAT, CHOC_MILK_SAT, AVOCADO_SAT, BANANA_SAT, BLUEBERRY_SAT, COCONUT_SAT, CORN_SAT, 
+	public static float DURIAN_SAT, CHOC_MILK_SAT, AVOCADO_SAT, BANANA_SAT, BLUEBERRY_SAT, COCONUT_SAT, CORN_SAT,
 		HONEYMELON_SAT, KIWI_SAT, KIWANO_SAT, LEMON_SAT, LIME_SAT, MANGO_SAT, ORANGE_SAT, PEAR_SAT, PINAPPLE_SAT, 
 		PLUM_SAT, TURNIP_SAT, INFESTED_PEBBLE_SAT;
-	public static int DURIAN_SHANK, CHOC_MILK_SHANK, AVOCADO_SHANK, BANANA_SHANK, BLUEBERRY_SHANK, COCONUT_SHANK, 
+	public static int DURIAN_SHANK, CHOC_MILK_SHANK, AVOCADO_SHANK, BANANA_SHANK, BLUEBERRY_SHANK, COCONUT_SHANK,
 		CORN_SHANK, HONEYMELON_SHANK, KIWI_SHANK, KIWANO_SHANK, LEMON_SHANK, LIME_SHANK, MANGO_SHANK, ORANGE_SHANK, 
 		PEAR_SHANK, PINAPPLE_SHANK, PLUM_SHANK, TURNIP_SHANK, INFESTED_PEBBLE_SHANK;
 	/*

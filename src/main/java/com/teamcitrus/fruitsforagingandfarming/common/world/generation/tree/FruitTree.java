@@ -1,5 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.world.generation.tree;
 
+import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -7,45 +8,38 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.util.Random;
 
 public class FruitTree extends WorldGenAbstractTree {
-    private static final IBlockState DEFAULT_TRUNK = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-    private static final IBlockState DEFAULT_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
     /** True if this tree should grow Vines. */
     private final boolean vinesGrow;
+    private static final Block fruitblocks[] = {BlockRegistration.BANANA_BUNCH, BlockRegistration.ORANGE};
     /** The metadata value of the wood to use in tree generation. */
-    private final IBlockState metaWood;
-    /** The metadata value of the leaves to use in tree generation. */
-    private final IBlockState metaLeaves;
 
-    public FruitTree(boolean p_i2027_1_)
-    {
-        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, false);
-    }
 
-    public FruitTree(boolean notify, int minTreeHeightIn, IBlockState woodMeta, IBlockState p_i46446_4_, boolean growVines)
+    public FruitTree(boolean notify, int minTreeHeightIn, boolean growVines)
     {
         super(notify);
         this.minTreeHeight = minTreeHeightIn;
-        this.metaWood = woodMeta;
-        this.metaLeaves = p_i46446_4_;
+
         this.vinesGrow = growVines;
     }
 
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
-        int i = rand.nextInt(3) + this.minTreeHeight;
+        int treeHeight = rand.nextInt(3) + this.minTreeHeight;
         boolean flag = true;
 
-        if (position.getY() >= 1 && position.getY() + i + 1 <= worldIn.getHeight())
+        //Check if tree is placeable
+        if (position.getY() >= 1 && position.getY() + treeHeight + 1 <= worldIn.getHeight())
         {
-            for (int j = position.getY(); j <= position.getY() + 1 + i; ++j)
+            for (int j = position.getY(); j <= position.getY() + 1 + treeHeight; ++j)
             {
                 int k = 1;
 
@@ -54,7 +48,7 @@ public class FruitTree extends WorldGenAbstractTree {
                     k = 0;
                 }
 
-                if (j >= position.getY() + 1 + i - 2)
+                if (j >= position.getY() + 1 + treeHeight - 2)
                 {
                     k = 2;
                 }
@@ -83,20 +77,19 @@ public class FruitTree extends WorldGenAbstractTree {
             if (!flag)
             {
                 return false;
-            }
-            else
+            } else
             {
                 IBlockState state = worldIn.getBlockState(position.down());
 
-                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)Blocks.SAPLING) && position.getY() < worldIn.getHeight() - i - 1)
+                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling) Blocks.SAPLING) && position.getY() < worldIn.getHeight() - treeHeight - 1)
                 {
                     state.getBlock().onPlantGrow(state, worldIn, position.down(), position);
                     int k2 = 3;
                     int l2 = 0;
 
-                    for (int i3 = position.getY() - 3 + i; i3 <= position.getY() + i; ++i3)
+                    for (int i3 = position.getY() - 3 + treeHeight; i3 <= position.getY() + treeHeight; ++i3)
                     {
-                        int i4 = i3 - (position.getY() + i);
+                        int i4 = i3 - (position.getY() + treeHeight);
                         int j1 = 1 - i4 / 2;
 
                         for (int k1 = position.getX() - j1; k1 <= position.getX() + j1; ++k1)
@@ -114,21 +107,25 @@ public class FruitTree extends WorldGenAbstractTree {
 
                                     if (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos) || state.getMaterial() == Material.VINE)
                                     {
-                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, this.metaLeaves);
+                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false)));
+                                        if (i3 == position.getY() + treeHeight) {
+                                            placeFruit(worldIn, rand, blockpos.down());
+                                        }
                                     }
+
                                 }
                             }
                         }
-                    }
 
-                    for (int j3 = 0; j3 < i; ++j3)
+                    }
+                    for (int j3 = 0; j3 < treeHeight; ++j3)
                     {
                         BlockPos upN = position.up(j3);
                         state = worldIn.getBlockState(upN);
 
                         if (state.getBlock().isAir(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN) || state.getMaterial() == Material.VINE)
                         {
-                            this.setBlockAndNotifyAdequately(worldIn, position.up(j3), this.metaWood);
+                            this.setBlockAndNotifyAdequately(worldIn, position.up(j3), Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE));
 
                             if (this.vinesGrow && j3 > 0)
                             {
@@ -157,9 +154,9 @@ public class FruitTree extends WorldGenAbstractTree {
 
                     if (this.vinesGrow)
                     {
-                        for (int k3 = position.getY() - 3 + i; k3 <= position.getY() + i; ++k3)
+                        for (int k3 = position.getY() - 3 + treeHeight; k3 <= position.getY() + treeHeight; ++k3)
                         {
-                            int j4 = k3 - (position.getY() + i);
+                            int j4 = k3 - (position.getY() + treeHeight);
                             int k4 = 2 - j4 / 2;
                             BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
 
@@ -201,7 +198,7 @@ public class FruitTree extends WorldGenAbstractTree {
                             }
                         }
 
-                        if (rand.nextInt(5) == 0 && i > 5)
+                        if (rand.nextInt(5) == 0 && treeHeight > 5)
                         {
                             for (int l3 = 0; l3 < 2; ++l3)
                             {
@@ -210,7 +207,6 @@ public class FruitTree extends WorldGenAbstractTree {
                                     if (rand.nextInt(4 - l3) == 0)
                                     {
                                         EnumFacing enumfacing1 = enumfacing.getOpposite();
-                                        this.placeFruit(worldIn, rand.nextInt(3), position.add(enumfacing1.getFrontOffsetX(), i - 5 + l3, enumfacing1.getFrontOffsetZ()), enumfacing);
                                     }
                                 }
                             }
@@ -231,10 +227,17 @@ public class FruitTree extends WorldGenAbstractTree {
         }
     }
 
-    private void placeFruit(World worldIn, int p_181652_2_, BlockPos pos, EnumFacing side)
+    private void placeFruit(World worldIn, Random rand, BlockPos pos)
     {
-        this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.COCOA.getDefaultState().withProperty(BlockCocoa.AGE, Integer.valueOf(p_181652_2_)).withProperty(BlockCocoa.FACING, side));
+        System.out.println("FruitY!");
+
+        if (MathHelper.getInt(rand, 1, 100) <= 25 && worldIn.isAirBlock(pos)) {
+            worldIn.setBlockState(pos, fruitblocks[MathHelper.getInt(rand, 0, fruitblocks.length - 1)].getDefaultState());
+        }
+
+
     }
+
 
     private void addVine(World worldIn, BlockPos pos, PropertyBool prop)
     {

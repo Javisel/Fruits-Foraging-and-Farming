@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "fruits_foraging_and_farming:banana_bunch"
+    }
+  ],
+  "result": {
+    "item": "fruits_foraging_and_farming:banana",
+    "count": 4
+  }
+}

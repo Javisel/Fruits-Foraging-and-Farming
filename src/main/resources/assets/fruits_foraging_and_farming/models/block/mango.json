@@ -1,0 +1,7 @@
+{
+  "parent": "fruits_foraging_and_farming:block/fruit_cross",
+  "textures": {
+    "0": "fruits_foraging_and_farming:block/mango",
+    "particle": "fruits_foraging_and_farming:block/mango"
+  }
+}

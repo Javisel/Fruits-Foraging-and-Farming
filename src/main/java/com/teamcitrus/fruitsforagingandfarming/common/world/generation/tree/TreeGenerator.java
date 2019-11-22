@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeBeach;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.ArrayList;
@@ -16,8 +15,9 @@ import java.util.Random;
 
 
 public class TreeGenerator implements IWorldGenerator {
-    private final WorldGenerator palmtree = new PalmTree(true);
-
+    private final net.minecraft.world.gen.feature.WorldGenerator palmtree = new PalmTree(true);
+    private final net.minecraft.world.gen.feature.WorldGenerator fruittree = new FruitTree(true, 5, false);
+    private final net.minecraft.world.gen.feature.WorldGenerator fruitGenerator = new FruitGenerator();
     private static int calculateGenerationHeight(World world, int x, int z, Block topBlock) {
         int y = world.getHeight();
         boolean foundGround = false;
@@ -35,26 +35,24 @@ public class TreeGenerator implements IWorldGenerator {
 
         switch (world.provider.getDimension()) {
             case -1:
+
+            case 1:
                 break;
 
             case 0:
                 runGenerator(palmtree, world, random, chunkX, chunkZ, 5, Blocks.SAND, BiomeBeach.class);
-
-
-                break;
-
-            case 1:
+                //runGenerator(fruitGenerator,world,random,chunkX,chunkZ,1,Blocks.LEAVES,BiomeJungle.class);
                 break;
         }
 
 
     }
 
-    private void runGenerator(WorldGenerator generator, World world, Random random, int chunkX, int chunkZ, int chance, Block topBlock, Class<?>... classes) {
+    private void runGenerator(net.minecraft.world.gen.feature.WorldGenerator generator, World world, Random random, int chunkX, int chunkZ, int chance, Block topBlock, Class<?>... classes) {
         ArrayList<Class<?>> classesList = new ArrayList<Class<?>>(Arrays.asList(classes));
 
-        int x = (chunkX * 16);
-        int z = (chunkZ * 16);
+        int x = chunkX * 16 + random.nextInt(16);
+        int z = chunkZ * 16 + random.nextInt(16);
         int y = calculateGenerationHeight(world, x, z, topBlock);
         BlockPos pos = new BlockPos(x, y, z);
 
@@ -69,6 +67,7 @@ public class TreeGenerator implements IWorldGenerator {
             }
 
         }
+
     }
 
 }

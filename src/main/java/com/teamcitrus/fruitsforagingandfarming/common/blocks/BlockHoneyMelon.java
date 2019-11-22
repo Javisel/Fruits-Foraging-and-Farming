@@ -8,6 +8,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -53,6 +54,7 @@ public class BlockHoneyMelon extends BlockBase {
         return ItemRegistration.HONEYMELON_SLICE;
     }
 
+    @Override
     public int quantityDropped(Random random) {
         return 4;
     }
@@ -128,6 +130,14 @@ public class BlockHoneyMelon extends BlockBase {
 
     }
 
+    @Override
+    public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+
+
+        drops.add(new ItemStack(ItemRegistration.HONEYMELON_SLICE, 4, 0));
+
+
+    }
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;

@@ -39,7 +39,7 @@ public class ClientProxy extends CommonProxy {
         registerItemRenderer(ItemRegistration.BLUEBERRY, 0);
         registerItemRenderer(ItemRegistration.CHOCOLATE_MILK_BOTTLE, 0);
         registerItemRenderer(ItemRegistration.CHOCOLATE_MILK_BUCKET, 0);
-        registerItemRenderer(ItemRegistration.COCONUT, 0);
+        registerItemRenderer(ItemRegistration.COCONUT_CHUNK, 0);
         registerItemRenderer(ItemRegistration.CORN, 0);
         registerItemRenderer(ItemRegistration.DURIAN, 0);
         registerItemRenderer(ItemRegistration.INFESTED_PEBBLE, 0);
@@ -48,8 +48,6 @@ public class ClientProxy extends CommonProxy {
         registerItemRenderer(ItemRegistration.KIWANO, 0);
         registerItemRenderer(ItemRegistration.LEMON, 0);
         registerItemRenderer(ItemRegistration.LIME, 0);
-        registerItemRenderer(ItemRegistration.MANGO, 0);
-        registerItemRenderer(ItemRegistration.ORANGE, 0);
         registerItemRenderer(ItemRegistration.PEAR, 0);
         registerItemRenderer(ItemRegistration.PINEAPPLE, 0);
         registerItemRenderer(ItemRegistration.CORN_KERNEL, 0);
@@ -76,7 +74,8 @@ public class ClientProxy extends CommonProxy {
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.CHOCOLATE_CAKE), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.HONEYMELON_BLOCK), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.BANANA_BUNCH),0);
-
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.ORANGE), 0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.MANGO), 0);
     }
 
     private static void registerBlockColorHandler(Block block) {

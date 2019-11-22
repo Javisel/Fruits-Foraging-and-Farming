@@ -26,7 +26,7 @@ public class ItemRegistration {
     public static final ItemFoodBase BANANA = null;
     public static final ItemFoodBase BLUEBERRY = null;
     public static final ItemFoodBase KIWANO = null;
-    public static final ItemFoodBase COCONUT = null;
+    public static final ItemFoodBase COCONUT_CHUNK = null;
     public static final ItemFoodBase CORN = null;
     public static final FoodDurian DURIAN = null;
 
@@ -66,15 +66,13 @@ public class ItemRegistration {
         event.getRegistry().register(new ItemFoodBase("avocado", ConfigHandler.AVOCADO_SHANK, ConfigHandler.AVOCADO_SAT));
         event.getRegistry().register(new ItemFoodBase("banana", ConfigHandler.BANANA_SHANK, ConfigHandler.BANANA_SAT));
         event.getRegistry().register(new ItemFoodBase("blueberry", ConfigHandler.BLUEBERRY_SHANK, ConfigHandler.BLUEBERRY_SAT));
-        event.getRegistry().register(new ItemFoodBase("coconut", ConfigHandler.COCONUT_SHANK, ConfigHandler.COCONUT_SAT));
+        event.getRegistry().register(new ItemFoodBase("coconut_chunk", ConfigHandler.COCONUT_SHANK, ConfigHandler.COCONUT_SAT));
         event.getRegistry().register(new ItemFoodBase("corn", ConfigHandler.CORN_SHANK, ConfigHandler.CORN_SAT));
         event.getRegistry().register(new ItemFoodBase("honeymelon_slice", ConfigHandler.HONEYMELON_SHANK, ConfigHandler.HONEYMELON_SAT));
         event.getRegistry().register(new ItemFoodBase("kiwi", ConfigHandler.KIWI_SHANK, ConfigHandler.KIWI_SAT));
         event.getRegistry().register(new ItemFoodBase("kiwano", ConfigHandler.KIWANO_SHANK, ConfigHandler.KIWANO_SAT));
         event.getRegistry().register(new ItemFoodBase("lemon", ConfigHandler.LEMON_SHANK, ConfigHandler.LEMON_SAT));
         event.getRegistry().register(new ItemFoodBase("lime", ConfigHandler.LIME_SHANK, ConfigHandler.LIME_SAT));
-        event.getRegistry().register(new ItemFoodBase("mango", ConfigHandler.MANGO_SHANK, ConfigHandler.MANGO_SAT));
-        event.getRegistry().register(new ItemFoodBase("orange", ConfigHandler.ORANGE_SHANK, ConfigHandler.ORANGE_SAT));
         event.getRegistry().register(new ItemFoodBase("pear", ConfigHandler.PEAR_SHANK, ConfigHandler.PEAR_SAT));
         event.getRegistry().register(new ItemFoodBase("pineapple", ConfigHandler.PINAPPLE_SHANK, ConfigHandler.PINAPPLE_SAT));
         event.getRegistry().registerAll(new SeedCornKernel());
