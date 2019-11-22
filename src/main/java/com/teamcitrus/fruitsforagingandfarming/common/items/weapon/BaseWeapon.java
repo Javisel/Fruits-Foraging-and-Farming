@@ -22,7 +22,7 @@ public class BaseWeapon extends Item implements IWeapon {
         this.material = material;
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
-        this.attackDamage = material.getDamageVsEntity() + attackDamage;
+        this.attackDamage = material.getAttackDamage() + attackDamage;
         this.attackSpeed = attackSpeed;
         this.setMaxStackSize(1);
         this.setMaxDamage(material.getMaxUses());

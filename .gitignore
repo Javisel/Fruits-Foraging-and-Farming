@@ -20,13 +20,3 @@ build
 # other
 eclipse
 run
-concept
-crash-reports
-logs
-resourcepacks
-screenshots
-saves
-config
-logs/debug-2.log.gz
-*.gz
-*.gz

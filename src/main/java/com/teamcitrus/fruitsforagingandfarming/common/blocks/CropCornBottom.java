@@ -4,6 +4,7 @@ import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistra
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -20,7 +21,7 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class CropCornBottom extends BlockBush implements IPlantable {
+public class CropCornBottom extends BlockBush implements IPlantable, IGrowable {
 
 
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
@@ -30,9 +31,9 @@ public class CropCornBottom extends BlockBush implements IPlantable {
             new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.00D, 1.0D)};
 
     public CropCornBottom() {
-        this.setRegistryName("corn_crop_base");
+        this.setRegistryName("corn_crop_bottom");
 
-        this.setUnlocalizedName("corn_crop_base");
+        this.setUnlocalizedName("corn_crop_bottom");
         this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), 0));
 
         this.setTickRandomly(true);
@@ -221,6 +222,11 @@ public class CropCornBottom extends BlockBush implements IPlantable {
 
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
         return true;
+    }
+
+    @Override
+    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+        grow(worldIn, pos, state);
     }
 
     /**

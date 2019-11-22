@@ -10,7 +10,7 @@ import net.minecraft.stats.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public class ChocolateMilkBottle extends ItemBase {
+public class ChocolateMilkBottle extends ItemBase implements IEdible{
     public ChocolateMilkBottle() {
         super("chocolate_milk_bottle");
         setMaxStackSize(1);
@@ -62,5 +62,15 @@ public class ChocolateMilkBottle extends ItemBase {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         playerIn.setActiveHand(handIn);
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+    }
+
+    @Override
+    public int getFoodLevel() {
+        return ConfigHandler.CHOC_MILK_SHANK;
+    }
+
+    @Override
+    public float getSaturation() {
+        return ConfigHandler.CHOC_MILK_SHANK;
     }
 }

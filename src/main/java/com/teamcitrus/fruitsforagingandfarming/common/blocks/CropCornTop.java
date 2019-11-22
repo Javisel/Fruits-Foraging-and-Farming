@@ -4,6 +4,7 @@ import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistra
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -19,7 +20,7 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class CropCornTop extends BlockBush implements IPlantable {
+public class CropCornTop extends BlockBush implements IPlantable, IGrowable {
 
 
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
@@ -39,6 +40,11 @@ public class CropCornTop extends BlockBush implements IPlantable {
         this.setSoundType(SoundType.PLANT);
         this.disableStats();
 
+    }
+
+    @Override
+    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+        grow(worldIn,pos,state);
     }
 
     protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos) {

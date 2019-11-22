@@ -1,5 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.main;
 
+import com.teamcitrus.fruitsforagingandfarming.common.items.IEdible;
 import com.teamcitrus.fruitsforagingandfarming.common.items.ItemCakeBlock;
 import com.teamcitrus.fruitsforagingandfarming.common.items.ItemPlaceableFruit;
 import com.teamcitrus.fruitsforagingandfarming.common.items.weapon.BaseWeapon;
@@ -32,6 +33,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 import java.util.Random;
 
@@ -42,6 +44,32 @@ public class EventHandler {
     static final Item[] fruits = {ItemRegistration.AVOCADO, ItemRegistration.KIWANO, ItemRegistration.BANANA, ItemRegistration.BLUEBERRY, ItemRegistration.KIWI, ItemRegistration.LEMON, ItemRegistration.LIME, Item.getItemFromBlock(BlockRegistration.MANGO), ItemRegistration.DURIAN, Item.getItemFromBlock(BlockRegistration.ORANGE), ItemRegistration.PEAR, ItemRegistration.PLUM, ItemRegistration.PINEAPPLE};
     static final Item[] seeds = {ItemRegistration.GRASS_SEEDS, ItemRegistration.HONEYMELON_SEEDS, ItemRegistration.CORN_KERNEL};
     static final Item[] vanillaseeds = {Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS};
+
+
+    @SubscribeEvent
+    public void craftingChocolateMilk(PlayerEvent.ItemCraftedEvent e) {
+
+        if (e.crafting.getItem() == ItemRegistration.CHOCOLATE_MILK_BOTTLE) {
+
+         for (int i =0; i <e.craftMatrix.getSizeInventory();i++) {
+
+             if (e.craftMatrix.getStackInSlot(i).getItem() ==  ItemRegistration.CHOCOLATE_MILK_BUCKET) {
+
+                ItemStack stack =          e.craftMatrix.getStackInSlot(i);
+                stack.damageItem(1,e.player);
+                if (!stack.isEmpty())
+                 e.player.addItemStackToInventory(stack);
+
+             }
+
+         }
+
+        }
+
+
+    }
+
+
 
     @SubscribeEvent
     public void ModifyBlockDrops(BlockEvent.HarvestDropsEvent e) {
@@ -150,7 +178,7 @@ public class EventHandler {
 
         if (e.getEntityPlayer() != null && e.getEntityPlayer().getEntityWorld().isRemote) {
 
-            if (e.getItemStack().getItem() instanceof ItemPlaceableFruit || e.getItemStack().getItem() instanceof ItemFood) {
+            if (e.getItemStack().getItem() instanceof ItemPlaceableFruit || e.getItemStack().getItem() instanceof ItemFood || e.getItemStack().getItem() instanceof IEdible) {
                 int foodlevel;
                 float saturation;
                 if (e.getItemStack().getItem() instanceof ItemPlaceableFruit) {
@@ -163,7 +191,15 @@ public class EventHandler {
                     foodlevel = food.getHealAmount(e.getItemStack());
                     saturation = food.getSaturationModifier(e.getItemStack());
 
-                } else {
+                }
+                else if (e.getItemStack().getItem() instanceof IEdible) {
+                    IEdible food = (IEdible) e.getItemStack().getItem();
+                    foodlevel = food.getFoodLevel();
+                    saturation = food.getSaturation();
+
+                }
+
+                else {
                     foodlevel = -1;
                     saturation = -1;
                 }

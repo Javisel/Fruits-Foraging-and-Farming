@@ -14,13 +14,15 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class ChocolateMilkBucket extends ItemBucketMilk {
+public class ChocolateMilkBucket extends ItemBucketMilk implements IEdible{
     public ChocolateMilkBucket() {
         setRegistryName("CHOCOLATE_MILK_BUCKET");
         setUnlocalizedName("chocolate_milk_bucket");
         setCreativeTab(FruitsForagingAndFarming.fffCreativeTab);
         this.setMaxStackSize(1);
         this.setMaxDamage(8);
+        this.setNoRepair();
+
     }
 
     @Nullable
@@ -45,5 +47,13 @@ public class ChocolateMilkBucket extends ItemBucketMilk {
         return stack.isEmpty() ? new ItemStack(Items.BUCKET) : stack;
     }
 
+    @Override
+    public int getFoodLevel() {
+        return ConfigHandler.CHOC_MILK_SHANK;
+    }
 
+    @Override
+    public float getSaturation() {
+        return ConfigHandler.CHOC_MILK_SAT;
+    }
 }

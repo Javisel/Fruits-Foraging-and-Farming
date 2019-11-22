@@ -35,7 +35,7 @@ public class FruitsForagingAndFarming {
     public static File config;
     public static final String MODID = "fruits_foraging_and_farming";
     public static final String NAME = "Fruits, Foraging and Farming";
-    public static final String VERSION = "0.1";
+    public static final String VERSION = "1.0";
     public static final CreativeTab fffCreativeTab = new CreativeTab("fruits_foraging_and_farming");
     public static final DamageSource silverfishAlien = new SilverfishAlien();
     @Mod.Instance(FruitsForagingAndFarming.MODID)

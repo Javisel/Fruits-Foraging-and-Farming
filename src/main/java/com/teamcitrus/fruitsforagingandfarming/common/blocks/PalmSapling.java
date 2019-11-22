@@ -26,15 +26,11 @@ public class PalmSapling extends BlockSaplingBase {
 
     }
 
+
+
     @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
 
-        for (int i = 1; i < 7; i++) {
-
-            if (!this.canBeReplacedByLeaves(worldIn.getBlockState(pos), worldIn, pos)) {
-                return false;
-            }
-        }
         return true;
 
     }
