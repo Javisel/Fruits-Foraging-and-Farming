@@ -15,18 +15,6 @@ public class PalmTree extends WorldGenAbstractTree {
         super(notify);
     }
 
-    public static boolean makeCoconut(Random random, World world, BlockPos pos) {
-
-        if (world.getBlockState(pos.up()).getBlock() == BlockRegistration.PALM_LEAVES && world.isAirBlock(pos.down()) && MathHelper.getInt(random, 1, 100) <= 25) {
-
-
-            world.setBlockState(pos, BlockRegistration.COCONUT_BLOCK.getStateFromMeta(1));
-            return true;
-        }
-
-        return false;
-    }
-
     public boolean generateSapling(World worldIn, Random random, BlockPos pos) {
 
         if (worldIn.getBlockState(pos.down()).getMaterial() != Material.SAND && worldIn.getBlockState(pos.down()).getMaterial() != Material.GRASS) {
@@ -67,43 +55,34 @@ public class PalmTree extends WorldGenAbstractTree {
         StrictLeaves(worldIn, top.north(2), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.north(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.north(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.north(3).down(2));
 
-        makeCoconut(random, worldIn, top.north(4).down(3));
 
         StrictLeaves(worldIn, top.south(2), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.south(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.south(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.south(3).down(2));
 
-        makeCoconut(random, worldIn, top.south(4).down(3));
 
         StrictLeaves(worldIn, top.west(2), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.west(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.west(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.south(3).down(2));
-        makeCoconut(random, worldIn, top.west(4).down(3));
+
 
         StrictLeaves(worldIn, top.east(2), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.east(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.east(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.east(3).down(2));
-        makeCoconut(random, worldIn, top.east(4).down(3));
+
         //Diagonal
         StrictLeaves(worldIn, top.north(2).east(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.north(3).east(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.north(3).east(3).down(2));
-        makeCoconut(random, worldIn, top.north(3).east(3).down(3));
 
         StrictLeaves(worldIn, top.north(2).west(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.north(3).west(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.north(3).east(3).down(3));
-        makeCoconut(random, worldIn, top.north(3).east(3).down(4));
+
+
 
         StrictLeaves(worldIn, top.south(2).east(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.south(3).east(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.south(2).east(2).down());
-        makeCoconut(random, worldIn, top.south(3).east(3).down(3));
+
         StrictLeaves(worldIn, top.south(2).west(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.south(3).west(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
 
@@ -115,15 +94,30 @@ public class PalmTree extends WorldGenAbstractTree {
 
         //Bellow Crown Diagonal
         StrictLeaves(worldIn, top.north().down(2).east(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.north().down(3).east());
         StrictLeaves(worldIn, top.north().down(2).west(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.north().down(3).west());
+
 
         StrictLeaves(worldIn, top.south().down(2).east(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.south().down(3).east());
 
         StrictLeaves(worldIn, top.south().down(2).west(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(random, worldIn, top.south().down(3).west());
+
+
+        for (int x =-4;x <=4;x++ ) {
+            for (int y = - 2;y <2; y++) {
+
+                for (int z = -4; z<=4;z++) {
+                    if (worldIn.getBlockState(top.add(x,y,z)).getBlock() == BlockRegistration.PALM_LEAVES && worldIn.isAirBlock(top.add(x,y-1,z))) {
+
+                        if (MathHelper.getInt(random,0,100) <=25) {
+                            worldIn.setBlockState(top.add(x,y-1,z),BlockRegistration.COCONUT_BLOCK.withAge(1));
+                        }
+                    }
+
+                }
+            }
+
+        }
+
 
 
         return true;
@@ -169,43 +163,32 @@ public class PalmTree extends WorldGenAbstractTree {
         StrictLeaves(worldIn, top.north(2), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.north(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.north(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.north(3).down(2));
 
-        makeCoconut(rand, worldIn, top.north(4).down(3));
 
         StrictLeaves(worldIn, top.south(2), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.south(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.south(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.south(3).down(2));
 
-        makeCoconut(rand, worldIn, top.south(4).down(3));
 
         StrictLeaves(worldIn, top.west(2), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.west(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.west(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.south(3).down(2));
-        makeCoconut(rand, worldIn, top.west(4).down(3));
 
         StrictLeaves(worldIn, top.east(2), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.east(3).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.east(4).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.east(3).down(2));
-        makeCoconut(rand, worldIn, top.east(4).down(3));
+
         //Diagonal
         StrictLeaves(worldIn, top.north(2).east(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.north(3).east(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.north(3).east(3).down(2));
-        makeCoconut(rand, worldIn, top.north(3).east(3).down(3));
 
         StrictLeaves(worldIn, top.north(2).west(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.north(3).west(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.north(3).east(3).down(3));
-        makeCoconut(rand, worldIn, top.north(3).east(3).down(4));
+
 
         StrictLeaves(worldIn, top.south(2).east(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.south(3).east(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.south(2).east(2).down());
-        makeCoconut(rand, worldIn, top.south(3).east(3).down(3));
+
         StrictLeaves(worldIn, top.south(2).west(2).down(), BlockRegistration.PALM_LEAVES.getDefaultState());
         StrictLeaves(worldIn, top.south(3).west(3).down(2), BlockRegistration.PALM_LEAVES.getDefaultState());
 
@@ -217,15 +200,30 @@ public class PalmTree extends WorldGenAbstractTree {
 
         //Bellow Crown Diagonal
         StrictLeaves(worldIn, top.north().down(2).east(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.north().down(3).east());
+
         StrictLeaves(worldIn, top.north().down(2).west(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.north().down(3).west());
 
         StrictLeaves(worldIn, top.south().down(2).east(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.south().down(3).east());
 
         StrictLeaves(worldIn, top.south().down(2).west(), BlockRegistration.PALM_LEAVES.getDefaultState());
-        makeCoconut(rand, worldIn, top.south().down(3).west());
+
+
+        for (int x =-4;x <=4;x++ ) {
+            for (int y = - 2;y <2; y++) {
+
+                for (int z = -4; z<=4;z++) {
+                    if (worldIn.getBlockState(top.add(x,y,z)).getBlock() == BlockRegistration.PALM_LEAVES && worldIn.isAirBlock(top.add(x,y-1,z))) {
+
+                        if (MathHelper.getInt(rand,0,100) <=25) {
+                            worldIn.setBlockState(top.add(x,y-1,z),BlockRegistration.COCONUT_BLOCK.withAge(1));
+                        }
+                    }
+
+                }
+            }
+
+        }
+
 
 
         return true;

@@ -5,7 +5,10 @@ import com.teamcitrus.fruitsforagingandfarming.common.items.*;
 import com.teamcitrus.fruitsforagingandfarming.common.items.weapon.WeaponScythe;
 import com.teamcitrus.fruitsforagingandfarming.main.ConfigHandler;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -60,38 +63,49 @@ public class ItemRegistration {
     public static final WeaponScythe DIAMOND_SCYTHE = null;
 
 
+
     @SubscribeEvent
     public static final void registerItemEvent(@Nonnull final RegistryEvent.Register<Item> event) {
 
-        event.getRegistry().register(new ItemFoodBase("avocado", ConfigHandler.AVOCADO_SHANK, ConfigHandler.AVOCADO_SAT));
-        event.getRegistry().register(new ItemFoodBase("banana", ConfigHandler.BANANA_SHANK, ConfigHandler.BANANA_SAT));
-        event.getRegistry().register(new ItemFoodBase("blueberry", ConfigHandler.BLUEBERRY_SHANK, ConfigHandler.BLUEBERRY_SAT));
-        event.getRegistry().register(new ItemFoodBase("coconut_chunk", ConfigHandler.COCONUT_SHANK, ConfigHandler.COCONUT_SAT));
-        event.getRegistry().register(new ItemFoodBase("corn", ConfigHandler.CORN_SHANK, ConfigHandler.CORN_SAT));
-        event.getRegistry().register(new ItemFoodBase("honeymelon_slice", ConfigHandler.HONEYMELON_SHANK, ConfigHandler.HONEYMELON_SAT));
-        event.getRegistry().register(new ItemFoodBase("kiwi", ConfigHandler.KIWI_SHANK, ConfigHandler.KIWI_SAT));
-        event.getRegistry().register(new ItemFoodBase("kiwano", ConfigHandler.KIWANO_SHANK, ConfigHandler.KIWANO_SAT));
-        event.getRegistry().register(new ItemFoodBase("lemon", ConfigHandler.LEMON_SHANK, ConfigHandler.LEMON_SAT));
-        event.getRegistry().register(new ItemFoodBase("lime", ConfigHandler.LIME_SHANK, ConfigHandler.LIME_SAT));
-        event.getRegistry().register(new ItemFoodBase("pear", ConfigHandler.PEAR_SHANK, ConfigHandler.PEAR_SAT));
-        event.getRegistry().register(new ItemFoodBase("pineapple", ConfigHandler.PINAPPLE_SHANK, ConfigHandler.PINAPPLE_SAT));
-        event.getRegistry().registerAll(new SeedCornKernel());
-        event.getRegistry().register(new ItemFoodBase("plum", ConfigHandler.PLUM_SHANK, ConfigHandler.PLUM_SAT));
+        event.getRegistry().registerAll(
+                new ItemFoodBase("avocado", ConfigHandler.AVOCADO_SHANK, ConfigHandler.AVOCADO_SAT),
+                new ItemFoodBase("banana", ConfigHandler.BANANA_SHANK, ConfigHandler.BANANA_SAT),
+                new ItemFoodBase("blueberry", ConfigHandler.BLUEBERRY_SHANK, ConfigHandler.BLUEBERRY_SAT),
+                new ItemFoodBase("coconut_chunk", ConfigHandler.COCONUT_SHANK, ConfigHandler.COCONUT_SAT),
+                new ItemFoodBase("corn", ConfigHandler.CORN_SHANK, ConfigHandler.CORN_SAT),
+                new ItemFoodBase("honeymelon_slice", ConfigHandler.HONEYMELON_SHANK, ConfigHandler.HONEYMELON_SAT),
+                new ItemFoodBase("kiwi", ConfigHandler.KIWI_SHANK, ConfigHandler.KIWI_SAT),
+                new ItemFoodBase("kiwano", ConfigHandler.KIWANO_SHANK, ConfigHandler.KIWANO_SAT),
+                new ItemFoodBase("lemon", ConfigHandler.LEMON_SHANK, ConfigHandler.LEMON_SAT),
+                new ItemFoodBase("lime", ConfigHandler.LIME_SHANK, ConfigHandler.LIME_SAT),
+                new ItemFoodBase("pear", ConfigHandler.PEAR_SHANK, ConfigHandler.PEAR_SAT),
+                new ItemFoodBase("plum", ConfigHandler.PLUM_SHANK, ConfigHandler.PLUM_SAT),
+                new ItemFoodBase("turnip", ConfigHandler.TURNIP_SHANK, ConfigHandler.TURNIP_SAT),
+                new ItemFoodBase("infested_pebble", ConfigHandler.INFESTED_PEBBLE_SHANK, ConfigHandler.INFESTED_PEBBLE_SAT),
+                new FoodDurian(),
+                new ChocolateMilkBucket(),
+                new ChocolateMilkBottle(),
+                new ItemFoodBase("pineapple", ConfigHandler.PINAPPLE_SHANK, ConfigHandler.PINAPPLE_SAT),
+        new SeedCornKernel(),
+                new HoneymelonSeeds(),
+                new GrassSeeds(),
+                new TurnipSeeds(),
+                new WeaponScythe("wooden_scythe", Item.ToolMaterial.WOOD, 1),
+                new WeaponScythe("stone_scythe", Item.ToolMaterial.STONE, 2),
+                new WeaponScythe("golden_scythe", Item.ToolMaterial.GOLD, 3),
+                new WeaponScythe("iron_scythe", Item.ToolMaterial.IRON, 4),
+                new WeaponScythe("diamond_scythe", Item.ToolMaterial.DIAMOND, 5)
 
-        event.getRegistry().register(new ItemFoodBase("turnip", ConfigHandler.TURNIP_SHANK, ConfigHandler.TURNIP_SAT));
-        event.getRegistry().register(new ItemFoodBase("infested_pebble", ConfigHandler.INFESTED_PEBBLE_SHANK, ConfigHandler.INFESTED_PEBBLE_SAT));
-        event.getRegistry().register(new FoodDurian());
-        event.getRegistry().register(new ChocolateMilkBucket());
-        event.getRegistry().register(new ChocolateMilkBottle());
-        event.getRegistry().register(new HoneymelonSeeds());
-        event.getRegistry().register(new GrassSeeds());
-        event.getRegistry().register(new TurnipSeeds());
-        event.getRegistry().register(new WeaponScythe("wooden_scythe", Item.ToolMaterial.WOOD, 1));
-        event.getRegistry().register(new WeaponScythe("stone_scythe", Item.ToolMaterial.STONE, 2));
-        event.getRegistry().register(new WeaponScythe("golden_scythe", Item.ToolMaterial.GOLD, 3));
-        event.getRegistry().register(new WeaponScythe("iron_scythe", Item.ToolMaterial.IRON, 4));
-        event.getRegistry().register(new WeaponScythe("diamond_scythe", Item.ToolMaterial.DIAMOND, 5));
+                );
+
+
+
+
     }
 
+    public static void registerFurnaceRecipes()  {
+
+        FurnaceRecipes.instance().addSmeltingRecipeForBlock(BlockRegistration.BLACK_SAND,new ItemStack(Items.IRON_NUGGET,1),0.1F);
+    }
 
 }

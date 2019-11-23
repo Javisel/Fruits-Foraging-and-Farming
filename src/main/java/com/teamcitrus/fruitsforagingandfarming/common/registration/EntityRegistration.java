@@ -15,7 +15,7 @@ public class EntityRegistration {
 
     public static void RegisterEntities() {
 
-        registerLivingEntityWithEgg("golden_chicken", EntityGoldenChicken.class, Color.YELLOW.getRGB(), Color.RED.getRGB());
+      //  registerLivingEntityWithEgg("golden_chicken", EntityGoldenChicken.class, Color.YELLOW.getRGB(), Color.RED.getRGB());
 
     }
 

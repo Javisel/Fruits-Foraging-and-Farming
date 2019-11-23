@@ -1,5 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.proxy;
 
+import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -30,7 +31,7 @@ public class CommonProxy {
 
     public void postInit(FMLPostInitializationEvent e) {
 
-
+        ItemRegistration.registerFurnaceRecipes();
     }
 
 

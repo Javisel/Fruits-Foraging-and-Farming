@@ -76,6 +76,7 @@ public class ClientProxy extends CommonProxy {
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.BANANA_BUNCH),0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.ORANGE), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.MANGO), 0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.BLACK_SAND),0);
     }
 
     private static void registerBlockColorHandler(Block block) {

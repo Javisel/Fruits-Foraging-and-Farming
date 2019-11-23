@@ -1,5 +1,7 @@
 package com.teamcitrus.fruitsforagingandfarming.main;
 
+import com.teamcitrus.fruitsforagingandfarming.common.effects.MobEffect;
+import com.teamcitrus.fruitsforagingandfarming.common.items.ChocolateMilkBottle;
 import com.teamcitrus.fruitsforagingandfarming.common.items.IEdible;
 import com.teamcitrus.fruitsforagingandfarming.common.items.ItemCakeBlock;
 import com.teamcitrus.fruitsforagingandfarming.common.items.ItemPlaceableFruit;
@@ -17,11 +19,14 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntitySilverfish;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
@@ -44,6 +49,26 @@ public class EventHandler {
     static final Item[] fruits = {ItemRegistration.AVOCADO, ItemRegistration.KIWANO, ItemRegistration.BANANA, ItemRegistration.BLUEBERRY, ItemRegistration.KIWI, ItemRegistration.LEMON, ItemRegistration.LIME, Item.getItemFromBlock(BlockRegistration.MANGO), ItemRegistration.DURIAN, Item.getItemFromBlock(BlockRegistration.ORANGE), ItemRegistration.PEAR, ItemRegistration.PLUM, ItemRegistration.PINEAPPLE};
     static final Item[] seeds = {ItemRegistration.GRASS_SEEDS, ItemRegistration.HONEYMELON_SEEDS, ItemRegistration.CORN_KERNEL};
     static final Item[] vanillaseeds = {Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS};
+
+
+    @SubscribeEvent
+    public void dogkiller(PlayerInteractEvent.EntityInteract e ) {
+
+
+        if (e.getTarget()!=null && e.getTarget() instanceof EntityWolf) {
+
+         if ((e.getItemStack().getItem() instanceof ItemDye && e.getItemStack().getMetadata()==12)  || e.getItemStack().getItem() == ItemRegistration.CHOCOLATE_MILK_BOTTLE) {
+             e.getItemStack().shrink(1);
+                ((EntityWolf) e.getTarget()).addPotionEffect(new PotionEffect(MobEffects.POISON,250));
+         }
+
+
+
+        }
+
+
+
+    }
 
 
     @SubscribeEvent

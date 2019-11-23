@@ -1,6 +1,7 @@
 package com.teamcitrus.fruitsforagingandfarming.common.blocks;
 
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -39,23 +40,16 @@ public abstract class BlockSaplingBase extends BlockBush implements IGrowable {
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!worldIn.isRemote) {
-            super.updateTick(worldIn, pos, state, rand);
 
             if (!worldIn.isAreaLoaded(pos, 1))
                 return; // Forge: prevent loading unloaded chunks when checking neighbor's light
             if (worldIn.getLightFromNeighbors(pos.up()) >= 9 && rand.nextInt(7) == 0) {
-                this.grow(worldIn, pos, state, rand);
+                this.generateTree(worldIn,pos,state,rand);
             }
         }
     }
 
-    public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        if (state.getValue(STAGE).intValue() == 0) {
-            worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
-        } else {
-            this.generateTree(worldIn, pos, state, rand);
-        }
-    }
+
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -65,6 +59,15 @@ public abstract class BlockSaplingBase extends BlockBush implements IGrowable {
 
     @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+
+        for (int i = 1;i <= 8;i++) {
+
+            if (!worldIn.isAirBlock(pos.up(i))) {
+                return false;
+            }
+
+        }
+
         return true;
     }
 
@@ -79,7 +82,11 @@ public abstract class BlockSaplingBase extends BlockBush implements IGrowable {
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
 
-        generateTree(worldIn, pos, state, rand);
+        if (state.getValue(STAGE)== 0) {
+            worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
+        } else {
+            this.generateTree(worldIn, pos, state, rand);
+        }
     }
 
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
@@ -91,7 +98,10 @@ public abstract class BlockSaplingBase extends BlockBush implements IGrowable {
     public IBlockState getStateFromMeta(int meta) {
         return getDefaultState().withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
     }
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
+    {
 
+    }
     @Override
 
     public int getMetaFromState(IBlockState state) {

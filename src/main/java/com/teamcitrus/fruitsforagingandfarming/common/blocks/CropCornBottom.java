@@ -88,11 +88,6 @@ public class CropCornBottom extends BlockBush implements IPlantable, IGrowable {
         return f;
     }
 
-    @Override
-    public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-
-
-    }
 
 
     @Override
@@ -136,10 +131,9 @@ public class CropCornBottom extends BlockBush implements IPlantable, IGrowable {
             float f = getGrowthChance(this, worldIn, pos);
 
             if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0)) {
-                if (i == 2) {
+                if (isMaxAge(state)) {
 
                     if (worldIn.isAirBlock(pos.up())) {
-                        //  System.out.println("GROW MY MINION!");
                         worldIn.setBlockState(pos.up(), BlockRegistration.CORN_CROP_TOP.getDefaultState().withProperty(CropCornTop.AGE,0));
 
 
@@ -155,18 +149,6 @@ public class CropCornBottom extends BlockBush implements IPlantable, IGrowable {
         }
     }
 
-    public void grow(World worldIn, BlockPos pos, IBlockState state) {
-        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
-        int j = this.getMaxAge();
-
-        if (i > j) {
-            i = j;
-        }
-
-        worldIn.setBlockState(pos, this.withAge(i), 2);
-
-
-    }
 
     protected int getBonemealAgeIncrease(World worldIn) {
         return MathHelper.getInt(worldIn.rand, 1, 4);
@@ -217,7 +199,17 @@ public class CropCornBottom extends BlockBush implements IPlantable, IGrowable {
      * Whether this IGrowable can grow
      */
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return this.getAge(state) != 2;
+                if (worldIn.isAirBlock(pos.up())) {
+                    return true;
+                }
+                else if (worldIn.getBlockState(pos.up()).getBlock() == BlockRegistration.CORN_CROP_TOP) {
+
+                    return  (BlockRegistration.CORN_CROP_TOP.getAge(worldIn.getBlockState(pos.up())) != BlockRegistration.CORN_CROP_TOP.getMaxAge());
+
+                }
+                return false;
+
+
     }
 
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
@@ -226,7 +218,17 @@ public class CropCornBottom extends BlockBush implements IPlantable, IGrowable {
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        grow(worldIn, pos, state);
+        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
+        int j = this.getMaxAge();
+        int k = 0;
+        if (i > j) {
+             k = i - j;
+             i=j;
+            worldIn.setBlockState(pos.up(), BlockRegistration.CORN_CROP_TOP.withAge(k), 2);
+        }
+
+        worldIn.setBlockState(pos, this.withAge(i), 2);
+
     }
 
     /**

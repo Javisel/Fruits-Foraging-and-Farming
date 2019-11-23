@@ -134,6 +134,8 @@ public class CropCornTop extends BlockBush implements IPlantable, IGrowable {
     }
 
     public IBlockState withAge(int age) {
+        if (age<0) age = 0;
+        if (age>getMaxAge()) age = getMaxAge();
         return this.getDefaultState().withProperty(this.getAgeProperty(), age);
     }
 

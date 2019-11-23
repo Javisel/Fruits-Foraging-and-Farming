@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "fruits_foraging_and_farming:corn_crop_base_stage0"
+    },
+    "age=1": {
+      "model": "fruits_foraging_and_farming:corn_crop_base_stage1"
+    },
+    "age=2": {
+      "model": "fruits_foraging_and_farming:corn_crop_base_stage2"
+    }
+  }
+}

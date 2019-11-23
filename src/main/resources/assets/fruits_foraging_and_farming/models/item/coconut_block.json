@@ -1,24 +1,56 @@
 {
-  
-  "parent": "fruits_foraging_and_farming:block/coconut_block",
-   "display": {
-      "gui": {
-            "rotation": [ 30, 45, 0 ],
-            "translation": [ 0, 3, 0 ],
-            "scale": [ 1, 1, 1 ]
-        },
-        "fixed": {
-            "rotation": [ 0, 180, 0 ],
-            "translation": [ 0, 4, 0],
-            "scale":[ 1, 1, 1 ]
-        },
-     
-        "thirdperson_righthand": {
-            "rotation": [ 45, 45, 0 ],
-            "translation": [ 0, 3, 0 ],
-            "scale": [ 0.5, 0.5, 0.5 ]
-        }
-    }
-    }
- 
+	"textures": {
+		"0": "fruits_foraging_and_farming:block/coconut_side",
+		"1": "fruits_foraging_and_farming:block/coconut_top",
+		"particle": "fruits_foraging_and_farming:block/coconut_side"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 6],
+			"to": [10, 4, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 8, 14]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 3.5, 6.25]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 3.5, 6.25]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"translation": [0, 10, 0],
+			"scale": [1.6, 1.6, 1.6]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 45, 0],
+			"translation": [0, 10, 0],
+			"scale": [1.6, 1.6, 1.6]
+		},
+		"ground": {
+			"translation": [0, 3, 0]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [0, 4.5, 0]
+		},
+		"head": {
+			"translation": [0, 10.25, 0],
+			"scale": [1.6, 1.6, 1.6]
+		},
+		"fixed": {
+			"translation": [0, 5.75, 0]
+		}
+	}
 }

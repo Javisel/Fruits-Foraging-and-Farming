@@ -1,5 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.world.generation.tree;
 
+import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -16,8 +17,8 @@ import java.util.Random;
 
 public class TreeGenerator implements IWorldGenerator {
     private final net.minecraft.world.gen.feature.WorldGenerator palmtree = new PalmTree(true);
-    private final net.minecraft.world.gen.feature.WorldGenerator fruittree = new FruitTree(true, 5, false);
     private final net.minecraft.world.gen.feature.WorldGenerator fruitGenerator = new FruitGenerator();
+    private final CoconutGenerator coconutGenerator = new CoconutGenerator();
     private static int calculateGenerationHeight(World world, int x, int z, Block topBlock) {
         int y = world.getHeight();
         boolean foundGround = false;
@@ -42,6 +43,7 @@ public class TreeGenerator implements IWorldGenerator {
             case 0:
                 runGenerator(palmtree, world, random, chunkX, chunkZ, 5, Blocks.SAND, BiomeBeach.class);
                 //runGenerator(fruitGenerator,world,random,chunkX,chunkZ,1,Blocks.LEAVES,BiomeJungle.class);
+       //       runGenerator(coconutGenerator, world, random, chunkX, chunkZ, 1, BlockRegistration.PALM_LEAVES, BiomeBeach.class);
                 break;
         }
 
