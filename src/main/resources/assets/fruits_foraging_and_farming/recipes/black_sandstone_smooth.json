@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "fruits_foraging_and_farming:black_sandstone"
+    }
+  },
+  "result": {
+    "item": "fruits_foraging_and_farming:black_sandstone_smooth",
+    "count": 4
+  }
+}

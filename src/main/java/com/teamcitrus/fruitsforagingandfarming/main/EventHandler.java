@@ -1,7 +1,7 @@
 package com.teamcitrus.fruitsforagingandfarming.main;
 
+import com.teamcitrus.fruitsforagingandfarming.common.blocks.BlockCoconut;
 import com.teamcitrus.fruitsforagingandfarming.common.effects.MobEffect;
-import com.teamcitrus.fruitsforagingandfarming.common.items.ChocolateMilkBottle;
 import com.teamcitrus.fruitsforagingandfarming.common.items.IEdible;
 import com.teamcitrus.fruitsforagingandfarming.common.items.ItemCakeBlock;
 import com.teamcitrus.fruitsforagingandfarming.common.items.ItemPlaceableFruit;
@@ -11,6 +11,7 @@ import com.teamcitrus.fruitsforagingandfarming.common.registration.EnchantmentRe
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.MobEffectRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.utilities.MobUtilities;
+import com.teamcitrus.fruitsforagingandfarming.common.world.generation.biome.BlackSandBeach;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockOldLog;
@@ -18,7 +19,11 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.item.EntityFallingBlock;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntitySilverfish;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityParrot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -27,18 +32,26 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.biome.BiomeRiver;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.terraingen.BiomeEvent;
+import net.minecraftforge.event.terraingen.WorldTypeEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -51,15 +64,28 @@ public class EventHandler {
     static final Item[] vanillaseeds = {Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS};
 
 
+
+
+
+
+
     @SubscribeEvent
     public void dogkiller(PlayerInteractEvent.EntityInteract e ) {
 
 
-        if (e.getTarget()!=null && e.getTarget() instanceof EntityWolf) {
+        if (e.getTarget()!=null && e.getTarget() instanceof EntityWolf || e.getTarget() instanceof EntityParrot || e.getTarget() instanceof EntityChicken) {
 
-         if ((e.getItemStack().getItem() instanceof ItemDye && e.getItemStack().getMetadata()==12)  || e.getItemStack().getItem() == ItemRegistration.CHOCOLATE_MILK_BOTTLE) {
+         if ((e.getItemStack().getItem() instanceof ItemDye && e.getItemStack().getMetadata()==12) || e.getItemStack().getItem()== Items.COOKIE  || e.getItemStack().getItem() == ItemRegistration.CHOCOLATE_MILK_BOTTLE) {
              e.getItemStack().shrink(1);
-                ((EntityWolf) e.getTarget()).addPotionEffect(new PotionEffect(MobEffects.POISON,250));
+                ((EntityLivingBase) e.getTarget()).addPotionEffect(new PotionEffect(MobEffects.POISON,250,3));
+         }
+         else if (e.getItemStack().getItem() == ItemRegistration.CHOCOLATE_MILK_BUCKET) {
+
+             e.getItemStack().damageItem(1,e.getEntityLiving());
+
+             ((EntityWolf) e.getTarget()).addPotionEffect(new PotionEffect(MobEffects.POISON,250,3));
+
+
          }
 
 
@@ -67,6 +93,30 @@ public class EventHandler {
         }
 
 
+
+    }
+
+
+
+    @SubscribeEvent
+    public void EnderPickup(LivingEquipmentChangeEvent e) {
+
+        if (e.getEntityLiving() instanceof EntityEnderman) {
+
+            if (e.getSlot()==EntityEquipmentSlot.MAINHAND || e.getSlot() == EntityEquipmentSlot.OFFHAND) {
+
+                if (e.getTo().getItem()==Item.getItemFromBlock(BlockRegistration.BLACK_SANDSTONE)) {
+                    e.getTo().shrink(e.getTo().getCount());
+
+                    e.getEntityLiving().setHeldItem(EnumHand.MAIN_HAND, new ItemStack(BlockRegistration.ACTIVATED_BLACK_SANDSTONE));
+
+
+                }
+
+
+            }
+
+        }
 
     }
 
@@ -100,14 +150,12 @@ public class EventHandler {
     public void ModifyBlockDrops(BlockEvent.HarvestDropsEvent e) {
 
         if (e.getHarvester() != null && !e.isSilkTouching()) {
-            System.out.println(e.getState().getProperties().toString());
             if (e.getState() == Blocks.LEAVES.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false).withProperty(BlockLeaves.DECAYABLE, true)) {
 
 
                 Random random = new Random();
 
                 if (MathHelper.getInt(random, 1, 100) >= (80 - (10 * e.getFortuneLevel()))) {
-                    System.out.println("Lucky Drops!");
                     e.getDrops().add(new ItemStack(fruits[MathHelper.getInt(random, 0, fruits.length)], MathHelper.getInt(random, 1, 3)));
 
 
@@ -147,12 +195,75 @@ public class EventHandler {
     }
 
     @SubscribeEvent
+    public void generateBlackBeaches(BiomeEvent e) {
+
+
+        if (e.getBiome().getClass() == BlackSandBeach.class) {
+            System.out.println("BEACH FOUND! AND IT'S BLACK!");
+        }
+
+    }
+
+    @SubscribeEvent
+    public void enderShutdown(PlayerInteractEvent.RightClickBlock e) {
+
+
+
+        if (e.getItemStack().getItem() == Items.ENDER_EYE && e.getWorld().getBlockState(e.getPos()).getBlock()==BlockRegistration.ACTIVATED_BLACK_SANDSTONE) {
+
+            e.getWorld().setBlockState(e.getPos(),BlockRegistration.BLACK_SANDSTONE_CHISELED.getDefaultState());
+
+
+
+
+        }
+
+
+    }
+
+
+
+
+
+
+    @SubscribeEvent
     public void CoconutCracking(PlayerInteractEvent.LeftClickBlock e) {
 
-        if (!e.getWorld().isRemote && e.getWorld().getBlockState(e.getPos()).getBlock() == BlockRegistration.COCONUT_BLOCK && e.getItemStack().getItem() instanceof ItemSword) {
 
-            Block.spawnAsEntity(e.getWorld(), e.getPos(), new ItemStack(ItemRegistration.COCONUT_CHUNK, 4));
-            e.getWorld().setBlockToAir(e.getPos());
+        if (!e.getWorld().isRemote && e.getWorld().getBlockState(e.getPos()).getBlock() == BlockRegistration.COCONUT && e.getItemStack().getItem() instanceof ItemSword) {
+
+
+            int stage =BlockRegistration.COCONUT.getMetaFromState(e.getWorld().getBlockState(e.getPos()));
+
+            if (stage >=2 && stage<4 && e.getWorld().isAirBlock(e.getPos().down())) {
+
+                EntityFallingBlock entityfallingblock = new EntityFallingBlock(e.getWorld(), (double)e.getPos().getX() + 0.5D, (double)e.getPos().getY(), (double)e.getPos().getZ() + 0.5D, BlockRegistration.COCONUT.getStateFromMeta(4));
+                entityfallingblock.setHurtEntities(true);
+                e.getWorld().spawnEntity(entityfallingblock);
+                e.getItemStack().damageItem(1, e.getEntityPlayer());
+
+
+
+            }
+       else if (stage ==4) {
+
+           int faceplace = 6;
+           if (e.getEntityPlayer().getHorizontalFacing()== EnumFacing.SOUTH ||e.getEntityPlayer().getHorizontalFacing()==EnumFacing.NORTH){
+               faceplace=5;
+           }
+
+                e.getWorld().setBlockState(e.getPos(),BlockRegistration.COCONUT.withAge(faceplace));
+
+
+            }
+            else if (stage<=5) {
+                 e.getWorld().setBlockToAir(e.getPos());
+                Block.spawnAsEntity(e.getWorld(), e.getPos(), new ItemStack(ItemRegistration.COCONUT_CHUNK, 4));
+
+
+            }
+
+
         }
 
     }
@@ -198,6 +309,8 @@ public class EventHandler {
 
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+
     public void FoodInfo(ItemTooltipEvent e) {
 
 
@@ -244,12 +357,13 @@ public class EventHandler {
 
     }
 
+    @SideOnly(Side.CLIENT)
     public void PatreonDonation(ItemTooltipEvent e) {
 
 
         if (e.getEntityPlayer() != null && e.getEntityPlayer().getEntityWorld().isRemote) {
 
-            if (PatreonData.getContributedItem(e.getEntityPlayer().getUniqueID()) == e.getItemStack().getItem()) {
+            if (PatreonData.getContributedItem(e.getEntityPlayer().getUniqueID()) !=null) {
 
                 e.getToolTip().add(TextFormatting.ITALIC + "Thank you for your contribution, " + e.getEntityPlayer().getName() + "!");
             }
@@ -304,42 +418,6 @@ public class EventHandler {
 
     }
 
-    @SubscribeEvent
-    public void TwoHandedWeapon(LivingEquipmentChangeEvent e) {
-
-        if (e.getSlot() == EntityEquipmentSlot.MAINHAND) {
-
-            if (e.getTo().getItem() instanceof BaseWeapon) {
-
-                if (((BaseWeapon) e.getTo().getItem()).isTwoHanded()) {
-
-                    if (!e.getEntityLiving().getHeldItemOffhand().isEmpty()) {
-                        ItemStack oldstack = e.getEntityLiving().getHeldItemOffhand();
-
-                        e.getEntityLiving().entityDropItem(oldstack, 0);
-
-                        e.getEntityLiving().setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
 
 
-                    }
-
-                }
-            }
-        } else if (e.getSlot() == EntityEquipmentSlot.OFFHAND) {
-
-            if (e.getEntityLiving().getHeldItemMainhand().getItem() instanceof BaseWeapon) {
-
-                if (((BaseWeapon) e.getEntityLiving().getHeldItemMainhand().getItem()).isTwoHanded()) {
-                    ItemStack oldstack = e.getEntityLiving().getHeldItemOffhand();
-
-                    e.getEntityLiving().entityDropItem(oldstack, 0);
-
-                    e.getEntityLiving().setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
-
-
-                }
-            }
-        }
-
-    }
 }

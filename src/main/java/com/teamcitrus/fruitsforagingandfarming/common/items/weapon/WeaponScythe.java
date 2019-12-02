@@ -1,5 +1,6 @@
 package com.teamcitrus.fruitsforagingandfarming.common.items.weapon;
 
+import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.EnchantmentRegistration;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
@@ -10,10 +11,13 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -98,54 +102,6 @@ public class WeaponScythe extends BaseWeapon {
 
     }
 
-    /*
-
-    @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
-
-                if (state.getBlock() instanceof BlockCrops) {
-                    stack.damageItem(1,entityLiving);
-                    System.out.println("Pos X: "  +pos.getX() + " Pos Y: " + pos.getY() + " Pos Z: " + pos.getZ());
-                        BlockPos breakposfirst;
-                        BlockPos breakpossecond;
-                        if (entityLiving.getHorizontalFacing().equals(EnumFacing.NORTH) || entityLiving.getHorizontalFacing() == EnumFacing.SOUTH) {
-                            breakposfirst=pos.west();
-                            breakpossecond=pos.east();
-
-                        }
-                        else {
-                            breakposfirst = pos.north();
-                            breakpossecond = pos.south();
-                        }
-
-
-
-
-                    if (worldIn.getBlockState(breakposfirst).getBlock() instanceof BlockCrops) {
-                        worldIn.destroyBlock(breakposfirst,true);
-                    }
-                    if (worldIn.getBlockState(breakpossecond).getBlock() instanceof BlockCrops) {
-                        worldIn.destroyBlock(breakpossecond,true);
-                    }
-                    System.out.println("Pos X: "  +breakposfirst.getX() + " Pos Y: " + breakposfirst.getY() + " Pos Z: " + breakposfirst.getZ());
-                    double d0 = (double)(-MathHelper.sin(entityLiving.rotationYaw * 0.017453292F));
-                    double d1 = (double)MathHelper.cos(entityLiving.rotationYaw * 0.017453292F);
-
-                    if (entityLiving.world instanceof WorldServer)
-                    {
-                        ((WorldServer)entityLiving.world).spawnParticle(EnumParticleTypes.SWEEP_ATTACK, entityLiving.posX + d0, entityLiving.posY + (double)entityLiving.height * 0.5D, entityLiving.posZ + d1, 0, d0, 0.0D, d1, 0.0D);
-                    }
-                }
-     else {
-                    stack.damageItem(2,entityLiving);
-                }
-        return super.onBlockDestroyed(stack, worldIn, state, pos, entityLiving);
-    }
-
-
-     */
-
-
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 
@@ -223,6 +179,5 @@ public class WeaponScythe extends BaseWeapon {
         }
         return super.onBlockDestroyed(stack, worldIn, state, pos, entityLiving);
     }
-
 
 }

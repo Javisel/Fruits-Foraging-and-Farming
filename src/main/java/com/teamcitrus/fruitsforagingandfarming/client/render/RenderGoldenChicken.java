@@ -15,8 +15,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class RenderGoldenChicken extends RenderLiving<EntityGoldenChicken> {
     private static final ResourceLocation BROWN_CHICKEN_TEXTURES = new ResourceLocation(FruitsForagingAndFarming.MODID + ":" + "textures/entity/golden_chicken.png");
 
-    public RenderGoldenChicken(RenderManager p_i47211_1_) {
-        super(p_i47211_1_, new ModelChicken(), 0.3F);
+    public RenderGoldenChicken(RenderManager renderManager) {
+        super(renderManager, new ModelChicken(), 0.3F);
     }
 
     /**

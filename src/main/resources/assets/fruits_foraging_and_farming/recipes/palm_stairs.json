@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "fruits_foraging_and_farming:palm_planks"
+    }
+  },
+  "result": {
+    "item": "fruits_foraging_and_farming:palm_stairs",
+    "count": 4
+  }
+}

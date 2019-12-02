@@ -12,7 +12,7 @@ import net.minecraft.item.ItemTool;
 
 public class Void extends Enchantment {
     public Void() {
-        super(Rarity.VERY_RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND, EntityEquipmentSlot.OFFHAND});
+        super(Rarity.VERY_RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
         setName("void");
         setRegistryName("void");
     }

@@ -1,8 +1,10 @@
 package com.teamcitrus.fruitsforagingandfarming.proxy;
 
 import com.teamcitrus.fruitsforagingandfarming.client.render.EntityRenderRegistration;
+import com.teamcitrus.fruitsforagingandfarming.client.render.RenderGoldenChicken;
 import com.teamcitrus.fruitsforagingandfarming.common.blocks.EnumColorable;
 import com.teamcitrus.fruitsforagingandfarming.common.blocks.IBitMapColorBlock;
+import com.teamcitrus.fruitsforagingandfarming.common.entities.EntityGoldenChicken;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
@@ -19,8 +21,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLLoadEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -28,6 +32,8 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
+
+
 
 
     @SubscribeEvent
@@ -42,7 +48,7 @@ public class ClientProxy extends CommonProxy {
         registerItemRenderer(ItemRegistration.COCONUT_CHUNK, 0);
         registerItemRenderer(ItemRegistration.CORN, 0);
         registerItemRenderer(ItemRegistration.DURIAN, 0);
-        registerItemRenderer(ItemRegistration.INFESTED_PEBBLE, 0);
+        registerItemRenderer(ItemRegistration.INFESTED_EGGS, 0);
         registerItemRenderer(ItemRegistration.HONEYMELON_SLICE, 0);
         registerItemRenderer(ItemRegistration.KIWI, 0);
         registerItemRenderer(ItemRegistration.KIWANO, 0);
@@ -61,11 +67,14 @@ public class ClientProxy extends CommonProxy {
         registerItemRenderer(ItemRegistration.GRASS_SEEDS, 0);
         registerItemRenderer(ItemRegistration.STONE_SCYTHE, 0);
         registerItemRenderer(ItemRegistration.HONEYMELON_SEEDS, 0);
+        registerItemRenderer(ItemRegistration.CRACKED_COCONUT,0);
+
+
         //BLOCKS
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_LOG), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_LEAVES), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_PLANKS), 0);
-        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.COCONUT_BLOCK), 0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.COCONUT), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_HALF_SLAB), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_FENCE), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.PALM_FENCE_GATE), 0);
@@ -77,6 +86,16 @@ public class ClientProxy extends CommonProxy {
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.ORANGE), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.MANGO), 0);
         registerItemRenderer(Item.getItemFromBlock(BlockRegistration.BLACK_SAND),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.BLACK_SANDSTONE_CHISELED),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.BLACK_SANDSTONE_HALF_SLAB),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.BLACK_SANDSTONE_SMOOTH),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.BLACK_SANDSTONE_STAIRS),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.ACTIVATED_BLACK_SANDSTONE),0);
+        registerItemRenderer(Item.getItemFromBlock(BlockRegistration.BLACK_SANDSTONE),0);
+
+
+
+
     }
 
     private static void registerBlockColorHandler(Block block) {
@@ -120,7 +139,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void preInit(FMLPreInitializationEvent e) {
-        EntityRenderRegistration.RegisterEntity();
+        EntityRenderRegistration.RegisterEntityRenderers();
 
     }
 
@@ -134,6 +153,7 @@ public class ClientProxy extends CommonProxy {
         registerBlockColorHandler(BlockRegistration.PALM_LEAVES);
         registerItemColorBlockHandler(BlockRegistration.PALM_LEAVES);
         registerBlockColorHandler(BlockRegistration.HONEYMELON_STEM);
+
     }
 
 

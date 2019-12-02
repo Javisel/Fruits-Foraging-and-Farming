@@ -17,6 +17,8 @@ import net.minecraft.world.storage.loot.conditions.RandomChance;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetCount;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -28,6 +30,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
 import java.io.File;
 
 @Mod(modid = FruitsForagingAndFarming.MODID, name = FruitsForagingAndFarming.NAME, version = FruitsForagingAndFarming.VERSION)
@@ -35,7 +38,7 @@ public class FruitsForagingAndFarming {
     public static File config;
     public static final String MODID = "fruits_foraging_and_farming";
     public static final String NAME = "Fruits, Foraging and Farming";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "1.0.2.0";
     public static final CreativeTab fffCreativeTab = new CreativeTab("fruits_foraging_and_farming");
     public static final DamageSource silverfishAlien = new SilverfishAlien();
     @Mod.Instance(FruitsForagingAndFarming.MODID)
@@ -47,8 +50,10 @@ public class FruitsForagingAndFarming {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         EntityRegistration.RegisterEntities();
-        ConfigHandler.registerConfig(event);
+        ConfigManager.sync(MODID, Config.Type.INSTANCE);
+            proxy.preInit(event);
         logger = event.getModLog();
+
     }
  
     @EventHandler
@@ -57,10 +62,12 @@ public class FruitsForagingAndFarming {
 
         MinecraftForge.EVENT_BUS.register(new com.teamcitrus.fruitsforagingandfarming.main.EventHandler());
         BlockRegistration.RegisterOre();
-        if (ConfigHandler.WORLD_GEN) {
+        if (ConfigHandler.worldGeneration.EnableWorldGeneration) {
             GameRegistry.registerWorldGenerator(new TreeGenerator(), 0);
         }
     }
+
+
 
 
 
@@ -78,7 +85,7 @@ public class FruitsForagingAndFarming {
             if (event.getName().getResourcePath().equals("entities/silverfish")) {
                 LootCondition[] conditions = new LootCondition[] {new KilledByPlayer(false), new RandomChance(1)};
                 LootFunction[] functions = new LootFunction[]{new SetCount(conditions, new RandomValueRange(1,4))};
-                LootEntryItem[] entries = new LootEntryItem[]{new LootEntryItem(ItemRegistration.INFESTED_PEBBLE,1,1,functions,conditions,MODID + ":infested_pebbles")};
+                LootEntryItem[] entries = new LootEntryItem[]{new LootEntryItem(ItemRegistration.INFESTED_EGGS,1,1,functions,conditions,MODID + ":infested_pebbles")};
                 LootPool pool = new LootPool(entries,conditions,new RandomValueRange(1,4),new RandomValueRange(1,2),MODID +":infested_pebbles");
                 event.getTable().addPool(pool);
             }

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fruits_foraging_and_farming:item/infested_eggs"
+  }
+}

@@ -37,7 +37,7 @@ public class ChocolateMilkBucket extends ItemBucketMilk implements IEdible{
                 EntityPlayerMP entityplayermp = (EntityPlayerMP) entityLiving;
                 CriteriaTriggers.CONSUME_ITEM.trigger(entityplayermp, stack);
                 entityplayermp.addStat(StatList.getObjectUseStats(this));
-                entityplayermp.getFoodStats().addStats(ConfigHandler.CHOC_MILK_SHANK, ConfigHandler.CHOC_MILK_SAT);
+                entityplayermp.getFoodStats().addStats(ConfigHandler.CHOCOLATE_MILK_BUCKET.shanks, ConfigHandler.CHOCOLATE_MILK_BUCKET.getSaturation());
             }
 
         if (entityLiving instanceof EntityPlayer && !((EntityPlayer) entityLiving).capabilities.isCreativeMode) {
@@ -49,11 +49,11 @@ public class ChocolateMilkBucket extends ItemBucketMilk implements IEdible{
 
     @Override
     public int getFoodLevel() {
-        return ConfigHandler.CHOC_MILK_SHANK;
+        return ConfigHandler.CHOCOLATE_MILK_BUCKET.shanks;
     }
 
     @Override
     public float getSaturation() {
-        return ConfigHandler.CHOC_MILK_SAT;
+        return ConfigHandler.CHOCOLATE_MILK_BUCKET.getSaturation();
     }
 }

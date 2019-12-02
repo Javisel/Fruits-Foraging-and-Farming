@@ -6,6 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.util.Random;
@@ -20,6 +21,7 @@ public class PalmTree extends WorldGenAbstractTree {
         if (worldIn.getBlockState(pos.down()).getMaterial() != Material.SAND && worldIn.getBlockState(pos.down()).getMaterial() != Material.GRASS) {
             return false;
         }
+
         for (int i = 1; i < 7; i++) {
 
             if (i <= 6) {
@@ -108,8 +110,8 @@ public class PalmTree extends WorldGenAbstractTree {
                 for (int z = -4; z<=4;z++) {
                     if (worldIn.getBlockState(top.add(x,y,z)).getBlock() == BlockRegistration.PALM_LEAVES && worldIn.isAirBlock(top.add(x,y-1,z))) {
 
-                        if (MathHelper.getInt(random,0,100) <=25) {
-                            worldIn.setBlockState(top.add(x,y-1,z),BlockRegistration.COCONUT_BLOCK.withAge(1));
+                        if (MathHelper.getInt(random,0,100) <=10) {
+                            worldIn.setBlockState(top.add(x,y-1,z),BlockRegistration.COCONUT.withAge(0));
                         }
                     }
 
@@ -125,9 +127,14 @@ public class PalmTree extends WorldGenAbstractTree {
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
+
         if (worldIn.getBlockState(position.down()).getMaterial() != Material.SAND && worldIn.getBlockState(position.down()).getMaterial() != Material.GRASS) {
             return false;
         }
+        if (worldIn.getBiome(position).getTempCategory() != Biome.TempCategory.WARM) {
+            return false;
+        }
+
         for (int i = 1; i < 7; i++) {
 
             if (i <= 6) {
@@ -209,13 +216,13 @@ public class PalmTree extends WorldGenAbstractTree {
 
 
         for (int x =-4;x <=4;x++ ) {
-            for (int y = - 2;y <2; y++) {
+            for (int y = - 4;y <2; y++) {
 
                 for (int z = -4; z<=4;z++) {
                     if (worldIn.getBlockState(top.add(x,y,z)).getBlock() == BlockRegistration.PALM_LEAVES && worldIn.isAirBlock(top.add(x,y-1,z))) {
 
-                        if (MathHelper.getInt(rand,0,100) <=25) {
-                            worldIn.setBlockState(top.add(x,y-1,z),BlockRegistration.COCONUT_BLOCK.withAge(1));
+                        if (MathHelper.getInt(rand,0,100) <=10) {
+                            worldIn.setBlockState(top.add(x,y-1,z),BlockRegistration.COCONUT.withAge(MathHelper.getInt(rand,0,4)),1);
                         }
                     }
 

@@ -41,6 +41,7 @@ public class HoneyMelonStem extends BlockBush implements IGrowable, IBitMapColor
 
         setRegistryName("honeymelon_stem");
         setUnlocalizedName("honeymelon_stem");
+
     }
 
     protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos) {

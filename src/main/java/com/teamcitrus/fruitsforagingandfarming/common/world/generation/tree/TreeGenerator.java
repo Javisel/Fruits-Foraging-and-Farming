@@ -1,6 +1,8 @@
 package com.teamcitrus.fruitsforagingandfarming.common.world.generation.tree;
 
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
+import com.teamcitrus.fruitsforagingandfarming.common.world.generation.biome.BlackSandBeach;
+import com.teamcitrus.fruitsforagingandfarming.common.world.generation.biome.Oasis;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -41,7 +43,10 @@ public class TreeGenerator implements IWorldGenerator {
                 break;
 
             case 0:
-                runGenerator(palmtree, world, random, chunkX, chunkZ, 5, Blocks.SAND, BiomeBeach.class);
+
+                runGenerator(palmtree, world, random, chunkX, chunkZ, 5, Blocks.SAND, Oasis.class, BiomeBeach.class);
+                runGenerator(palmtree, world, random, chunkX, chunkZ, 5, BlockRegistration.BLACK_SAND, BlackSandBeach.class);
+
                 //runGenerator(fruitGenerator,world,random,chunkX,chunkZ,1,Blocks.LEAVES,BiomeJungle.class);
        //       runGenerator(coconutGenerator, world, random, chunkX, chunkZ, 1, BlockRegistration.PALM_LEAVES, BiomeBeach.class);
                 break;

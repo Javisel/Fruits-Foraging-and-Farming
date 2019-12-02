@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=bottom,variant=default": {
+      "model": "fruits_foraging_and_farming:black_sandstone_bottom_slab"
+    },
+    "half=top,variant=default": {
+      "model": "fruits_foraging_and_farming:black_sandstone_top_slab"
+    }
+  }
+}

@@ -25,9 +25,14 @@ public class Infestation extends MobEffect {
             for (int i = 0; i < 1 + amplifier; i++) {
                 entityLivingBaseIn.attackEntityFrom(FruitsForagingAndFarming.silverfishAlien, 1f);
 
+                EntitySilverfish silverfish = new EntitySilverfish(entityLivingBaseIn.getEntityWorld());
+
+
                 MobUtilities.spawnCreature(entityLivingBaseIn.getEntityWorld(),
-                        new EntitySilverfish(entityLivingBaseIn.world), entityLivingBaseIn.posX,
+                        silverfish, entityLivingBaseIn.posX,
                         entityLivingBaseIn.posY + (entityLivingBaseIn.height * 0.5), entityLivingBaseIn.posZ);
+
+                silverfish.setAttackTarget(entityLivingBaseIn);
             }
         }
 

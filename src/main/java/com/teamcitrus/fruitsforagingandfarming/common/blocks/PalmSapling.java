@@ -38,6 +38,6 @@ public class PalmSapling extends BlockSaplingBase {
 
     @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-        return  worldIn.getBlockState(pos.down()).getBlock() == Blocks.SAND ||  worldIn.getBlockState(pos.down()).getBlock() == BlockRegistration.BLACK_SAND ;
+        return super.canPlaceBlockAt(worldIn,pos) ||  worldIn.getBlockState(pos.down()).getBlock() == Blocks.SAND ||  worldIn.getBlockState(pos.down()).getBlock() == BlockRegistration.BLACK_SAND;
     }
 }

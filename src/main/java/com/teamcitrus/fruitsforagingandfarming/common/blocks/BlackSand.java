@@ -15,7 +15,7 @@ import java.util.Random;
 public class BlackSand extends BlockFalling {
 
     public BlackSand(){
-        super(Material.SAND);
+
         setRegistryName("black_sand");
         setUnlocalizedName("black_sand");
         setHardness(0.5F);

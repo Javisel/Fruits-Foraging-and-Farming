@@ -1,15 +1,22 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "III",
+    "IXI",
+    "III"
+  ],
+  "key": {
+    "I": {
       "item": "minecraft:glass_bottle"
     },
-    {
-      "item": "fruits_foraging_and_farming:chocolate_milk_bucket"
-    }
-  ],
+    "X": [
+      {
+        "item": "fruits_foraging_and_farming:chocolate_milk_bucket"
+      }
+    ]
+  },
   "result": {
     "item": "fruits_foraging_and_farming:chocolate_milk_bottle",
-    "count": 1
+    "count": 8
   }
 }

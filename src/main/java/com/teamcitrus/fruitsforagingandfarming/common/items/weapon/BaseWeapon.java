@@ -4,11 +4,16 @@ import com.google.common.collect.Multimap;
 import com.teamcitrus.fruitsforagingandfarming.main.FruitsForagingAndFarming;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
 
 public class BaseWeapon extends Item implements IWeapon {
 
@@ -57,6 +62,35 @@ public class BaseWeapon extends Item implements IWeapon {
         }
 
         return multimap;
+    }
+
+    @Override
+    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+
+        if (isTwoHanded()) {
+
+            if (entityIn instanceof EntityLivingBase) {
+                EntityLivingBase entityLivingBase = (EntityLivingBase) entityIn;
+
+                if (entityLivingBase.getHeldItemMainhand() == stack && !entityLivingBase.getHeldItemOffhand().isEmpty()) {
+
+                    entityLivingBase.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE,20,4));
+
+                }
+               else  if (entityLivingBase.getHeldItemOffhand() == stack && !entityLivingBase.getHeldItemMainhand().isEmpty()) {
+
+                    entityLivingBase.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE,20,4));
+
+                }
+
+
+
+            }
+
+
+        }
+
+
     }
 
     @Override

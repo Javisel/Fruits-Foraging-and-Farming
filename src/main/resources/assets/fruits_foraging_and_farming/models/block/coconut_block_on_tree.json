@@ -1,9 +1,9 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "0": "fruits_foraging_and_farming:block/coconut_side",
-    "1": "fruits_foraging_and_farming:block/coconut_top",
-    "particle": "fruits_foraging_and_farming:block/coconut_side"
+    "0": "fruits_foraging_and_farming:block/coconut_side_4",
+    "1": "fruits_foraging_and_farming:block/coconut_top_4",
+    "particle": "fruits_foraging_and_farming:block/coconut_side_4"
   },
   "elements": [
     {
