@@ -1,7 +1,14 @@
 package com.teamcitrus.fruitsforagingandfarming.main;
 
 import com.teamcitrus.fruitsforagingandfarming.client.creativetabs.CreativeTab;
+import com.teamcitrus.fruitsforagingandfarming.common.capabilities.CapabilityHandler;
+import com.teamcitrus.fruitsforagingandfarming.common.capabilities.EntityData;
+import com.teamcitrus.fruitsforagingandfarming.common.capabilities.EntityDataStorage;
+import com.teamcitrus.fruitsforagingandfarming.common.capabilities.IEntityData;
 import com.teamcitrus.fruitsforagingandfarming.common.damagesource.SilverfishAlien;
+import com.teamcitrus.fruitsforagingandfarming.common.network.EntityDataMessage;
+import com.teamcitrus.fruitsforagingandfarming.common.network.EntityDataMessageHandler;
+import com.teamcitrus.fruitsforagingandfarming.common.network.PacketHandler;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.EntityRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
@@ -17,6 +24,7 @@ import net.minecraft.world.storage.loot.conditions.RandomChance;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetCount;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.LootTableLoadEvent;
@@ -28,6 +36,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
@@ -59,8 +68,11 @@ public class FruitsForagingAndFarming {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
-
+        CapabilityManager.INSTANCE.register(IEntityData.class, new EntityDataStorage(), EntityData::new);
+        MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
         MinecraftForge.EVENT_BUS.register(new com.teamcitrus.fruitsforagingandfarming.main.EventHandler());
+        PacketHandler.INSTANCE.registerMessage(EntityDataMessageHandler.class, EntityDataMessage.class, 1, Side.CLIENT);
+
         BlockRegistration.RegisterOre();
         if (ConfigHandler.worldGeneration.EnableWorldGeneration) {
             GameRegistry.registerWorldGenerator(new TreeGenerator(), 0);

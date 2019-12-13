@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "fruits_foraging_and_farming:block/honeymelon_face",
-		"1": "fruits_foraging_and_farming:block/honeymelon_stem",
-		"particle": "fruits_foraging_and_farming:block/honeymelon_face"
+		"0": "fruits_foraging_and_farming:block/honeymelon_stem",
+		"1": "fruits_foraging_and_farming:block/honeymelon_face",
+		"particle": "fruits_foraging_and_farming:block/honeymelon_stem"
 	},
 	"elements": [
 		{
@@ -11,13 +11,35 @@
 			"to": [14, 12, 14],
 			"rotation": {"angle": 0, "axis": "y", "origin": [10, 8, 10]},
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
 				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 3.25, 0],
+			"scale": [0.41086, 0.42188, 0.43164]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 3.25, 0],
+			"scale": [0.41086, 0.42188, 0.43164]
+		},
+		"ground": {
+			"scale": [0.41086, 0.42188, 0.43164]
+		},
+		"gui": {
+			"rotation": [37, 32, 0],
+			"translation": [0, 1, 0],
+			"scale": [0.72461, 0.68945, 0.71]
+		},
+		"fixed": {
+			"translation": [0, 1, 0],
+			"scale": [0.71555, 0.75, 0.57617]
+		}
+	}
 }

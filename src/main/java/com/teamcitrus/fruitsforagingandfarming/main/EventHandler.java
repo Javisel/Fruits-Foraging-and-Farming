@@ -1,11 +1,17 @@
 package com.teamcitrus.fruitsforagingandfarming.main;
 
+import com.google.common.eventbus.Subscribe;
 import com.teamcitrus.fruitsforagingandfarming.common.blocks.BlockCoconut;
+import com.teamcitrus.fruitsforagingandfarming.common.capabilities.EntityData;
+import com.teamcitrus.fruitsforagingandfarming.common.capabilities.EntityDataProvider;
 import com.teamcitrus.fruitsforagingandfarming.common.effects.MobEffect;
+import com.teamcitrus.fruitsforagingandfarming.common.entities.EntityTypeList;
 import com.teamcitrus.fruitsforagingandfarming.common.items.IEdible;
 import com.teamcitrus.fruitsforagingandfarming.common.items.ItemCakeBlock;
 import com.teamcitrus.fruitsforagingandfarming.common.items.ItemPlaceableFruit;
 import com.teamcitrus.fruitsforagingandfarming.common.items.weapon.BaseWeapon;
+import com.teamcitrus.fruitsforagingandfarming.common.network.EntityDataMessage;
+import com.teamcitrus.fruitsforagingandfarming.common.network.PacketHandler;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.BlockRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.EnchantmentRegistration;
 import com.teamcitrus.fruitsforagingandfarming.common.registration.ItemRegistration;
@@ -39,6 +45,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.biome.BiomeRiver;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -64,6 +71,24 @@ public class EventHandler {
     static final Item[] vanillaseeds = {Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS};
 
 
+    @SubscribeEvent
+    public void varaintTextures(EntityJoinWorldEvent e) {
+
+        if (e.getEntity().hasCapability(EntityDataProvider.ENTITY_DATA_CAPABILITY,null)&& !e.getWorld().isRemote) {
+
+            if (EntityTypeList.types.get(e.getEntity().getClass()) !=null) {
+                e.getEntity().getCapability(EntityDataProvider.ENTITY_DATA_CAPABILITY,null).setEntityType(MathHelper.getInt(e.getWorld().rand,0,EntityTypeList.types.get(e.getEntity().getClass())));
+
+
+
+                PacketHandler.INSTANCE.sendToAllTracking(new EntityDataMessage((EntityLivingBase) e.getEntity()),e.getEntity());
+
+            }
+
+        }
+
+
+    }
 
 
 
@@ -194,15 +219,7 @@ public class EventHandler {
 
     }
 
-    @SubscribeEvent
-    public void generateBlackBeaches(BiomeEvent e) {
 
-
-        if (e.getBiome().getClass() == BlackSandBeach.class) {
-            System.out.println("BEACH FOUND! AND IT'S BLACK!");
-        }
-
-    }
 
     @SubscribeEvent
     public void enderShutdown(PlayerInteractEvent.RightClickBlock e) {
@@ -230,7 +247,7 @@ public class EventHandler {
     public void CoconutCracking(PlayerInteractEvent.LeftClickBlock e) {
 
 
-        if (!e.getWorld().isRemote && e.getWorld().getBlockState(e.getPos()).getBlock() == BlockRegistration.COCONUT && e.getItemStack().getItem() instanceof ItemSword) {
+        if (!e.getWorld().isRemote && e.getWorld().getBlockState(e.getPos()).getBlock() == BlockRegistration.COCONUT && e.getItemStack().getItem() instanceof ItemSword || e.getItemStack().getItem() instanceof ItemAxe) {
 
 
             int stage =BlockRegistration.COCONUT.getMetaFromState(e.getWorld().getBlockState(e.getPos()));
@@ -256,7 +273,7 @@ public class EventHandler {
 
 
             }
-            else if (stage<=5) {
+            else if (stage>=5) {
                  e.getWorld().setBlockToAir(e.getPos());
                 Block.spawnAsEntity(e.getWorld(), e.getPos(), new ItemStack(ItemRegistration.COCONUT_CHUNK, 4));
 

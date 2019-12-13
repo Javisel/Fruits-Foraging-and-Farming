@@ -12,7 +12,7 @@ public class BlackSandBeach extends BiomeBeach {
    static BiomeProperties properties = new BiomeProperties("black_sand_beach");
 
     static {
-        properties.setBaseBiome("desert");
+        properties.setBaseBiome("beaches");
         properties.setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.95F).setRainfall(0.4F);
 
     }
@@ -24,5 +24,10 @@ public class BlackSandBeach extends BiomeBeach {
         this.fillerBlock = BlockRegistration.BLACK_SAND.getDefaultState();
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityCoconutCrab.class,5,1,3));
 
+    }
+
+    @Override
+    public TempCategory getTempCategory() {
+        return TempCategory.MEDIUM;
     }
 }

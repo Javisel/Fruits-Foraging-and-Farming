@@ -24,4 +24,6 @@ public class RenderCoconutCrab extends RenderLiving<EntityCoconutCrab> {
     protected ResourceLocation getEntityTexture(EntityCoconutCrab entity) {
         return COCONUTCRABTEXTURES;
     }
+
+
 }

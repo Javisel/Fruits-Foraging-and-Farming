@@ -20,7 +20,7 @@ public class EntityRegistration {
        registerLivingEntityWithEgg("golden_chicken", EntityGoldenChicken.class, Color.YELLOW.getRGB(), Color.RED.getRGB());
        registerLivingEntityWithEgg("coconut_crab", EntityCoconutCrab.class,3481637,10503460);
 
-         //   registerEntity("coconut_entity", EntityCoconut.class);
+       registerEntity("coconut_entity", EntityCoconut.class);
     }
 
     private static void registerLivingEntityWithEgg(final String name, final Class<? extends Entity> entity, final int eggPrimaryColor,

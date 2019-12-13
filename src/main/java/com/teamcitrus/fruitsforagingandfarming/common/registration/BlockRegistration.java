@@ -157,7 +157,7 @@ public class BlockRegistration {
         EntityEnderman.setCarriable(BlockRegistration.BLACK_SANDSTONE,true);
         EntityEnderman.setCarriable(BlockRegistration.BLACK_SANDSTONE_CHISELED,true);
         EntityEnderman.setCarriable(BlockRegistration.BLACK_SANDSTONE_SMOOTH,true);
-
+        EntityEnderman.setCarriable(BlockRegistration.ACTIVATED_BLACK_SANDSTONE,true);
 
     }
 

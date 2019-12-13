@@ -131,9 +131,6 @@ public class PalmTree extends WorldGenAbstractTree {
         if (worldIn.getBlockState(position.down()).getMaterial() != Material.SAND && worldIn.getBlockState(position.down()).getMaterial() != Material.GRASS) {
             return false;
         }
-        if (worldIn.getBiome(position).getTempCategory() != Biome.TempCategory.WARM) {
-            return false;
-        }
 
         for (int i = 1; i < 7; i++) {
 
@@ -221,8 +218,17 @@ public class PalmTree extends WorldGenAbstractTree {
                 for (int z = -4; z<=4;z++) {
                     if (worldIn.getBlockState(top.add(x,y,z)).getBlock() == BlockRegistration.PALM_LEAVES && worldIn.isAirBlock(top.add(x,y-1,z))) {
 
+
                         if (MathHelper.getInt(rand,0,100) <=10) {
-                            worldIn.setBlockState(top.add(x,y-1,z),BlockRegistration.COCONUT.withAge(MathHelper.getInt(rand,0,4)),1);
+
+                            int coconuts;
+                            if (MathHelper.getInt(rand,0,100) <=30) {
+                                coconuts=MathHelper.getInt(rand,2,6);
+                            } else {
+                                coconuts=MathHelper.getInt(rand,0,2);
+                            }
+
+                            worldIn.setBlockState(top.add(x,y-1,z),BlockRegistration.COCONUT.withAge(coconuts),1);
                         }
                     }
 
@@ -249,4 +255,9 @@ public class PalmTree extends WorldGenAbstractTree {
 
         return false;
     }
+
+
+
+
+
 }

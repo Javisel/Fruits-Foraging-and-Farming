@@ -1,5 +1,7 @@
 package com.teamcitrus.fruitsforagingandfarming.common.entities;
 
+import com.teamcitrus.fruitsforagingandfarming.common.entities.generalai.EntityAINocturnal;
+import com.teamcitrus.fruitsforagingandfarming.common.entities.generalai.EntityAINocturnalTerrestrial;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -33,7 +35,7 @@ public class EntityCoconutCrab extends EntityMob {
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
 
-        if (source==DamageSource.FALL) {
+        if (source==DamageSource.FALL || source==DamageSource.GENERIC) {
             amount /= 4;
         }
         return super.attackEntityFrom(source, amount);
@@ -54,10 +56,9 @@ public class EntityCoconutCrab extends EntityMob {
     protected void initEntityAI()
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAttackMelee(this,2,true));
-        this.tasks.addTask(2, new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(3, new EntityAIWanderAvoidWater(this, 0.25D));
+        this.tasks.addTask(3, new EntityAINocturnalTerrestrial(this, 0.5));
         this.tasks.addTask(4, new EntityAILookIdle(this));
+        this.tasks.addTask(5, new EntityAINocturnal(this,2));
     }
 
 

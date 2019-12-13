@@ -61,7 +61,7 @@ public class BlockCoconut extends BlockFalling implements IGrowable {
         super(Material.PLANTS);
         this.setRegistryName("coconut");
         setUnlocalizedName("coconut");
-        setHardness(1);
+        setHardness(0.5F);
         setResistance(0);
         this.setDefaultState(this.blockState.getBaseState().withProperty(getAgeProperty(), 0));
         setTickRandomly(true);
@@ -221,28 +221,29 @@ public class BlockCoconut extends BlockFalling implements IGrowable {
     @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
 
-        return true;
+        return !isClient && getAge(state) <2;
 
     }
 
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return true;
+        return getAge(state) <2;
 
     }
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        int i = rand.nextInt(2);
-        i+=getMetaFromState(state);
-        int j =2;
+        if (!worldIn.isRemote) {
+            int i = rand.nextInt(2);
+            i += getMetaFromState(state);
+            int j = 2;
 
-        if (i > j) {
-            i = j;
+            if (i > j) {
+                i = j;
+            }
+
+            worldIn.setBlockState(pos, this.withAge(i), 2);
         }
-
-        worldIn.setBlockState(pos, this.withAge(i), 2);
-
     }
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
@@ -252,7 +253,7 @@ public class BlockCoconut extends BlockFalling implements IGrowable {
             return;
         }
         int i = this.getAge(state);
-        if (i <2) {
+        if (canGrow(worldIn,pos,state,false)) {
             float f = getGrowthChance( worldIn, pos);
 
             if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0)) {
@@ -306,6 +307,9 @@ public class BlockCoconut extends BlockFalling implements IGrowable {
     public void onEndFalling(World worldIn, BlockPos pos, IBlockState p_176502_3_, IBlockState p_176502_4_)
     {
         if (!worldIn.isRemote && worldIn.getBlockState(pos.down()).getBlock().getMaterial(worldIn.getBlockState(pos.down())) == Material.ROCK) {
+
+
+
 
             worldIn.setBlockToAir(pos);
 

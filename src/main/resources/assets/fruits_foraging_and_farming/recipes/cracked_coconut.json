@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "fruits_foraging_and_farming:coconut"
+    }
+  ],
+  "result": {
+    "item": "fruits_foraging_and_farming:cracked_coconut",
+    "count": 1
+  }
+}
