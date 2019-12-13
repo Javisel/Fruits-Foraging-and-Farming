@@ -16,7 +16,6 @@ import scala.collection.parallel.ParIterableLike;
 
 import java.util.List;
 
-@SideOnly(Side.CLIENT)
 public class EntityDataMessageHandler implements IMessageHandler<EntityDataMessage, IMessage> {
 
 
@@ -29,6 +28,7 @@ public class EntityDataMessageHandler implements IMessageHandler<EntityDataMessa
         if (Minecraft.getMinecraft().world.getEntityByID(message.entityid) !=null) {
             System.out.println("THE ID HAS BEEN FOUND!");
 
+            Minecraft.getMinecraft().world.getEntityByID(message.entityid).getCapability(EntityDataProvider.ENTITY_DATA_CAPABILITY,null).readNBT(message.tag);
 
 
 

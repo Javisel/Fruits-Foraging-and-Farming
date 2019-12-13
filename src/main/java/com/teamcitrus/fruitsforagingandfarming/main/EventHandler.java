@@ -72,12 +72,13 @@ public class EventHandler {
 
 
     @SubscribeEvent
-    public void varaintTextures(EntityJoinWorldEvent e) {
+    public void varaintTextures(net.minecraftforge.event.entity.player.PlayerEvent.StartTracking e) {
 
-        if (e.getEntity().hasCapability(EntityDataProvider.ENTITY_DATA_CAPABILITY,null)&& !e.getWorld().isRemote) {
+
+        if ( e.getEntityLiving() !=null && !e.getEntityLiving().world.isRemote) {
 
             if (EntityTypeList.types.get(e.getEntity().getClass()) !=null) {
-                e.getEntity().getCapability(EntityDataProvider.ENTITY_DATA_CAPABILITY,null).setEntityType(MathHelper.getInt(e.getWorld().rand,0,EntityTypeList.types.get(e.getEntity().getClass())));
+
 
 
 
@@ -90,7 +91,21 @@ public class EventHandler {
 
     }
 
+    @SubscribeEvent
+    public void variantTextures(EntityJoinWorldEvent e) {
 
+        if (e.getEntity() instanceof EntityLivingBase && !(e.getEntity() instanceof  EntityPlayer) && !e.getWorld().isRemote) {
+
+            if (EntityTypeList.types.get(e.getEntity().getClass()) !=null) {
+                e.getEntity().getCapability(EntityDataProvider.ENTITY_DATA_CAPABILITY, null).setEntityType(MathHelper.getInt(e.getEntity().getEntityWorld().rand, 0, EntityTypeList.types.get(e.getEntity().getClass())));
+            }
+
+
+        }
+
+
+
+    }
 
 
 

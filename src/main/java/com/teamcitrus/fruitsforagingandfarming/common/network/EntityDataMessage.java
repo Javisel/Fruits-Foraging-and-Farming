@@ -15,7 +15,7 @@ public class EntityDataMessage implements IMessage {
 
 
         entityid=entityLivingBase.getEntityId();
-       System.out.println("ID: " + entityid);
+   //    System.out.println("ID: " + entityid);
         tag=entityLivingBase.getCapability(EntityDataProvider.ENTITY_DATA_CAPABILITY,null).writeNBT();
 
 
@@ -27,13 +27,13 @@ public class EntityDataMessage implements IMessage {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        entityid=buf.readInt();
+        entityid=ByteBufUtils.readVarInt(buf,7);
        tag=ByteBufUtils.readTag(buf);
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(entityid);
+        ByteBufUtils.writeVarInt(buf,entityid,7);
         ByteBufUtils.writeTag(buf,tag);
     }
 }
