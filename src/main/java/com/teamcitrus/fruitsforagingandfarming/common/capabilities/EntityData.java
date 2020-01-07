@@ -1,11 +1,13 @@
 package com.teamcitrus.fruitsforagingandfarming.common.capabilities;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.MathHelper;
+
+import java.util.Random;
 
 public class EntityData implements IEntityData {
 
     private int type=0;
-
     @Override
     public int getEntityType() {
         return type;
@@ -13,6 +15,9 @@ public class EntityData implements IEntityData {
 
     @Override
     public void setEntityType(int type) {
+
+
+
         this.type=type;
     }
 
